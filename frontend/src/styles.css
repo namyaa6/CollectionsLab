@@ -79,6 +79,10 @@ button { font: inherit; }
 .btn.primary:hover:not(:disabled) { background: var(--accent-ink); }
 .btn.ghost { background: transparent; }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+a.btn, a.tab { text-decoration: none; display: inline-flex; align-items: center; }
+.btn.sm { padding: 3px 10px; font-size: 13px; }
+.btn.disabled { opacity: 0.45; pointer-events: none; }
+a { color: var(--accent-ink); }
 
 /* Error panel */
 .error-panel { padding: 28px 32px; border-left: 3px solid var(--bad); }

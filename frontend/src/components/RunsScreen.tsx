@@ -1,5 +1,6 @@
 import { getRuns, MAX_COMPARE, type RateName, type RunStatus, type RunSummary } from "../api";
 import { num, pct, promptDescription, rateDetail, RATE_LABELS } from "../format";
+import { href } from "../route";
 import { useApi } from "../useApi";
 import { ErrorPanel, Loading } from "./StatusView";
 
@@ -62,6 +63,9 @@ function RunRow({ run, checked, disabled, onToggle }: {
       ) : (
         <td colSpan={COLUMNS.length + 1} className="muted no-metrics">No metrics yet</td>
       )}
+      <td onClick={(e) => e.stopPropagation()}>
+        {run.n_calls_stored > 0 && <a className="btn ghost sm" href={href.calls(run.id)}>Calls →</a>}
+      </td>
     </tr>
   );
 }
@@ -108,6 +112,7 @@ export default function RunsScreen({ selected, onToggle, onClear, onCompare }: P
                   <th key={name} className="num">{RATE_LABELS[name]}</th>
                 ))}
                 <th className="num">Lint / call</th>
+                <th />
               </tr>
             </thead>
             <tbody>

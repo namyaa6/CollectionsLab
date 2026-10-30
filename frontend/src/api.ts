@@ -1,5 +1,6 @@
 // Typed client for the read-only M10 API (backend/main.py, shapes in backend/api_shapes.py).
 // Types mirror the JSON exactly; nothing here recomputes a metric.
+import type { CallDetail, CallRow } from "./callTypes";
 
 /** One rate as stored by backend/eval/metrics.py rate(): Wilson 95% CI, null when n = 0. */
 export interface Rate {
@@ -112,6 +113,18 @@ async function getJson<T>(path: string, signal?: AbortSignal): Promise<T> {
 
 export function getRuns(signal?: AbortSignal): Promise<RunSummary[]> {
   return getJson("/api/runs", signal);
+}
+
+export function getRun(runId: number, signal?: AbortSignal): Promise<RunDetail> {
+  return getJson(`/api/runs/${runId}`, signal);
+}
+
+export function getCalls(runId: number, signal?: AbortSignal): Promise<CallRow[]> {
+  return getJson(`/api/runs/${runId}/calls`, signal);
+}
+
+export function getCall(runId: number, idx: number, signal?: AbortSignal): Promise<CallDetail> {
+  return getJson(`/api/calls/${runId}/${idx}`, signal);
 }
 
 export const MAX_COMPARE = 10; // same limit as backend/main.py

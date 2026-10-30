@@ -1,17 +1,22 @@
 import { useState } from "react";
+import CallScreen from "./components/CallScreen";
+import CallsScreen from "./components/CallsScreen";
 import CompareScreen from "./components/CompareScreen";
 import RunsScreen from "./components/RunsScreen";
-
-type Screen = "runs" | "compare";
+import { href, navigate, useHashRoute } from "./route";
 
 export default function App() {
-  // State lives here, above both screens, so the selection survives switching tabs.
-  const [screen, setScreen] = useState<Screen>("runs");
+  // The URL hash says which screen is open; selection lives here, above every screen,
+  // so it survives moving between them.
+  const route = useHashRoute();
   const [selected, setSelected] = useState<number[]>([]);
+  const [showAllJudges, setShowAllJudges] = useState(false);
 
   function toggle(id: number) {
     setSelected((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
   }
+
+  const runsTabActive = route.name !== "compare";
 
   return (
     <div className="app">
@@ -22,15 +27,12 @@ export default function App() {
             CollectionsLab
           </div>
           <nav className="tabs" aria-label="Screens">
-            <button
-              className={screen === "runs" ? "tab active" : "tab"}
-              onClick={() => setScreen("runs")}
-            >
+            <a className={runsTabActive ? "tab active" : "tab"} href={href.runs}>
               Runs
-            </button>
+            </a>
             <button
-              className={screen === "compare" ? "tab active" : "tab"}
-              onClick={() => setScreen("compare")}
+              className={route.name === "compare" ? "tab active" : "tab"}
+              onClick={() => navigate(href.compare)}
               disabled={selected.length === 0}
               title={selected.length === 0 ? "Select runs to compare first" : undefined}
             >
@@ -41,15 +43,31 @@ export default function App() {
       </header>
 
       <main className="page">
-        {screen === "runs" ? (
+        {route.name === "runs" && (
           <RunsScreen
             selected={selected}
             onToggle={toggle}
             onClear={() => setSelected([])}
-            onCompare={() => setScreen("compare")}
+            onCompare={() => navigate(href.compare)}
           />
-        ) : (
-          <CompareScreen ids={selected} onBack={() => setScreen("runs")} />
+        )}
+        {route.name === "compare" &&
+          (selected.length > 0 ? (
+            <CompareScreen ids={selected} onBack={() => navigate(href.runs)} />
+          ) : (
+            <div className="panel status">
+              No runs selected. <a href={href.runs}>Pick runs to compare</a>.
+            </div>
+          ))}
+        {route.name === "calls" && <CallsScreen key={route.runId} runId={route.runId} />}
+        {route.name === "call" && (
+          <CallScreen
+            key={`${route.runId}/${route.idx}`}
+            runId={route.runId}
+            idx={route.idx}
+            showAllJudges={showAllJudges}
+            onToggleAllJudges={setShowAllJudges}
+          />
         )}
       </main>
     </div>

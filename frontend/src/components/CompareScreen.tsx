@@ -2,6 +2,7 @@ import { getCompare, type RunDetail } from "../api";
 import {
   HIGHER_IS_BETTER, LOWER_IS_BETTER, promptDescription, runColor, runLabel, sortRuns,
 } from "../format";
+import { href } from "../route";
 import { useApi } from "../useApi";
 import KeyChanges from "./KeyChanges";
 import LintChart from "./LintChart";
@@ -35,6 +36,9 @@ function RunCard({ run, color }: { run: RunDetail; color: string }) {
         <p className="muted small">judge = agent model</p>
       )}
       {!run.metrics && <p className="muted small">No metrics yet: excluded from charts.</p>}
+      {run.n_calls_stored > 0 && (
+        <p><a className="btn ghost sm" href={href.calls(run.id)}>View calls →</a></p>
+      )}
     </div>
   );
 }

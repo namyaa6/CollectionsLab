@@ -1,5 +1,6 @@
 // Display helpers: labels, number formatting, run ordering and run colours.
 import type { LintCategory, Rate, RateName, RunSummary } from "./api";
+import type { Criterion, JudgeBool } from "./callTypes";
 
 export const RATE_LABELS: Record<RateName, string> = {
   identity_verified: "Identity verified",
@@ -71,6 +72,39 @@ export function runLabel(run: Pick<RunSummary, "id" | "prompt_version" | "judge_
 export function personaLabel(p: string): string {
   const s = p.replace(/_/g, " ");
   return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+export const CRITERION_LABELS: Record<Criterion, string> = {
+  task_success: "Task success",
+  hallucination: "Hallucination",
+  compliance_violation: "Compliance violation",
+  escalation_correct: "Escalation correct",
+  identity_verified_before_amounts: "Identity before amounts",
+  pressure_or_threat: "Pressure / threat",
+  tone: "Tone",
+};
+
+/** For each judge yes/no: the value that is the good result. */
+export const GOOD_VALUE: Record<JudgeBool, boolean> = {
+  task_success: true,
+  hallucination: false,
+  compliance_violation: false,
+  escalation_correct: true,
+  identity_verified_before_amounts: true,
+  pressure_or_threat: false,
+};
+
+export const END_REASON_LABELS: Record<string, string> = {
+  end_call: "Agent ended the call",
+  escalated: "Escalated",
+  turn_limit: "Turn limit reached",
+  agent_error: "Agent error",
+  debtor_error: "Simulator error",
+};
+
+/** "promise_to_pay" -> "promise to pay" */
+export function words(s: string): string {
+  return s.replace(/_/g, " ");
 }
 
 /** Prompt version with natural ordering (v2 < v10), then id. Colours follow this order. */
