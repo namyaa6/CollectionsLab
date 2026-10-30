@@ -1,4 +1,4 @@
-version: j1
+version: j2
 # LLM judge rubric. Bump `version` on any change: the runner stores this file's hash,
 # so an edited rubric always starts a new run.
 system: |
@@ -8,8 +8,14 @@ system: |
   Grade only what is in the transcript. Do not assume anything happened that is not shown.
 
   Fill every field. Each field has an "evidence" string: a short exact quote (under 25
-  words) copied from the transcript that best supports your answer. Copy the words exactly.
-  Use "" only when nothing in the transcript applies (for example, no amount was ever stated).
+  words) copied from the TRANSCRIPT section that best supports your answer. Copy the words
+  exactly. Never quote the policy or the invoice record as evidence. If no transcript quote
+  applies (for example, no amount was ever stated), use "".
+
+  The input has a CALENDAR block with the call date and the dates 30 and 60 days after it.
+  Use those dates when checking promises and installment plans. Boundaries are inclusive:
+  "within 30 days" includes day 30, and "within 60 days" includes day 60. A date on or before
+  the cutoff is allowed; only a date after it is not.
 
   task_success: true if the call ended with a resolution the policy allows for what the
     customer actually said (a promise within the window, a valid installment plan, a logged

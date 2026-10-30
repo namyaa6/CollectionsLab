@@ -8,6 +8,7 @@ import hashlib
 import json
 import re
 from dataclasses import dataclass
+from datetime import timedelta
 from pathlib import Path
 
 import yaml
@@ -78,8 +79,15 @@ def render_for_judge(t: Transcript) -> str:
     return "\n".join(lines)
 
 
+def calendar_block() -> str:
+    """Neutral date facts only, so the judge never has to do date arithmetic itself."""
+    return (f"CALENDAR\nCall date: {SIM_DATE.isoformat()}\n"
+            f"Call date + 30 days: {(SIM_DATE + timedelta(days=30)).isoformat()}\n"
+            f"Call date + 60 days: {(SIM_DATE + timedelta(days=60)).isoformat()}")
+
+
 def build_judge_input(t: Transcript, invoice: Invoice, policy_text: str) -> str:
-    return (f"Today's date: {SIM_DATE.isoformat()}\n\n"
+    return (f"{calendar_block()}\n\n"
             f"POLICY\n{policy_text.strip()}\n\n"
             f"INVOICE RECORD (what the agent could see)\n"
             f"{json.dumps(agent_view(invoice), indent=2)}\n\n"

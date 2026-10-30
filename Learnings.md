@@ -41,6 +41,9 @@ What v1 got wrong (your “before” picture)
   allowed, but the judge failed it. One "evidence" quote was policy text,
   not transcript.
 - Lesson: the judge is unreliable at date arithmetic; code checks are
-  reliable there. Likely cause: judge isn't given the call date.
-- Plan: judge j2 (call date, inclusive boundaries, leave arithmetic to
-  code), re-judge all versions, then hand-label against j2.
+  reliable there. The judge did have today's date; the gaps were no
+  explicit cutoff dates (call date +30 / +60) and no inclusive-boundary
+  rule. Not yet confirmed that these caused the errors.
+- Plan: judge j2 (CALENDAR block with call date +30/+60, inclusive
+  boundaries, transcript-only evidence), re-judge all versions, then
+  hand-label against j2.

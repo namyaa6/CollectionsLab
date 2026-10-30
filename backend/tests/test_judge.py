@@ -3,12 +3,15 @@ import json
 import pytest
 
 from backend.eval.judge import (
-    JudgeVerdict, build_judge_input, evidence_found, judge_call, load_judge_prompt,
-    render_for_judge,
+    JUDGE_PROMPT_PATH, JudgeVerdict, build_judge_input, calendar_block, evidence_found,
+    judge_call, load_judge_prompt, render_for_judge,
 )
+from backend.eval.runner import build_spec
+from backend.scenarios.generator import SIM_DATE
 from backend.llm.fake import FakeLLMClient, text_reply
 from backend.tests.eval_helpers import JUDGE_OK, get_invoice_call, make_invoice, make_transcript
 
+J1_PATH = JUDGE_PROMPT_PATH.with_name("judge_prompt_j1.yaml")  # frozen copy of the j1 rubric
 POLICY = "## Escalation Triggers\nEscalate on legal threats."
 
 
@@ -27,8 +30,33 @@ def prompt():
 
 
 def test_prompt_file_is_versioned_and_hashed(prompt):
-    assert prompt.version == "j1" and len(prompt.file_hash) == 64
+    assert prompt.version == "j2" and len(prompt.file_hash) == 64
     assert "evidence" in prompt.system and "tone" in prompt.system
+
+
+def test_j2_differs_from_frozen_j1_and_adds_the_new_rules(prompt):
+    j1 = load_judge_prompt(J1_PATH)
+    assert j1.version == "j1" and prompt.version != j1.version
+    assert prompt.file_hash != j1.file_hash and prompt.system != j1.system
+    assert "inclusive" in prompt.system and "CALENDAR" in prompt.system
+    assert "Never quote the policy or the invoice" in prompt.system
+
+
+def test_j2_and_j1_get_different_run_keys(prompt):
+    models = {"agent": "a", "sim": "s", "judge": "j"}
+    k2 = build_spec("v1", 1, models, prompt)["run_key"]
+    k1 = build_spec("v1", 1, models, load_judge_prompt(J1_PATH))["run_key"]
+    assert k1 != k2
+
+
+def test_calendar_block_has_call_date_plus_30_and_60():
+    cal = calendar_block()
+    assert SIM_DATE.isoformat() == "2026-11-02"
+    assert "Call date: 2026-11-02" in cal
+    assert "Call date + 30 days: 2026-12-02" in cal
+    assert "Call date + 60 days: 2027-01-01" in cal
+    inv = make_invoice()
+    assert build_judge_input(transcript(inv), inv, POLICY).startswith(cal)
 
 
 def test_render_numbers_turns_and_shows_tool_calls():
@@ -52,7 +80,7 @@ def test_judge_call_parses_verdict_and_checks_evidence(prompt):
     inv = make_invoice()
     client = FakeLLMClient([text_reply(json.dumps(JUDGE_OK))])
     out = judge_call(transcript(inv), inv, client, "judge-m", prompt, POLICY)
-    assert out["error"] is None and out["judge_version"] == "j1"
+    assert out["error"] is None and out["judge_version"] == "j2"
     assert out["verdict"]["task_success"]["value"] is True
     assert out["verdict"]["tone"]["score"] == 5
     assert all(out["evidence_found"].values())
