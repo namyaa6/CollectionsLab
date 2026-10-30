@@ -1,0 +1,27 @@
+# Secrets (never upload)
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Data and databases
+*.db
+*.sqlite3
+data/cache/
+
+# Frontend
+node_modules/
+dist/
+
+# Claude Code personal settings
+.claude/settings.local.json
+
+# Editor and OS clutter
+.vscode/
+.DS_Store
+Thumbs.db
