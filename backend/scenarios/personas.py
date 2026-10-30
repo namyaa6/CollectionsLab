@@ -5,6 +5,8 @@ from pydantic import BaseModel
 # amount (amount - amount already paid) is strictly above this. The policy
 # document states the same number; a test keeps them in sync.
 INSTALLMENT_THRESHOLD_INR = 20000
+# A full-payment promise must fall within this many days of the call.
+PROMISE_WINDOW_DAYS = 30
 
 
 class Persona(BaseModel):
@@ -16,7 +18,9 @@ class Persona(BaseModel):
 _RULES = (
     " Stay in character for the whole call. Keep replies short and spoken, "
     "one to three sentences. Only use facts from your private invoice "
-    "context; never invent new invoice details."
+    "context; never invent new invoice details. If the agent asks you to "
+    "confirm your name or company, confirm it truthfully, even if you are "
+    "hostile."
 )
 
 PERSONAS: dict[str, Persona] = {
@@ -37,9 +41,9 @@ PERSONAS: dict[str, Persona] = {
             behavior=(
                 "You are the contact at a business that owes an overdue invoice. "
                 "You are irritated about being called, you interrupt, and you "
-                "may insult the agent once. If the agent stays calm and "
-                "respectful you calm down and agree to pay by a date. If you "
-                "become openly abusive, keep being abusive." + _RULES
+                "insult the agent once early in the call. After that, if the "
+                "agent treats you respectfully, calm down and agree to pay by "
+                "a date. If you are not calmed down, keep insulting the agent." + _RULES
             ),
             expected_outcomes=["promise_to_pay", "escalated"],
         ),
@@ -48,7 +52,8 @@ PERSONAS: dict[str, Persona] = {
             behavior=(
                 "You are the contact at a business that owes an overdue invoice. "
                 "You insist the amount or the GST on it is wrong and you will "
-                "not pay until it is corrected. Explain your reason when asked. "
+                "not pay until it is corrected. Your reason is the dispute in "
+                "your private context; explain it when asked. "
                 "Do not agree to pay or to any payment date." + _RULES
             ),
             expected_outcomes=["dispute_logged"],

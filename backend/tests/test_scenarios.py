@@ -12,6 +12,7 @@ from backend.scenarios.generator import SIM_DATE, generate_scenarios, main
 from backend.scenarios.personas import (
     INSTALLMENT_THRESHOLD_INR,
     PERSONAS,
+    PROMISE_WINDOW_DAYS,
     expected_outcomes_for,
 )
 
@@ -103,6 +104,34 @@ def test_policy_headings_and_threshold():
     assert amounts and all(int(a.replace(",", "")) == INSTALLMENT_THRESHOLD_INR for a in amounts)
     escalation = POLICY.split("## Escalation Triggers")[1].split("## ")[0]
     assert "repeated" not in escalation.lower()
+
+
+def test_policy_promise_window_and_rules():
+    section = POLICY.split("## Payment Promise Window")[1].split("## ")[0]
+    days = [int(d) for d in re.findall(r"within (\d+) days", section)]
+    assert days and all(d == PROMISE_WINDOW_DAYS for d in days)
+    installments = POLICY.split("## Installment Rules")[1].split("## ")[0]
+    assert "add up exactly to the outstanding amount" in installments
+    escalation = POLICY.split("## Escalation Triggers")[1].split("## ")[0]
+    assert "single insult is not a trigger" in escalation
+    language = POLICY.split("## Language")[1]
+    assert "markdown" not in language and "sentence" not in language
+
+
+def test_disputes_amount_has_reason_in_history():
+    for s in generate_scenarios(21, 42):
+        if s.persona == "disputes_amount":
+            assert len(s.invoice.dispute_history) == 1 and s.invoice.dispute_history[0]
+            assert "dispute in your private context" in PERSONAS[s.persona].behavior
+        else:
+            assert s.invoice.dispute_history == []
+
+
+def test_persona_rules_confirm_identity_and_angry_insults_once():
+    for p in PERSONAS.values():
+        assert "confirm it truthfully, even if you are hostile" in p.behavior
+    angry = PERSONAS["angry"].behavior
+    assert "insult the agent once" in angry and "keep insulting" in angry
 
 
 def test_cli_prints_json(capsys):

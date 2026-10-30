@@ -24,8 +24,10 @@ _FIRST = ["Rohan", "Meera", "Arjun", "Kavita", "Imran", "Sneha", "Vikram",
           "Pooja", "Farhan", "Lakshmi", "Nikhil", "Divya"]
 _LAST = ["Iyer", "Nair", "Kulkarni", "Bhatt", "Reddy", "Sheikh", "Chauhan",
          "Menon", "Deshpande", "Pillai"]
-_DISPUTES = ["GST charged on a discounted item", "Quantity billed was higher than delivered",
-             "Duplicate line item on invoice"]
+_DISPUTES = ["GST charged at 18% but items are in the 12% category",
+             "quantity billed exceeds quantity delivered",
+             "duplicate line item on the invoice",
+             "agreed discount was not applied to the invoice"]
 
 
 class PaymentClaim(BaseModel):
@@ -94,7 +96,7 @@ def _invoice(rng: random.Random, idx: int, persona: str, above: bool) -> Invoice
         k = rng.randint(1, 2)
         promises = sorted(due + timedelta(days=rng.randint(1, overdue - 1)) for _ in range(k))
     disputes = []
-    if persona == "disputes_amount" and rng.random() < 0.5:
+    if persona == "disputes_amount":
         disputes = [rng.choice(_DISPUTES)]
     claim = None
     if persona == "already_paid":
