@@ -28,6 +28,18 @@ export const LINT_LABELS: Record<LintCategory, string> = {
   unspelled_contact: "Unspelled contact",
 };
 
+const PROMPT_DESCRIPTIONS: Record<string, string> = {
+  v1: "naive baseline",
+  v2: "+ voice rules",
+  v3: "+ grounding & guardrails",
+  v4: "+ self-check",
+};
+
+/** One-line summary of what a prompt version adds; "" for versions not in the map. */
+export function promptDescription(version: string): string {
+  return PROMPT_DESCRIPTIONS[version] ?? "";
+}
+
 /** Validated categorical palette (dataviz reference, light mode), in fixed order. */
 const RUN_COLORS = [
   "#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948",

@@ -18,6 +18,9 @@
   --warn-line: #e0a526;
   --warn-wash: #fdf5e3;
   --bad: #b42d2d;
+  --bad-wash: #fbeaea;
+  --change-wash: #f3efe1;
+  --change-line: #d9cfa8;
   --radius: 10px;
   --shadow: 0 1px 2px rgba(11, 11, 11, 0.04), 0 1px 1px rgba(11, 11, 11, 0.02);
   color-scheme: light;
@@ -165,6 +168,14 @@ table.persona td { padding: 9px 10px; }
 .persona-name { font-weight: 500; }
 .cell-rate { font-weight: 500; }
 table.persona .kn { min-width: 36px; }
+table.persona td.changed { background: var(--change-wash); }
+.changed-key { display: inline-block; width: 10px; height: 10px; border-radius: 3px;
+  background: var(--change-wash); border: 1px solid var(--change-line); vertical-align: -1px; }
+
+/* Prompt version descriptions */
+.version-desc { margin-left: 8px; color: var(--ink-3); font-size: 12px; }
+.run-desc { margin: -2px 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
+  color: var(--ink-2); font-size: 13px; }
 
 @media (max-width: 900px) {
   .chart-grid { grid-template-columns: 1fr; }

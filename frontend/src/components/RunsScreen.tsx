@@ -1,5 +1,5 @@
 import { getRuns, MAX_COMPARE, type RateName, type RunStatus, type RunSummary } from "../api";
-import { num, pct, rateDetail, RATE_LABELS } from "../format";
+import { num, pct, promptDescription, rateDetail, RATE_LABELS } from "../format";
 import { useApi } from "../useApi";
 import { ErrorPanel, Loading } from "./StatusView";
 
@@ -38,7 +38,12 @@ function RunRow({ run, checked, disabled, onToggle }: {
         />
       </td>
       <td className="mono muted">#{run.id}</td>
-      <td><span className="version">{run.prompt_version}</span></td>
+      <td>
+        <span className="version">{run.prompt_version}</span>
+        {promptDescription(run.prompt_version) && (
+          <span className="version-desc">{promptDescription(run.prompt_version)}</span>
+        )}
+      </td>
       <td className="mono">{run.judge_version}</td>
       <td><StatusPill status={run.status} /></td>
       <td className="num">

@@ -14,7 +14,10 @@ export default function PersonaTable({ series }: { series: Series[] }) {
     <div className="panel chart-card">
       <div className="card-head">
         <h3>By debtor persona</h3>
-        <span className="hint">Rate with k/n · hover for 95% CI</span>
+        <span className="hint">
+          Rate with k/n · hover for 95% CI
+          {series.length > 1 && <> · <span className="changed-key" /> differs from {series[0].run.prompt_version}</>}
+        </span>
       </div>
       <div className="table-wrap">
         <table className="persona">
@@ -43,8 +46,12 @@ export default function PersonaTable({ series }: { series: Series[] }) {
                 {METRICS.flatMap((m) =>
                   series.map((s, i) => {
                     const r = s.metrics.per_persona[p]?.rates[m];
+                    const base = series[0].metrics.per_persona[p]?.rates[m];
+                    // Tint a later run's cell when its rate differs from the first run's.
+                    const changed = i > 0 && r?.rate != null && base?.rate != null && r.rate !== base.rate;
+                    const cls = ["num", i === 0 && "group-start", changed && "changed"].filter(Boolean).join(" ");
                     return (
-                      <td key={`${m}-${s.key}`} className={i === 0 ? "num group-start" : "num"}
+                      <td key={`${m}-${s.key}`} className={cls}
                         title={`${s.label}: ${rateDetail(r)}`}>
                         <span className="cell-rate">{pct(r?.rate)}</span>
                         <span className="kn">{r && r.rate != null ? `${r.k}/${r.n}` : ""}</span>

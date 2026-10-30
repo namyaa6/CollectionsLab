@@ -1,6 +1,9 @@
 import { getCompare, type RunDetail } from "../api";
-import { HIGHER_IS_BETTER, LOWER_IS_BETTER, runColor, runLabel, sortRuns } from "../format";
+import {
+  HIGHER_IS_BETTER, LOWER_IS_BETTER, promptDescription, runColor, runLabel, sortRuns,
+} from "../format";
 import { useApi } from "../useApi";
+import KeyChanges from "./KeyChanges";
 import LintChart from "./LintChart";
 import PersonaTable from "./PersonaTable";
 import RateChart from "./RateChart";
@@ -18,6 +21,9 @@ function RunCard({ run, color }: { run: RunDetail; color: string }) {
         <span className="muted mono">#{run.id}</span>
         <StatusPill status={run.status} />
       </div>
+      {promptDescription(run.prompt_version) && (
+        <p className="run-desc">{promptDescription(run.prompt_version)}</p>
+      )}
       <dl>
         <dt>Judge</dt><dd className="mono">{run.judge_version}</dd>
         <dt>Calls</dt>
@@ -25,6 +31,9 @@ function RunCard({ run, color }: { run: RunDetail; color: string }) {
         <dt>Agent</dt><dd className="mono small">{run.models.agent}</dd>
         <dt>Judge model</dt><dd className="mono small">{run.models.judge}</dd>
       </dl>
+      {run.models.judge === run.models.agent && (
+        <p className="muted small">judge = agent model</p>
+      )}
       {!run.metrics && <p className="muted small">No metrics yet: excluded from charts.</p>}
     </div>
   );
@@ -70,6 +79,7 @@ export default function CompareScreen({ ids, onBack }: { ids: number[]; onBack: 
             <div className="panel status">None of the selected runs has metrics yet.</div>
           ) : (
             <>
+              <KeyChanges series={series} />
               <div className="chart-grid">
                 <RateChart title="Higher is better" hint="Share of calls · 95% CI"
                   metrics={HIGHER_IS_BETTER} series={series} />

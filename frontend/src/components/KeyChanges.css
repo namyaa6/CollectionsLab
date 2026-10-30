@@ -1,0 +1,20 @@
+/* Key changes strip (tokens come from styles.css) */
+.key-changes { padding: 18px 20px; margin-bottom: 16px; }
+.kc-runs { margin-left: 8px; font-weight: 500; color: var(--ink-2); font-size: 14px; }
+.kc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.kc-tile { border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; background: #fff; }
+.kc-tile.kc-clear { border-color: var(--ink-3); }
+.kc-label { font-size: 13px; color: var(--ink-2); font-weight: 500; margin-bottom: 4px; }
+.kc-values { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+  font-variant-numeric: tabular-nums; }
+.kc-from { font-size: 20px; color: var(--ink-3); font-weight: 500; }
+.kc-arrow { color: var(--ink-3); }
+.kc-to { font-size: 28px; font-weight: 650; letter-spacing: -0.02em; }
+.kc-delta { font-size: 13px; color: var(--ink-2); }
+.kc-detail { font-size: 12px; color: var(--ink-3); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.kc-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.kc-dir, .kc-verdict { font-size: 11px; font-weight: 500; border-radius: 999px; padding: 2px 8px; }
+.kc-dir.good { color: var(--good); background: var(--good-wash); }
+.kc-dir.bad { color: var(--bad); background: var(--bad-wash); }
+.kc-verdict { color: var(--ink-2); background: #efeee9; }
+.kc-verdict.clear { color: var(--ink-1); background: #e4e3dd; font-weight: 600; }
