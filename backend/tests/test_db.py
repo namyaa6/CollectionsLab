@@ -59,6 +59,17 @@ def test_unique_run_idx_and_status_constraint(conn):
         db.save_call(conn, run_id, 1, {"status": "weird", "scenario": {}})
 
 
+def test_set_requested_n_grows_and_keeps_metrics(conn):
+    run_id, _ = db.find_or_create_run(conn, spec())
+    db.set_requested_n(conn, run_id, 5)
+    assert db.get_run(conn, run_id)["n"] == 5 and db.get_run(conn, run_id)["metrics"] is None
+    db.update_run(conn, run_id, 5, {"overall": 1})
+    db.set_requested_n(conn, run_id, 3)
+    db.set_requested_n(conn, run_id, 8)
+    run = db.get_run(conn, run_id)
+    assert run["n"] == 8 and run["metrics"] == {"overall": 1}
+
+
 def test_update_run_n_only_grows(conn):
     run_id, _ = db.find_or_create_run(conn, spec())
     db.update_run(conn, run_id, 4, {"overall": 1})

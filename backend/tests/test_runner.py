@@ -67,6 +67,30 @@ def test_resume_after_ctrl_c_runs_only_unfinished_calls(run, capsys):
     assert [c["idx"] for c in cs] == [0, 1, 2]
 
 
+def test_interrupted_run_records_requested_n_without_metrics_and_key_is_stable(run):
+    run("--n", "3", "--yes", client=RoutedFake({("judge", 2): KeyboardInterrupt()}))
+    runs, _ = stored(run.path)
+    (rid, r), = runs.items()
+    assert r["n"] == 3 and r["metrics"] is None
+    key = r["run_key"]
+    run("--n", "3", "--yes")
+    runs, _ = stored(run.path)
+    assert list(runs.values())[0]["run_key"] == key and len(runs) == 1
+
+
+def test_extending_run_records_new_n_before_calls(run):
+    run("--n", "2", "--yes")
+    run("--n", "4", "--yes", client=RoutedFake({("greet", 2): KeyboardInterrupt()}))
+    (r,) = stored(run.path)[0].values()
+    assert r["n"] == 4
+
+
+def test_declined_confirmation_does_not_record_n(run):
+    run("--n", "5", input_fn=lambda _: "n")
+    (r,) = stored(run.path)[0].values()
+    assert r["n"] == 0
+
+
 def test_quota_exhausted_saves_progress_and_exits_cleanly(run, capsys):
     quota = QuotaExhaustedError("Daily quota exhausted for model 'agent-m'.")
     code, _ = run("--n", "3", "--yes", client=RoutedFake({("greet", 2): quota}))

@@ -120,6 +120,14 @@ def get_calls(conn: sqlite3.Connection, run_id: int, max_idx: Optional[int] = No
     return [_decode(r, CALL_JSON) for r in conn.execute(sql + " ORDER BY idx", args)]
 
 
+def set_requested_n(conn: sqlite3.Connection, run_id: int, n: int) -> None:
+    """Record the n a run was started or extended to, before any call is made, so an
+    interrupted run still shows how many calls were intended. Metrics are left untouched."""
+    with conn:
+        conn.execute("UPDATE runs SET n = MAX(n, ?), updated_at = ? WHERE id = ?",
+                     (n, _now(), run_id))
+
+
 def update_run(conn: sqlite3.Connection, run_id: int, n: int, metrics: dict) -> None:
     """n only ever grows: a smaller --n reports without shrinking the run."""
     with conn:

@@ -119,6 +119,7 @@ def main(argv: Optional[list[str]] = None, cfg: Optional[Config] = None,
         if not confirm(estimate, args.yes, input_fn):
             _say("Aborted. No calls were made.")
             return EXIT_ABORTED
+        db.set_requested_n(conn, run_id, args.n)  # after confirm, before any call
         index, policy_text = PolicyIndex.from_file(), DEFAULT_POLICY_PATH.read_text(encoding="utf-8")
         in_a_row = 0
         for k, idx in enumerate(todo, 1):
