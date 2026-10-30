@@ -6,3 +6,6 @@ What v1 got wrong (your “before” picture)
 5. The ₹ symbol appeared. TTS might read it as “rupee sign” or skip it. This is exactly what your voice linter (M6) will flag.
 6. Possible pressure: “Given the previous broken promises... we really need to secure a firm, reliable date”. Using a debtor’s history to push them is something the judge should evaluate against your “never pressure” rule.
 7. Long, multi-paragraph turns again, including a speech-like goodbye.
+8. Facts: 6 matched, 0 unverified. v1 didn’t make up numbers on this call. Good to know: its problems are style and procedure, not accuracy, at least here. And “November 10th” was correctly matched to the debtor’s “tenth of this month”.
+9. Retrieval: 0 policy searches. v1 never consulted the policy at all. That’s a finding in itself: the agent was just improvising. v3 tells it to search, and then your retrieval-miss tracking becomes relevant.
+10. The identity-check failure doesn’t show up here, because no simple code rule can detect “asked but didn’t wait for an answer”. That’s the judge’s job in M7, which is why you have both layers.

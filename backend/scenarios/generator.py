@@ -15,6 +15,7 @@ from backend.scenarios.personas import (
 
 SIM_DATE = date(2026, 11, 2)
 GST_RATE = 0.18
+POOL_SIZE = 28  # eval runs use the first n of scenario_pool()
 
 _PREFIXES = ["Sundaram", "Kaveri", "Anand", "Meghna", "Rudra", "Tulsi", "Vihaan",
              "Narmada", "Orion Peak", "Shivalik", "Lotus Bay", "Ganga Ridge"]
@@ -122,10 +123,27 @@ def _invoice(rng: random.Random, idx: int, persona: str, above: bool) -> Invoice
 
 
 def generate_scenarios(n: int, seed: int) -> list[Scenario]:
+    """Used by run_one and to regenerate old transcripts; the shuffle depends on n."""
     rng = random.Random(seed)
     names = list(PERSONAS)
     order = [names[i % len(names)] for i in range(n)]  # even distribution
     rng.shuffle(order)
+    return _build(rng, order)
+
+
+def scenario_pool(seed: int = 42, size: int = POOL_SIZE) -> list[Scenario]:
+    """Fixed eval pool that never depends on n: each block of 7 holds every persona once,
+    so any prefix of 7k scenarios is persona-balanced and a run can be extended."""
+    rng = random.Random(seed)
+    order: list[str] = []
+    while len(order) < size:
+        block = list(PERSONAS)
+        rng.shuffle(block)
+        order += block
+    return _build(rng, order[:size])
+
+
+def _build(rng: random.Random, order: list[str]) -> list[Scenario]:
     seen: dict[str, int] = {}
     scenarios = []
     for idx, persona in enumerate(order):

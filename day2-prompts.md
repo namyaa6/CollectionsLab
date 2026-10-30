@@ -140,3 +140,8 @@ Milestone 9.
    transcripts to data/results/*.json (committed to Git) for the README and
    dashboard.
 Tests with small fixtures. Plan first.
+4. Cross-judge check: re-judge 20 stored calls (same sample as the hand
+   labels) with a second judge model passed as --judge-model (I'll use
+   gemini-3.8-flash, 20 requests/day). Report per-criterion agreement and
+   Cohen's kappa between the two judges, and between each judge and my
+   labels. Don't store second-judge results as the main verdict.

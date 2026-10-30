@@ -8,7 +8,9 @@ from pathlib import Path
 
 import pytest
 
-from backend.scenarios.generator import SIM_DATE, generate_scenarios, main
+from backend.scenarios.generator import (
+    POOL_SIZE, SIM_DATE, generate_scenarios, main, scenario_pool,
+)
 from backend.scenarios.personas import (
     INSTALLMENT_THRESHOLD_INR,
     PERSONAS,
@@ -56,6 +58,34 @@ def test_personas_evenly_distributed():
     assert set(counts.values()) == {2} and len(counts) == 7
     counts = Counter(s.persona for s in generate_scenarios(10, 42))
     assert max(counts.values()) - min(counts.values()) <= 1
+
+
+def test_pool_is_fixed_and_every_7k_prefix_is_balanced():
+    pool = scenario_pool()
+    assert len(pool) == POOL_SIZE == 28
+    assert [s.model_dump() for s in pool] == [s.model_dump() for s in scenario_pool(42)]
+    assert [s.scenario_id for s in pool] == list(range(28))
+    for k in range(1, 5):
+        counts = Counter(s.persona for s in pool[:7 * k])
+        assert len(counts) == 7 and set(counts.values()) == {k}
+    assert scenario_pool(7)[0].model_dump() != pool[0].model_dump()
+
+
+def test_generate_scenarios_output_is_frozen():
+    # resolve_invoice regenerates pre-M6 transcripts' invoices from this, so it must not drift
+    import hashlib
+    blob = json.dumps([s.model_dump(mode="json") for n in (3, 14, 21)
+                       for s in generate_scenarios(n, 42)])
+    assert hashlib.sha256(blob.encode()).hexdigest() == (
+        "b3b4fa4e7ab1ad87ca6137e20dc1ba4ed412d6dd6bea1589f3178a8c55da5183")
+
+
+def test_pool_keeps_installment_alternation():
+    pool = scenario_pool()
+    for name in ("stalling", "hinglish_negotiator"):
+        flags = {s.invoice.outstanding_inr > INSTALLMENT_THRESHOLD_INR
+                 for s in pool if s.persona == name}
+        assert flags == {True, False}
 
 
 def test_payment_claim_only_for_already_paid():
