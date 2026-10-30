@@ -109,22 +109,28 @@ def compare_with_llm(fields: dict, logged: list[str], escalated: bool, llm: LLMR
     return out
 
 
-def summarize(transcript: Transcript, client: LLMClientProtocol, model: str) -> CallSummary:
+def summarize_offline(transcript: Transcript) -> CallSummary:
+    """The summary from logged actions alone: no LLM call."""
+    return summarize(transcript, None, "")
+
+
+def summarize(transcript: Transcript, client: Optional[LLMClientProtocol], model: str) -> CallSummary:
+    """With client=None the LLM reading is skipped (llm_used=False)."""
     fields, logged, notes = derive_from_actions(transcript.actions)
     if len([o for o in logged if o != "escalated"]) > 1:
         notes.append("Multiple outcomes logged: " + ", ".join(logged) + " (order of calls).")
     outcome = pick_outcome(logged)
     escalated = "escalated" in logged
-    llm_used, next_action = True, FALLBACK_NEXT_ACTION[outcome]
-    try:
-        resp = client.generate(model, [{"role": "user", "text": build_dialogue(transcript)}],
-                               system=SYSTEM, response_schema=LLMReading)
-        llm: LLMReading = resp.parsed
-        notes += compare_with_llm(fields, logged, escalated, llm)
-        next_action = llm.next_action
-    except LLMResponseError as exc:
-        llm_used = False
-        notes.append(f"LLM reading unavailable, record built from logged actions only: {exc}")
+    llm_used, next_action = False, FALLBACK_NEXT_ACTION[outcome]
+    if client is not None:
+        try:
+            resp = client.generate(model, [{"role": "user", "text": build_dialogue(transcript)}],
+                                   system=SYSTEM, response_schema=LLMReading)
+            llm: LLMReading = resp.parsed
+            notes += compare_with_llm(fields, logged, escalated, llm)
+            next_action, llm_used = llm.next_action, True
+        except LLMResponseError as exc:
+            notes.append(f"LLM reading unavailable, record built from logged actions only: {exc}")
     return CallSummary(outcome=outcome, escalated=escalated, next_action=next_action,
                        logged_outcomes=logged, discrepancies=notes, llm_used=llm_used, **fields)
 

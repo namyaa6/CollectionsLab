@@ -73,4 +73,5 @@ def simulate(scenario: Scenario, client: LLMClientProtocol, prompt: Prompt, agen
         scenario_id=scenario.scenario_id, persona=scenario.persona,
         expected_outcomes=scenario.expected_outcomes, prompt_version=prompt.version,
         agent_model=agent_model, sim_model=sim_model, seed=seed, turns=turns,
-        actions=state.actions, end_reason=end_reason, end_detail=end_detail)
+        actions=state.actions, end_reason=end_reason, end_detail=end_detail,
+        scenario=scenario)

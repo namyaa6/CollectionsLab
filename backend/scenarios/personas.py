@@ -7,6 +7,9 @@ from pydantic import BaseModel
 INSTALLMENT_THRESHOLD_INR = 20000
 # A full-payment promise must fall within this many days of the call.
 PROMISE_WINDOW_DAYS = 30
+# Installment plans: at most this many parts, and the last one due within this many days.
+MAX_INSTALLMENT_PARTS = 3
+INSTALLMENT_SPAN_DAYS = 60
 
 
 class Persona(BaseModel):

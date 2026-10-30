@@ -4,6 +4,8 @@ from typing import Literal, Optional
 
 from pydantic import BaseModel, computed_field
 
+from backend.scenarios.generator import Scenario
+
 EndReason = Literal["end_call", "escalated", "turn_limit", "agent_error", "debtor_error"]
 
 
@@ -31,6 +33,9 @@ class Transcript(BaseModel):
     actions: list[dict]  # what the agent logged, from CallState
     end_reason: EndReason
     end_detail: Optional[str] = None
+    # Full scenario (invoice, persona, expected outcomes) so checks never depend on
+    # regenerating it. Missing in transcripts saved before M6.
+    scenario: Optional[Scenario] = None
 
     @computed_field
     @property
