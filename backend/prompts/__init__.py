@@ -13,6 +13,8 @@ PROMPTS_DIR = Path(__file__).resolve().parent
 class Prompt:
     version: str
     system: str
+    self_check: bool = False  # v4+: review each draft reply before it is spoken
+    self_check_prompt: str = ""
 
 
 def load_prompt(version: str, directory: Path = PROMPTS_DIR) -> Prompt:
@@ -25,7 +27,14 @@ def load_prompt(version: str, directory: Path = PROMPTS_DIR) -> Prompt:
     system = str(data.get("system", "")).strip()
     if not system:
         raise ValueError(f"{path.name} has no 'system' text")
-    return Prompt(version=version, system=system)
+    self_check = data.get("self_check", False)
+    if not isinstance(self_check, bool):
+        raise ValueError(f"{path.name}: self_check must be true or false, got {self_check!r}")
+    check_prompt = str(data.get("self_check_prompt", "")).strip()
+    if self_check and not check_prompt:
+        raise ValueError(f"{path.name} has self_check: true but no 'self_check_prompt' text")
+    return Prompt(version=version, system=system, self_check=self_check,
+                  self_check_prompt=check_prompt)
 
 
 def prompt_file_hash(version: str, directory: Path = PROMPTS_DIR) -> str:

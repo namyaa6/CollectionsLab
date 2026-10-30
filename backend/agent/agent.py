@@ -2,6 +2,7 @@
 from dataclasses import dataclass, field
 from typing import Optional
 
+from backend.agent.self_check import replace_spoken, run_self_check
 from backend.agent.tools import TOOL_SPECS, CallState, execute_tool
 from backend.llm.client import LLMClientProtocol
 from backend.llm.types import LLMResponse, LLMResponseError
@@ -20,6 +21,7 @@ class AgentTurn:
     llm_calls: int = 0
     cached: bool = True  # True only if every model call came from the cache
     error: Optional[str] = None
+    self_check: Optional[dict] = None  # v4+: draft, final, issues and the check's own cost
 
 
 def _model_message(resp: LLMResponse) -> dict:
@@ -31,9 +33,14 @@ def _model_message(resp: LLMResponse) -> dict:
 
 def run_agent_turn(client: LLMClientProtocol, model: str, system: str, history: list[dict],
                    state: CallState, index: PolicyIndex, temperature: float = 0.0,
-                   max_rounds: int = MAX_TOOL_ROUNDS) -> AgentTurn:
-    """Appends this turn's model/tool messages to `history` and returns what was recorded."""
+                   max_rounds: int = MAX_TOOL_ROUNDS, *, self_check: bool = False,
+                   check_system: str = "") -> AgentTurn:
+    """Appends this turn's model/tool messages to `history` and returns what was recorded.
+
+    With self_check off (v1-v3) nothing below the loop runs: same requests as before.
+    """
     turn = AgentTurn()
+    turn_start = len(history)
     texts: list[str] = []
     for _ in range(max_rounds):
         try:
@@ -65,4 +72,20 @@ def run_agent_turn(client: LLMClientProtocol, model: str, system: str, history: 
     else:
         turn.error = f"no spoken reply after {max_rounds} model calls"
     turn.text = " ".join(texts)
+    if self_check and turn.text and not turn.error:
+        _apply_self_check(turn, client, model, check_system, system, history, turn_start)
     return turn
+
+
+def _apply_self_check(turn: AgentTurn, client: LLMClientProtocol, model: str, check_system: str,
+                      system: str, history: list[dict], turn_start: int) -> None:
+    check = run_self_check(client, model, check_system, system, history, turn_start, turn.text)
+    turn.self_check = check
+    turn.llm_calls += 1  # the check is a model call, so latency and tokens count toward the turn
+    turn.latency_ms += check["latency_ms"]
+    turn.input_tokens += check["input_tokens"]
+    turn.output_tokens += check["output_tokens"]
+    turn.cached = turn.cached and check["cached"]
+    if check["revised"]:
+        turn.text = check["final"]
+        replace_spoken(history, turn_start, check["final"])

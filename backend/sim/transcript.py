@@ -19,6 +19,7 @@ class Turn(BaseModel):
     llm_calls: int = 0
     cached: bool = False
     error: Optional[str] = None
+    self_check: Optional[dict] = None  # agent only, v4+: draft/final/issues and the check's cost
 
 
 class Transcript(BaseModel):

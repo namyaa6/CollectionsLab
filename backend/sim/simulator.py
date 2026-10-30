@@ -41,11 +41,12 @@ def simulate(scenario: Scenario, client: LLMClientProtocol, prompt: Prompt, agen
     end_reason, end_detail = "turn_limit", None
 
     for _ in range(max_debtor_turns):
-        at = run_agent_turn(client, agent_model, agent_system, agent_hist, state, index)
+        at = run_agent_turn(client, agent_model, agent_system, agent_hist, state, index,
+                            self_check=prompt.self_check, check_system=prompt.self_check_prompt)
         turns.append(Turn(speaker="agent", text=at.text, tool_calls=at.tool_calls,
                           latency_ms=at.latency_ms, input_tokens=at.input_tokens,
                           output_tokens=at.output_tokens, llm_calls=at.llm_calls,
-                          cached=at.cached, error=at.error))
+                          cached=at.cached, error=at.error, self_check=at.self_check))
         if state.ended:
             end_reason = "escalated" if state.escalated else "end_call"
             end_detail = state.end_reason
