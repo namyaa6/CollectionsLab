@@ -102,6 +102,16 @@ def test_call_context_has_ids_and_date_but_no_amounts(state):
             assert i.payment_claim.utr not in ctx
 
 
+def test_call_context_roles_are_unambiguous(state):
+    inv = state.invoice
+    ctx = build_call_context(inv)
+    assert f"{COMPANY_NAME} is the creditor" in ctx
+    assert f"{inv.company} is the customer (the debtor) who owes" in ctx
+    assert "not your employer and you do not represent it" in ctx
+    assert f"on behalf of {inv.company}" not in ctx
+    assert f"at {inv.company}" not in ctx.split("You are calling")[0]  # not the agent's employer
+
+
 def test_load_prompt_v1_and_rejects_bad_versions():
     assert "collections agent" in load_prompt("v1").system
     with pytest.raises(ValueError):

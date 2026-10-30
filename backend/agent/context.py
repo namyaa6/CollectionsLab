@@ -13,8 +13,11 @@ COMPANY_NAME = "Meridian Receivables"
 def build_call_context(invoice: Invoice) -> str:
     return (
         "CALL CONTEXT\n"
-        f"You are {AGENT_NAME}, a collections agent at {COMPANY_NAME}.\n"
-        f"You are calling {invoice.contact_name} at {invoice.company}.\n"
+        f"You are {AGENT_NAME}, a collections agent at {COMPANY_NAME}. "
+        f"{COMPANY_NAME} is the creditor: it is owed the money, and you call on its behalf.\n"
+        f"You are calling {invoice.contact_name} at {invoice.company}. "
+        f"{invoice.company} is the customer (the debtor) who owes the unpaid invoice. "
+        f"It is not your employer and you do not represent it.\n"
         f"Invoice ID: {invoice.invoice_id}\n"
         f"Today's date: {SIM_DATE.isoformat()}"
     )
