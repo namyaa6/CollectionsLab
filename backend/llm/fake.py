@@ -26,7 +26,7 @@ class FakeLLMClient:
                  tools: Optional[list[ToolSpec]] = None, temperature: float = 0.0,
                  json_mode: bool = False, response_schema: Optional[type] = None,
                  use_cache: bool = True, cache_salt: Optional[str] = None) -> LLMResponse:
-        request = {"model": model, "messages": messages, "system": system, "tools": tools,
+        request = {"model": model, "messages": list(messages), "system": system, "tools": tools,
                    "temperature": temperature, "json_mode": json_mode,
                    "response_schema": response_schema, "use_cache": use_cache,
                    "cache_salt": cache_salt}

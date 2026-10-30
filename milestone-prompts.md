@@ -93,6 +93,10 @@ Build:
 Then I'll run one real call with n=1 and we'll read the transcript together.
 Plan first.
 
+   Also: the google-genai SDK has its own internal retries stacked under ours
+   (seen as tenacity in a traceback). Check the SDK docs for how to disable or
+   limit them via HttpOptions so only our retry logic runs, and add a test.
+
 ---
 
 ## M5: Summarizer

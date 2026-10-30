@@ -126,12 +126,15 @@ class LLMClient:
                 self._sleep(delay)
         raise AssertionError("unreachable")
 
+    def _http_options(self) -> gt.HttpOptions:
+        """attempts=1 turns off the SDK's own retries: only _with_retries retries, so every
+        attempt passes the rate limiter and the daily-quota check."""
+        return gt.HttpOptions(timeout=self._timeout_s * 1000,  # milliseconds, per attempt
+                              retry_options=gt.HttpRetryOptions(attempts=1))
+
     def _call_api(self, model, contents, config) -> LLMResponse:
         if self._genai is None:
-            self._genai = genai.Client(
-                api_key=self._api_key,
-                http_options=gt.HttpOptions(timeout=self._timeout_s * 1000),  # milliseconds
-            )
+            self._genai = genai.Client(api_key=self._api_key, http_options=self._http_options())
         start = time.perf_counter()
         raw = self._genai.models.generate_content(model=model, contents=contents, config=config)
         latency_ms = round((time.perf_counter() - start) * 1000)
