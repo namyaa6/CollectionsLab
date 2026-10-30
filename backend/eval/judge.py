@@ -4,7 +4,6 @@ The judge sees the policy, the agent-visible invoice and the transcript with too
 It does NOT see the persona, the expected outcome or any deterministic check result, so
 its reading is independent of the code checks.
 """
-import hashlib
 import json
 import re
 from dataclasses import dataclass
@@ -15,6 +14,7 @@ import yaml
 from pydantic import BaseModel, field_validator
 
 from backend.agent.tools import agent_view
+from backend.filehash import sha256_normalized
 from backend.llm.client import LLMClientProtocol
 from backend.llm.types import LLMResponseError
 from backend.scenarios.generator import SIM_DATE, Invoice
@@ -66,7 +66,7 @@ def load_judge_prompt(path: Path = JUDGE_PROMPT_PATH) -> JudgePrompt:
     system = str(data.get("system", "")).strip()
     if not system or not data.get("version"):
         raise ValueError(f"{path.name} needs 'version' and 'system'")
-    return JudgePrompt(str(data["version"]), system, hashlib.sha256(raw).hexdigest())
+    return JudgePrompt(str(data["version"]), system, sha256_normalized(raw))
 
 
 def render_for_judge(t: Transcript) -> str:

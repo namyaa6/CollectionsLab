@@ -1,10 +1,11 @@
 """Loads versioned agent prompts from backend/prompts/vN.yaml."""
-import hashlib
 import re
 from dataclasses import dataclass
 from pathlib import Path
 
 import yaml
+
+from backend.filehash import file_hash
 
 PROMPTS_DIR = Path(__file__).resolve().parent
 
@@ -39,4 +40,4 @@ def load_prompt(version: str, directory: Path = PROMPTS_DIR) -> Prompt:
 
 def prompt_file_hash(version: str, directory: Path = PROMPTS_DIR) -> str:
     """sha256 of the prompt file, so an edited vN.yaml is never mixed into an older run."""
-    return hashlib.sha256((directory / f"{version}.yaml").read_bytes()).hexdigest()
+    return file_hash(directory / f"{version}.yaml")
