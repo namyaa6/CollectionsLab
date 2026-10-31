@@ -6,7 +6,8 @@ Read SPEC.md before starting any milestone.
 ## Stack
 - Backend: Python 3.11+, FastAPI, SQLite, pytest
 - LLM: Gemini API via the `google-genai` SDK, always through `backend/llm/client.py`
-- Retrieval: BM25 (`rank-bm25`) over the policy document
+- Retrieval: BM25Plus over the policy document, implemented by hand in
+  `backend/rag/policy_index.py` (no dependency)
 - Frontend: React + Vite + TypeScript, Recharts
 - CI: GitHub Actions
 
