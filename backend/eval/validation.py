@@ -26,7 +26,10 @@ def say(text: str) -> None:
 # ---------- storage ----------
 
 def open_readonly(path: Path) -> sqlite3.Connection:
-    conn = sqlite3.connect(Path(path).resolve().as_uri() + "?mode=ro", uri=True)
+    # check_same_thread=False: FastAPI may open the connection (dependency) and use it (endpoint)
+    # in different threadpool threads. Safe: read-only, and one connection per request.
+    conn = sqlite3.connect(Path(path).resolve().as_uri() + "?mode=ro", uri=True,
+                           check_same_thread=False)
     conn.row_factory = sqlite3.Row
     return conn
 

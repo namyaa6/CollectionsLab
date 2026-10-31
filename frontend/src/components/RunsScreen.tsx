@@ -42,7 +42,7 @@ function RunRow({ run, checked, disabled, onToggle }: {
       <td>
         <span className="version">{run.prompt_version}</span>
         {promptDescription(run.prompt_version) && (
-          <span className="version-desc">{promptDescription(run.prompt_version)}</span>
+          <div className="version-desc">{promptDescription(run.prompt_version)}</div>
         )}
       </td>
       <td className="mono">{run.judge_version}</td>
@@ -63,7 +63,7 @@ function RunRow({ run, checked, disabled, onToggle }: {
       ) : (
         <td colSpan={COLUMNS.length + 1} className="muted no-metrics">No metrics yet</td>
       )}
-      <td onClick={(e) => e.stopPropagation()}>
+      <td className="row-action" onClick={(e) => e.stopPropagation()}>
         {run.n_calls_stored > 0 && <a className="btn ghost sm" href={href.calls(run.id)}>Calls →</a>}
       </td>
     </tr>
@@ -112,7 +112,7 @@ export default function RunsScreen({ selected, onToggle, onClear, onCompare }: P
                   <th key={name} className="num">{RATE_LABELS[name]}</th>
                 ))}
                 <th className="num">Lint / call</th>
-                <th />
+                <th className="row-action" />
               </tr>
             </thead>
             <tbody>

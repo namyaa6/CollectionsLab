@@ -1,5 +1,6 @@
 import hashlib
 import sqlite3
+from concurrent.futures import ThreadPoolExecutor
 
 import pytest
 from fastapi.testclient import TestClient
@@ -23,6 +24,15 @@ def test_health_and_missing_db(tmp_path):
     c = TestClient(create_app(tmp_path / "nope.db", tmp_path / "no_dist"))
     assert c.get("/api/health").json() == {"status": "ok", "db": False}
     assert c.get("/api/runs").status_code == 503
+
+
+def test_runs_repeatedly_without_thread_errors(client, db_path):
+    # The dependency and the endpoint can run on different threads; this used to 500 at random.
+    assert all(client.get("/api/runs").status_code == 200 for _ in range(50))
+    conn = open_readonly(db_path)  # deterministic version: use the connection on another thread
+    with ThreadPoolExecutor(1) as pool:
+        assert pool.submit(lambda: conn.execute("SELECT 1").fetchone()[0]).result() == 1
+    conn.close()
 
 
 def test_health_ok(client):
