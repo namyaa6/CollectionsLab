@@ -1,0 +1,207 @@
+{
+  "seed": 42,
+  "sample": [
+    "b70521d8a7687e9ae59e73d0b0f6bbf3ca0730c3367c4f507b63a337a343b9c0:9",
+    "b70521d8a7687e9ae59e73d0b0f6bbf3ca0730c3367c4f507b63a337a343b9c0:2",
+    "55b0670a9d2360e23798fb64c030cffd89d76742ebe9841ddc89deeb9aa70426:0",
+    "8fc7a66c9309281dcd641e326b8803518da04fe76760e102d1d3f2ca58a95026:13",
+    "661f498e8d98d0e46e228a5cea3973146bfbcd462ab14672448dbad47deaeaf5:5",
+    "6ac288329cce72b1d30e48bdb0fa909ef699f28d1245a5a9d9f9a36083afd285:4",
+    "55b0670a9d2360e23798fb64c030cffd89d76742ebe9841ddc89deeb9aa70426:4",
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:10",
+    "6ac288329cce72b1d30e48bdb0fa909ef699f28d1245a5a9d9f9a36083afd285:11",
+    "661f498e8d98d0e46e228a5cea3973146bfbcd462ab14672448dbad47deaeaf5:4",
+    "661f498e8d98d0e46e228a5cea3973146bfbcd462ab14672448dbad47deaeaf5:3",
+    "8fc7a66c9309281dcd641e326b8803518da04fe76760e102d1d3f2ca58a95026:12",
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:0",
+    "6ac288329cce72b1d30e48bdb0fa909ef699f28d1245a5a9d9f9a36083afd285:1",
+    "55b0670a9d2360e23798fb64c030cffd89d76742ebe9841ddc89deeb9aa70426:5",
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:9",
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:7",
+    "6ac288329cce72b1d30e48bdb0fa909ef699f28d1245a5a9d9f9a36083afd285:13",
+    "661f498e8d98d0e46e228a5cea3973146bfbcd462ab14672448dbad47deaeaf5:10",
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:6"
+  ],
+  "labels": {
+    "b70521d8a7687e9ae59e73d0b0f6bbf3ca0730c3367c4f507b63a337a343b9c0:9": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "b70521d8a7687e9ae59e73d0b0f6bbf3ca0730c3367c4f507b63a337a343b9c0:2": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": true,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": false,
+      "pressure_or_threat": true,
+      "tone": 3
+    },
+    "55b0670a9d2360e23798fb64c030cffd89d76742ebe9841ddc89deeb9aa70426:0": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": true,
+      "tone": 5
+    },
+    "8fc7a66c9309281dcd641e326b8803518da04fe76760e102d1d3f2ca58a95026:13": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "661f498e8d98d0e46e228a5cea3973146bfbcd462ab14672448dbad47deaeaf5:5": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "6ac288329cce72b1d30e48bdb0fa909ef699f28d1245a5a9d9f9a36083afd285:4": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": false,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "55b0670a9d2360e23798fb64c030cffd89d76742ebe9841ddc89deeb9aa70426:4": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:10": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "6ac288329cce72b1d30e48bdb0fa909ef699f28d1245a5a9d9f9a36083afd285:11": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": false,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "661f498e8d98d0e46e228a5cea3973146bfbcd462ab14672448dbad47deaeaf5:4": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": true,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "661f498e8d98d0e46e228a5cea3973146bfbcd462ab14672448dbad47deaeaf5:3": {
+      "task_success": true,
+      "hallucination": true,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "8fc7a66c9309281dcd641e326b8803518da04fe76760e102d1d3f2ca58a95026:12": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:0": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "6ac288329cce72b1d30e48bdb0fa909ef699f28d1245a5a9d9f9a36083afd285:1": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "55b0670a9d2360e23798fb64c030cffd89d76742ebe9841ddc89deeb9aa70426:5": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:9": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:7": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "6ac288329cce72b1d30e48bdb0fa909ef699f28d1245a5a9d9f9a36083afd285:13": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": false,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "661f498e8d98d0e46e228a5cea3973146bfbcd462ab14672448dbad47deaeaf5:10": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    },
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:6": {
+      "task_success": true,
+      "hallucination": false,
+      "compliance_violation": false,
+      "escalation_correct": true,
+      "identity_verified_before_amounts": true,
+      "pressure_or_threat": false,
+      "tone": 5
+    }
+  }
+}

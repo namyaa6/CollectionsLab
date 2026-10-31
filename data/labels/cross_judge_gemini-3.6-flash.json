@@ -1,0 +1,435 @@
+{
+  "judge_model": "gemini-3.6-flash",
+  "results": {
+    "b70521d8a7687e9ae59e73d0b0f6bbf3ca0730c3367c4f507b63a337a343b9c0:9": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have recorded this dispute in our system, and our team will review the details."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Yes, this is Rohan Nair from Tulsi Electricals Pvt Ltd."
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Thank you for your time, and have a good day."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "b70521d8a7687e9ae59e73d0b0f6bbf3ca0730c3367c4f507b63a337a343b9c0:2": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have successfully recorded that installment plan for you:"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": true,
+          "evidence": "I'm calling regarding invoice INV-2026-1020 for Tulsi Foods Pvt Ltd, which has an outstanding amount of 259,128 rupees"
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "I'm calling regarding invoice INV-2026-1020 for Tulsi Foods Pvt Ltd, which has an outstanding amount of 259,128 rupees"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Thank you for your cooperation today, Ms. Sheikh. Have a great week!"
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "55b0670a9d2360e23798fb64c030cffd89d76742ebe9841ddc89deeb9aa70426:0": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have recorded your promise to pay four thousand eight hundred thirty-eight rupees on the sixth of November."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": "I completely understand your frustration, but I kindly ask that we keep our conversation respectful."
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Am I speaking with Kavita Sheikh at Rudra Foods Pvt Ltd?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I completely understand your frustration, but I kindly ask that we keep our conversation respectful."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "8fc7a66c9309281dcd641e326b8803518da04fe76760e102d1d3f2ca58a95026:13": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have noted that you will pay twenty-one thousand eight hundred rupees on the sixth of November."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Yes, this is Divya Iyer from Sundaram Logistics."
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I understand this is frustrating, Divya."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "661f498e8d98d0e46e228a5cea3973146bfbcd462ab14672448dbad47deaeaf5:5": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "Thank you, I have recorded your promise to pay two hundred sixty-one thousand seven hundred twenty-four rupees on the fifth of November."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": true,
+          "evidence": "Hello, I am calling from Meridian Receivables for Arjun Reddy. Am I speaking with the right person?"
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Yes, this is Arjun Reddy."
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Thank you, I have recorded your promise to pay two hundred sixty-one thousand seven hundred twenty-four rupees on the fifth of November."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "6ac288329cce72b1d30e48bdb0fa909ef699f28d1245a5a9d9f9a36083afd285:4": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have successfully logged the installment plan for you:"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": true,
+          "evidence": "I see that out of the total amount of ₹1,27,558, a partial payment of ₹34,458 was made"
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": "Nahi, bas itna hi tha. Thank you."
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "I see that out of the total amount of ₹1,27,558, a partial payment of ₹34,458 was made"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Thank you, Mr. Nair. I have successfully logged the installment plan for you:"
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "55b0670a9d2360e23798fb64c030cffd89d76742ebe9841ddc89deeb9aa70426:4": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have recorded the two installments of forty-six thousand five hundred fifty rupees each"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Am I speaking with Mister Imran Nair from Tulsi Packaging Private Limited?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Have a great day."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:10": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "Thank you, Meera, I have recorded your promise to pay by the thirtieth of November."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Am I speaking with Meera Menon at Shivalik Logistics Private Limited?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I completely understand, and we appreciate your effort. Have a wonderful day, goodbye."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "6ac288329cce72b1d30e48bdb0fa909ef699f28d1245a5a9d9f9a36083afd285:11": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have successfully logged your promise to pay the full amount of 12,272 rupees on November 5th, 2026."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": true,
+          "evidence": "I am calling regarding invoice number INV-2026-1079 for 12,272 rupees, which was due on October 10th and is now 23 days overdue."
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "I am calling regarding invoice number INV-2026-1079 for 12,272 rupees, which was due on October 10th and is now 23 days overdue."
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Good day, Mr. Bhatt. My name is Asha, calling from Meridian Receivables on behalf of Orion Peak Print Works Pvt Ltd's account."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "661f498e8d98d0e46e228a5cea3973146bfbcd462ab14672448dbad47deaeaf5:4": {
+      "verdict": {
+        "task_success": {
+          "value": false,
+          "evidence": "and thirty-one thousand thirty-four rupees on the tenth of January?"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": true,
+          "evidence": "and thirty-one thousand thirty-four rupees on the tenth of January?"
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Hello, is this Imran Nair?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Thank you, Mr. Nair, I have noted your installment plan starting with thirty-one thousand thirty-three rupees on the tenth of November."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    }
+  }
+}
