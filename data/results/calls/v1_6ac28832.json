@@ -1,0 +1,6109 @@
+[
+  {
+    "id": 39,
+    "run_id": 4,
+    "idx": 0,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 0,
+      "invoice": {
+        "invoice_id": "INV-2026-1002",
+        "company": "Rudra Foods Pvt Ltd",
+        "contact_name": "Kavita Sheikh",
+        "amount_inr": 4838,
+        "gst_inr": 738,
+        "due_date": "2026-10-06",
+        "days_overdue": 27,
+        "status": "unpaid",
+        "amount_paid_inr": 0,
+        "dispute_history": [],
+        "broken_promises": [],
+        "payment_claim": null,
+        "outstanding_inr": 4838
+      },
+      "persona": "angry",
+      "expected_outcomes": [
+        "promise_to_pay",
+        "escalated"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 0,
+      "persona": "angry",
+      "expected_outcomes": [
+        "promise_to_pay",
+        "escalated"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello, am I speaking with Ms. Kavita Sheikh at Rudra Foods Pvt Ltd? Good day, Ms. Sheikh. My name is Asha, calling from Meridian Receivables. I'm calling regarding invoice number INV-2026-1002, which was for 4,838 rupees and was due on October 6th, 2026. It is currently 27 days overdue. I wanted to check in and see how we can process this payment today.",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1002"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1002",
+                "company": "Rudra Foods Pvt Ltd",
+                "contact_name": "Kavita Sheikh",
+                "amount_inr": 4838,
+                "gst_inr": 738,
+                "outstanding_inr": 4838,
+                "amount_paid_inr": 0,
+                "due_date": "2026-10-06",
+                "days_overdue": 27,
+                "status": "unpaid",
+                "dispute_history": [],
+                "broken_promises": []
+              }
+            }
+          ],
+          "latency_ms": 2290,
+          "input_tokens": 1646,
+          "output_tokens": 132,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yes, this is Kavita Sheikh from Rudra Foods. Honestly, are you people blind or just incompetent, calling me over a stupid little four thousand rupee bill?",
+          "tool_calls": [],
+          "latency_ms": 716,
+          "input_tokens": 464,
+          "output_tokens": 33,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "I completely understand that this feels frustrating, Ms. Sheikh, and I apologize for any irritation this has caused. Even though the amount is 4,838 rupees, our records show it is 27 days past its due date, which is why I'm following up. Let's get this resolved today so we can clear it from your account. Would you prefer to clear the full amount today via bank transfer or UPI?",
+          "tool_calls": [],
+          "latency_ms": 1458,
+          "input_tokens": 1040,
+          "output_tokens": 89,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Look, I'm sorry for snapping at you, it's been a really stressful week. We can get that paid by this Friday, November sixth.",
+          "tool_calls": [],
+          "latency_ms": 1024,
+          "input_tokens": 588,
+          "output_tokens": 32,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Thank you so much, Ms. Sheikh. I completely understand, and I appreciate your cooperation. I have successfully recorded your promise to pay the full amount of 4,838 rupees by this Friday, November 6th, 2026. Is there anything else I can assist you with today?",
+          "tool_calls": [
+            {
+              "tool": "log_promise_to_pay",
+              "args": {
+                "amount_inr": 4838,
+                "date": "2026-11-06"
+              },
+              "result": {
+                "status": "logged"
+              }
+            }
+          ],
+          "latency_ms": 2227,
+          "input_tokens": 2383,
+          "output_tokens": 103,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "No, that is all. Thank you for your patience, goodbye.",
+          "tool_calls": [],
+          "latency_ms": 927,
+          "input_tokens": 686,
+          "output_tokens": 14,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "end_call",
+              "args": {
+                "reason": "Customer promised full payment by 2026-11-06 and ended the call politely."
+              },
+              "result": {
+                "status": "call_ended"
+              }
+            }
+          ],
+          "latency_ms": 738,
+          "input_tokens": 1300,
+          "output_tokens": 37,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "log_promise_to_pay",
+          "args": {
+            "date": "2026-11-06",
+            "amount_inr": 4838
+          },
+          "result": {
+            "status": "logged"
+          }
+        },
+        {
+          "tool": "end_call",
+          "args": {
+            "reason": "Customer promised full payment by 2026-11-06 and ended the call politely."
+          },
+          "result": {
+            "status": "call_ended"
+          }
+        }
+      ],
+      "end_reason": "end_call",
+      "end_detail": "Customer promised full payment by 2026-11-06 and ended the call politely.",
+      "scenario": {
+        "scenario_id": 0,
+        "invoice": {
+          "invoice_id": "INV-2026-1002",
+          "company": "Rudra Foods Pvt Ltd",
+          "contact_name": "Kavita Sheikh",
+          "amount_inr": 4838,
+          "gst_inr": 738,
+          "due_date": "2026-10-06",
+          "days_overdue": 27,
+          "status": "unpaid",
+          "amount_paid_inr": 0,
+          "dispute_history": [],
+          "broken_promises": [],
+          "payment_claim": null,
+          "outstanding_inr": 4838
+        },
+        "persona": "angry",
+        "expected_outcomes": [
+          "promise_to_pay",
+          "escalated"
+        ]
+      },
+      "totals": {
+        "agent_turns": 4,
+        "debtor_turns": 3,
+        "agent_latency_ms": 6713,
+        "agent_input_tokens": 6369,
+        "agent_output_tokens": 361,
+        "debtor_input_tokens": 1738,
+        "debtor_output_tokens": 79
+      }
+    },
+    "summary": {
+      "outcome": "promise_to_pay",
+      "promise_date": "2026-11-06",
+      "amount_inr": 4838,
+      "installment_plan": null,
+      "dispute_reason": null,
+      "payment_claim": null,
+      "escalated": false,
+      "next_action": "Follow up with customer on November 6th, 2026 to confirm payment.",
+      "logged_outcomes": [
+        "promise_to_pay"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 0,
+          "category": "long_turn",
+          "snippet": "6 sentences: Hello, am I speaking with Ms. Kavita Sheikh at Rud"
+        },
+        {
+          "turn": 0,
+          "category": "digit_amount",
+          "snippet": "ich was for 4,838 rupees and was due"
+        },
+        {
+          "turn": 0,
+          "category": "code_token",
+          "snippet": "oice number INV-2026-1002, which was"
+        },
+        {
+          "turn": 2,
+          "category": "long_turn",
+          "snippet": "4 sentences: I completely understand that this feels frustratin"
+        },
+        {
+          "turn": 2,
+          "category": "digit_amount",
+          "snippet": "e amount is 4,838 rupees, our record"
+        },
+        {
+          "turn": 4,
+          "category": "long_turn",
+          "snippet": "4 sentences: Thank you so much, Ms. Sheikh. I completely unders"
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "l amount of 4,838 rupees by this Fri"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 0,
+        "long_turn": 3,
+        "digit_amount": 3,
+        "numeric_date": 0,
+        "code_token": 1,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 7,
+        "unverified": 0,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 0,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "4,838 rupees",
+            "value": "4838"
+          },
+          {
+            "turn": 0,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "27 days",
+            "value": "27"
+          },
+          {
+            "turn": 0,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "October 6th, 2026",
+            "value": "2026-10-06"
+          },
+          {
+            "turn": 2,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "4,838 rupees",
+            "value": "4838"
+          },
+          {
+            "turn": 2,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "27 days",
+            "value": "27"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "4,838 rupees",
+            "value": "4838"
+          },
+          {
+            "turn": 4,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "November 6th, 2026",
+            "value": "2026-11-06"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "promise_to_pay",
+        "expected": [
+          "promise_to_pay",
+          "escalated"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 0,
+        "empty_results": 0,
+        "queries": []
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have successfully recorded your promise to pay the full amount of 4,838 rupees by this Friday, November 6th, 2026."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "Hello, am I speaking with Ms. Kavita Sheikh at Rudra Foods Pvt Ltd? Good day, Ms. Sheikh. My name is Asha, calling from Meridian Receivables. I'm calling regarding invoice number INV-2026-1002, which was for 4,838 rupees"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I completely understand that this feels frustrating, Ms. Sheikh, and I apologize for any irritation this has caused."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 6713,
+    "tokens": 6730,
+    "created_at": "2026-10-31T14:33:32+00:00"
+  },
+  {
+    "id": 40,
+    "run_id": 4,
+    "idx": 1,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 1,
+      "invoice": {
+        "invoice_id": "INV-2026-1007",
+        "company": "Sundaram Plastics Pvt Ltd",
+        "contact_name": "Imran Nair",
+        "amount_inr": 122484,
+        "gst_inr": 18684,
+        "due_date": "2026-09-12",
+        "days_overdue": 51,
+        "status": "unpaid",
+        "amount_paid_inr": 0,
+        "dispute_history": [],
+        "broken_promises": [],
+        "payment_claim": {
+          "utr": "078161849593",
+          "date": "2026-10-28",
+          "amount_inr": 122484
+        },
+        "outstanding_inr": 122484
+      },
+      "persona": "already_paid",
+      "expected_outcomes": [
+        "payment_claim_logged"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 1,
+      "persona": "already_paid",
+      "expected_outcomes": [
+        "payment_claim_logged"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello, Mr. Imran Nair? Good day. My name is Asha, calling from Meridian Receivables on behalf of Meridian Receivables. I'm calling regarding your company Sundaram Plastics Pvt Ltd and the overdue invoice INV-2026-1007, which is currently 51 days overdue for the amount of ₹1,22,484. I'm hoping we can get this settled today. How would you like to proceed with the payment?",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1007"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1007",
+                "company": "Sundaram Plastics Pvt Ltd",
+                "contact_name": "Imran Nair",
+                "amount_inr": 122484,
+                "gst_inr": 18684,
+                "outstanding_inr": 122484,
+                "amount_paid_inr": 0,
+                "due_date": "2026-09-12",
+                "days_overdue": 51,
+                "status": "unpaid",
+                "dispute_history": [],
+                "broken_promises": []
+              }
+            }
+          ],
+          "latency_ms": 2309,
+          "input_tokens": 1649,
+          "output_tokens": 126,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yes, this is Imran Nair from Sundaram Plastics. We already paid that invoice, so there is nothing overdue here.",
+          "tool_calls": [],
+          "latency_ms": 969,
+          "input_tokens": 511,
+          "output_tokens": 24,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "I understand. Could you please provide me with the UTR number, the date the payment was made, and the exact amount paid so we can check our records and trace the transaction?",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "already paid payment claim UTR verification"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Payment Claim Handling",
+                    "text": "If the debtor says they already paid, ask for the UTR number, the payment date and the amount. Log the payment claim with these details. Do not ask for payment again on this call. Tell the debtor the payment will be checked and that someone will follow up."
+                  }
+                ]
+              }
+            }
+          ],
+          "latency_ms": 2003,
+          "input_tokens": 2159,
+          "output_tokens": 59,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "The UTR is 078161849593, it was paid on October 28th, 2026, for the exact amount of 1,22,484 rupees. Check your bank records properly because we are not paying a single rupee twice.",
+          "tool_calls": [],
+          "latency_ms": 1225,
+          "input_tokens": 574,
+          "output_tokens": 65,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Thank you, Mr. Nair. I have logged your payment claim with UTR number 078161849593 for ₹1,22,484 made on October 28th, 2026. We will check our bank records with these details and someone will follow up with you soon. Thank you for your time, and have a good day.",
+          "tool_calls": [
+            {
+              "tool": "log_payment_claim",
+              "args": {
+                "amount_inr": 122484,
+                "date": "2026-10-28",
+                "utr": "078161849593"
+              },
+              "result": {
+                "status": "logged"
+              }
+            }
+          ],
+          "latency_ms": 2536,
+          "input_tokens": 2541,
+          "output_tokens": 141,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Good, make sure you check it properly. Don't call me back about this again unless it's to confirm you found it.",
+          "tool_calls": [],
+          "latency_ms": 986,
+          "input_tokens": 725,
+          "output_tokens": 28,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "end_call",
+              "args": {
+                "reason": "Payment claim logged with UTR 078161849593; call ended as requested."
+              },
+              "result": {
+                "status": "call_ended"
+              }
+            }
+          ],
+          "latency_ms": 1451,
+          "input_tokens": 1421,
+          "output_tokens": 40,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "log_payment_claim",
+          "args": {
+            "utr": "078161849593",
+            "date": "2026-10-28",
+            "amount_inr": 122484
+          },
+          "result": {
+            "status": "logged"
+          }
+        },
+        {
+          "tool": "end_call",
+          "args": {
+            "reason": "Payment claim logged with UTR 078161849593; call ended as requested."
+          },
+          "result": {
+            "status": "call_ended"
+          }
+        }
+      ],
+      "end_reason": "end_call",
+      "end_detail": "Payment claim logged with UTR 078161849593; call ended as requested.",
+      "scenario": {
+        "scenario_id": 1,
+        "invoice": {
+          "invoice_id": "INV-2026-1007",
+          "company": "Sundaram Plastics Pvt Ltd",
+          "contact_name": "Imran Nair",
+          "amount_inr": 122484,
+          "gst_inr": 18684,
+          "due_date": "2026-09-12",
+          "days_overdue": 51,
+          "status": "unpaid",
+          "amount_paid_inr": 0,
+          "dispute_history": [],
+          "broken_promises": [],
+          "payment_claim": {
+            "utr": "078161849593",
+            "date": "2026-10-28",
+            "amount_inr": 122484
+          },
+          "outstanding_inr": 122484
+        },
+        "persona": "already_paid",
+        "expected_outcomes": [
+          "payment_claim_logged"
+        ]
+      },
+      "totals": {
+        "agent_turns": 4,
+        "debtor_turns": 3,
+        "agent_latency_ms": 8299,
+        "agent_input_tokens": 7770,
+        "agent_output_tokens": 366,
+        "debtor_input_tokens": 1810,
+        "debtor_output_tokens": 117
+      }
+    },
+    "summary": {
+      "outcome": "payment_claim_logged",
+      "promise_date": null,
+      "amount_inr": null,
+      "installment_plan": null,
+      "dispute_reason": null,
+      "payment_claim": {
+        "utr": "078161849593",
+        "date": "2026-10-28",
+        "amount_inr": 122484
+      },
+      "escalated": false,
+      "next_action": "Verify bank records for UTR 078161849593 to confirm receipt of ₹1,22,484.",
+      "logged_outcomes": [
+        "payment_claim_logged"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 0,
+          "category": "symbols_markdown",
+          "snippet": "e amount of ₹1,22,484. I'"
+        },
+        {
+          "turn": 0,
+          "category": "long_turn",
+          "snippet": "6 sentences: Hello, Mr. Imran Nair? Good day. My name is Asha, "
+        },
+        {
+          "turn": 0,
+          "category": "digit_amount",
+          "snippet": "e amount of ₹1,22,484. I'm hoping"
+        },
+        {
+          "turn": 0,
+          "category": "code_token",
+          "snippet": "due invoice INV-2026-1007, which is c"
+        },
+        {
+          "turn": 4,
+          "category": "symbols_markdown",
+          "snippet": "1849593 for ₹1,22,484 mad"
+        },
+        {
+          "turn": 4,
+          "category": "long_turn",
+          "snippet": "4 sentences: Thank you, Mr. Nair. I have logged your payment cl"
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "1849593 for ₹1,22,484 made on Oct"
+        },
+        {
+          "turn": 4,
+          "category": "code_token",
+          "snippet": "UTR number 078161849593 for ₹1,22,4"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 2,
+        "long_turn": 2,
+        "digit_amount": 2,
+        "numeric_date": 0,
+        "code_token": 2,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 4,
+        "unverified": 0,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 0,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "51 days",
+            "value": "51"
+          },
+          {
+            "turn": 0,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹1,22,484",
+            "value": "122484"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹1,22,484",
+            "value": "122484"
+          },
+          {
+            "turn": 4,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "October 28th, 2026",
+            "value": "2026-10-28"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "payment_claim_logged",
+        "expected": [
+          "payment_claim_logged"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 1,
+        "empty_results": 0,
+        "queries": [
+          "already paid payment claim UTR verification"
+        ]
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "Thank you, Mr. Nair. I have logged your payment claim with UTR number 078161849593 for ₹1,22,484 made on October 28th, 2026."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "Hello, Mr. Imran Nair? Good day. My name is Asha, calling from Meridian Receivables on behalf of Meridian Receivables. I'm calling regarding your company Sundaram Plastics Pvt Ltd and the overdue invoice INV-2026-1007, which is currently 51 days overdue for the amount of ₹1,22,484."
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Thank you, Mr. Nair. I have logged your payment claim with UTR number 078161849593 for ₹1,22,484 made on October 28th, 2026."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 8299,
+    "tokens": 8136,
+    "created_at": "2026-10-31T14:33:33+00:00"
+  },
+  {
+    "id": 41,
+    "run_id": 4,
+    "idx": 2,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 2,
+      "invoice": {
+        "invoice_id": "INV-2026-1020",
+        "company": "Tulsi Foods Pvt Ltd",
+        "contact_name": "Sneha Sheikh",
+        "amount_inr": 259128,
+        "gst_inr": 39528,
+        "due_date": "2026-09-08",
+        "days_overdue": 55,
+        "status": "unpaid",
+        "amount_paid_inr": 0,
+        "dispute_history": [],
+        "broken_promises": [
+          "2026-10-08",
+          "2026-10-19"
+        ],
+        "payment_claim": null,
+        "outstanding_inr": 259128
+      },
+      "persona": "stalling",
+      "expected_outcomes": [
+        "promise_to_pay",
+        "installment_plan"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 2,
+      "persona": "stalling",
+      "expected_outcomes": [
+        "promise_to_pay",
+        "installment_plan"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello, Ms. Sneha Sheikh? My name is Asha, calling from Meridian Receivables on behalf of Meridian Receivables. I'm calling regarding invoice INV-2026-1020 for Tulsi Foods Pvt Ltd, which has an outstanding amount of 259,128 rupees and is currently 55 days overdue, having been due on September 8th, 2026. \n\nCould we discuss how we can clear this pending payment today?",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1020"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1020",
+                "company": "Tulsi Foods Pvt Ltd",
+                "contact_name": "Sneha Sheikh",
+                "amount_inr": 259128,
+                "gst_inr": 39528,
+                "outstanding_inr": 259128,
+                "amount_paid_inr": 0,
+                "due_date": "2026-09-08",
+                "days_overdue": 55,
+                "status": "unpaid",
+                "dispute_history": [],
+                "broken_promises": [
+                  "2026-10-08",
+                  "2026-10-19"
+                ]
+              }
+            }
+          ],
+          "latency_ms": 2248,
+          "input_tokens": 1676,
+          "output_tokens": 130,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yes, this is Sneha Sheikh from Tulsi Foods. Things have been really tight around here lately with cash flow. Let me check with our accounts team and get back to you next month.",
+          "tool_calls": [],
+          "latency_ms": 1311,
+          "input_tokens": 483,
+          "output_tokens": 39,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "I understand cash flow can be challenging sometimes, Ms. Sheikh. However, this invoice is already 55 days past due, and we've actually had a couple of broken promises to pay from last month as well. \n\nSince the full amount of 259,128 rupees is long overdue, waiting until next month isn't something we can accommodate without a firm commitment. Would you be in a position to settle this today, or perhaps we can set up a definite payment date or an installment plan right now?",
+          "tool_calls": [],
+          "latency_ms": 1157,
+          "input_tokens": 1074,
+          "output_tokens": 109,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "I will check the accounts and call you later today. Can you just call me back next week?",
+          "tool_calls": [],
+          "latency_ms": 950,
+          "input_tokens": 633,
+          "output_tokens": 20,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "I understand you need to check with your accounts team, Ms. Sheikh, but since this account is already significantly overdue, I won't be able to leave it pending for another week without a confirmed date. \n\nHowever, we can certainly set up a definite date for you to clear the full amount of 259,128 rupees, or if it helps, we can set up an installment plan spread across up to three parts over the next 60 days. Would either of those options work for you today?",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "broken promises payment plan policy"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Payment Promise Window",
+                    "text": "A promise to pay the full amount must be for a date within 30 days of the call. If the debtor cannot pay in full within 30 days, offer an installment plan when the debtor is eligible under the Installment Rules. If not eligible, ask for the earliest date within 30 days and log it."
+                  },
+                  {
+                    "section": "No Threats or Legal Claims",
+                    "text": "Never threaten, pressure or shame the debtor. Do not mention lawyers, courts, police, credit reports or any legal consequence. Do not claim that any legal step has been taken or is planned. Stick to the invoice facts and the payment options in this policy."
+                  },
+                  {
+                    "section": "Installment Rules",
+                    "text": "An installment plan is allowed only when the outstanding amount is above INR 20,000. The outstanding amount is the invoice amount minus the amount already paid. A plan has at most 3 parts, the parts must add up exactly to the outstanding amount, and the last part must fall within 60 days of the call. If the outstanding amount is INR 20,000 or less, ask for full payment on a specific date instead. Log the agreed plan with the dates and amounts of every part."
+                  }
+                ]
+              }
+            }
+          ],
+          "latency_ms": 2339,
+          "input_tokens": 2709,
+          "output_tokens": 128,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Okay fine, we can pay half of it by this Friday and the rest by the end of the month.",
+          "tool_calls": [],
+          "latency_ms": 752,
+          "input_tokens": 763,
+          "output_tokens": 22,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Today is November 2nd, 2026. \"This Friday\" would be November 6th, 2026, and \"the end of the month\" would be November 30th, 2026. \n\nThe total outstanding amount is 259,128 rupees. Half of that is 129,564 rupees, and the remaining half is 129,564 rupees. \n\nLet me set up this two-part installment plan for you:\n1. 129,564 rupees on November 6, 2026\n2. 129,564 rupees on November 30, 2026\n\nLet me log this installment plan for you right now. I have successfully recorded that installment plan for you: the first payment of 129,564 rupees on November 6, 2026, and the remaining 129,564 rupees by November 30, 2026. \n\nThank you for your cooperation today, Ms. Sheikh. Have a great week!",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "installment plan rules 3 parts 60 days"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Installment Rules",
+                    "text": "An installment plan is allowed only when the outstanding amount is above INR 20,000. The outstanding amount is the invoice amount minus the amount already paid. A plan has at most 3 parts, the parts must add up exactly to the outstanding amount, and the last part must fall within 60 days of the call. If the outstanding amount is INR 20,000 or less, ask for full payment on a specific date instead. Log the agreed plan with the dates and amounts of every part."
+                  },
+                  {
+                    "section": "Payment Promise Window",
+                    "text": "A promise to pay the full amount must be for a date within 30 days of the call. If the debtor cannot pay in full within 30 days, offer an installment plan when the debtor is eligible under the Installment Rules. If not eligible, ask for the earliest date within 30 days and log it."
+                  }
+                ]
+              }
+            },
+            {
+              "tool": "log_installment_plan",
+              "args": {
+                "parts": [
+                  {
+                    "amount_inr": 129564,
+                    "date": "2026-11-06"
+                  },
+                  {
+                    "amount_inr": 129564,
+                    "date": "2026-11-30"
+                  }
+                ]
+              },
+              "result": {
+                "status": "logged"
+              }
+            },
+            {
+              "tool": "end_call",
+              "args": {
+                "reason": "Installment plan successfully agreed and logged."
+              },
+              "result": {
+                "status": "call_ended"
+              }
+            }
+          ],
+          "latency_ms": 15308,
+          "input_tokens": 5637,
+          "output_tokens": 363,
+          "llm_calls": 3,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "log_installment_plan",
+          "args": {
+            "parts": [
+              {
+                "date": "2026-11-06",
+                "amount_inr": 129564
+              },
+              {
+                "date": "2026-11-30",
+                "amount_inr": 129564
+              }
+            ]
+          },
+          "result": {
+            "status": "logged"
+          }
+        },
+        {
+          "tool": "end_call",
+          "args": {
+            "reason": "Installment plan successfully agreed and logged."
+          },
+          "result": {
+            "status": "call_ended"
+          }
+        }
+      ],
+      "end_reason": "end_call",
+      "end_detail": "Installment plan successfully agreed and logged.",
+      "scenario": {
+        "scenario_id": 2,
+        "invoice": {
+          "invoice_id": "INV-2026-1020",
+          "company": "Tulsi Foods Pvt Ltd",
+          "contact_name": "Sneha Sheikh",
+          "amount_inr": 259128,
+          "gst_inr": 39528,
+          "due_date": "2026-09-08",
+          "days_overdue": 55,
+          "status": "unpaid",
+          "amount_paid_inr": 0,
+          "dispute_history": [],
+          "broken_promises": [
+            "2026-10-08",
+            "2026-10-19"
+          ],
+          "payment_claim": null,
+          "outstanding_inr": 259128
+        },
+        "persona": "stalling",
+        "expected_outcomes": [
+          "promise_to_pay",
+          "installment_plan"
+        ]
+      },
+      "totals": {
+        "agent_turns": 4,
+        "debtor_turns": 3,
+        "agent_latency_ms": 21052,
+        "agent_input_tokens": 11096,
+        "agent_output_tokens": 730,
+        "debtor_input_tokens": 1879,
+        "debtor_output_tokens": 81
+      }
+    },
+    "summary": {
+      "outcome": "installment_plan",
+      "promise_date": null,
+      "amount_inr": null,
+      "installment_plan": [
+        {
+          "date": "2026-11-06",
+          "amount_inr": 129564
+        },
+        {
+          "date": "2026-11-30",
+          "amount_inr": 129564
+        }
+      ],
+      "dispute_reason": null,
+      "payment_claim": null,
+      "escalated": false,
+      "next_action": "Monitor account for the first installment payment of 129,564 rupees on November 6, 2026.",
+      "logged_outcomes": [
+        "installment_plan"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 0,
+          "category": "long_turn",
+          "snippet": "4 sentences, 2 paragraphs: Hello, Ms. Sneha Sheikh? My name is Asha, calling "
+        },
+        {
+          "turn": 0,
+          "category": "digit_amount",
+          "snippet": "g amount of 259,128 rupees and is curr"
+        },
+        {
+          "turn": 0,
+          "category": "code_token",
+          "snippet": "ing invoice INV-2026-1020 for Tulsi F"
+        },
+        {
+          "turn": 2,
+          "category": "long_turn",
+          "snippet": "4 sentences, 2 paragraphs: I understand cash flow can be challenging sometime"
+        },
+        {
+          "turn": 2,
+          "category": "digit_amount",
+          "snippet": "l amount of 259,128 rupees is long ove"
+        },
+        {
+          "turn": 4,
+          "category": "long_turn",
+          "snippet": "3 sentences, 2 paragraphs: I understand you need to check with your accounts "
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "l amount of 259,128 rupees, or if it h"
+        },
+        {
+          "turn": 6,
+          "category": "symbols_markdown",
+          "snippet": "an for you: 1. 129,564 rupe"
+        },
+        {
+          "turn": 6,
+          "category": "symbols_markdown",
+          "snippet": "ber 6, 2026 2. 129,564 rupe"
+        },
+        {
+          "turn": 6,
+          "category": "long_turn",
+          "snippet": "10 sentences, 5 paragraphs: Today is November 2nd, 2026. \"This Friday\" would b"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "g amount is 259,128 rupees. Half of th"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "of that is 129,564 rupees, and the re"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "ing half is 129,564 rupees.   Let me s"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "for you: 1. 129,564 rupees on November"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "6, 2026 2. 129,564 rupees on November"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "payment of 129,564 rupees on November"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "e remaining 129,564 rupees by November"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 2,
+        "long_turn": 4,
+        "digit_amount": 10,
+        "numeric_date": 0,
+        "code_token": 1,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 9,
+        "unverified": 12,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 0,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "259,128 rupees",
+            "value": "259128"
+          },
+          {
+            "turn": 0,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "55 days",
+            "value": "55"
+          },
+          {
+            "turn": 0,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "September 8th, 2026",
+            "value": "2026-09-08"
+          },
+          {
+            "turn": 2,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "55 days",
+            "value": "55"
+          },
+          {
+            "turn": 2,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "259,128 rupees",
+            "value": "259128"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "259,128 rupees",
+            "value": "259128"
+          },
+          {
+            "turn": 4,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "60 days",
+            "value": "60"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "259,128 rupees",
+            "value": "259128"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "unverified",
+            "snippet": "129,564 rupees",
+            "value": "129564"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "unverified",
+            "snippet": "129,564 rupees",
+            "value": "129564"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "unverified",
+            "snippet": "129,564 rupees",
+            "value": "129564"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "unverified",
+            "snippet": "129,564 rupees",
+            "value": "129564"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "unverified",
+            "snippet": "129,564 rupees",
+            "value": "129564"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "unverified",
+            "snippet": "129,564 rupees",
+            "value": "129564"
+          },
+          {
+            "turn": 6,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "November 2nd, 2026",
+            "value": "2026-11-02"
+          },
+          {
+            "turn": 6,
+            "kind": "date",
+            "status": "unverified",
+            "snippet": "November 6th, 2026",
+            "value": "2026-11-06"
+          },
+          {
+            "turn": 6,
+            "kind": "date",
+            "status": "unverified",
+            "snippet": "November 30th, 2026",
+            "value": "2026-11-30"
+          },
+          {
+            "turn": 6,
+            "kind": "date",
+            "status": "unverified",
+            "snippet": "November 6, 2026",
+            "value": "2026-11-06"
+          },
+          {
+            "turn": 6,
+            "kind": "date",
+            "status": "unverified",
+            "snippet": "November 30, 2026",
+            "value": "2026-11-30"
+          },
+          {
+            "turn": 6,
+            "kind": "date",
+            "status": "unverified",
+            "snippet": "November 6, 2026",
+            "value": "2026-11-06"
+          },
+          {
+            "turn": 6,
+            "kind": "date",
+            "status": "unverified",
+            "snippet": "November 30, 2026",
+            "value": "2026-11-30"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "installment_plan",
+        "expected": [
+          "promise_to_pay",
+          "installment_plan"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 2,
+        "empty_results": 0,
+        "queries": [
+          "broken promises payment plan policy",
+          "installment plan rules 3 parts 60 days"
+        ]
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have successfully recorded that installment plan for you"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "Hello, Ms. Sneha Sheikh? My name is Asha, calling from Meridian Receivables on behalf of Meridian Receivables. I'm calling regarding invoice INV-2026-1020 for Tulsi Foods Pvt Ltd, which has an outstanding amount of 259,128 rupees"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I understand cash flow can be challenging sometimes, Ms. Sheikh."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 21052,
+    "tokens": 11826,
+    "created_at": "2026-10-31T14:33:35+00:00"
+  },
+  {
+    "id": 42,
+    "run_id": 4,
+    "idx": 3,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 3,
+      "invoice": {
+        "invoice_id": "INV-2026-1022",
+        "company": "Narmada Packaging Pvt Ltd",
+        "contact_name": "Imran Deshpande",
+        "amount_inr": 279306,
+        "gst_inr": 42606,
+        "due_date": "2026-08-10",
+        "days_overdue": 84,
+        "status": "partially_paid",
+        "amount_paid_inr": 109006,
+        "dispute_history": [
+          "quantity billed exceeds quantity delivered"
+        ],
+        "broken_promises": [],
+        "payment_claim": null,
+        "outstanding_inr": 170300
+      },
+      "persona": "disputes_amount",
+      "expected_outcomes": [
+        "dispute_logged"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 3,
+      "persona": "disputes_amount",
+      "expected_outcomes": [
+        "dispute_logged"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello, am I speaking with Mr. Imran Deshpande at Narmada Packaging Pvt Ltd? Good morning, Mr. Deshpande. My name is Asha, calling on behalf of Meridian Receivables regarding invoice INV-2026-1022 for Narmada Packaging. I'm calling about the outstanding balance of ₹1,70,300 which is currently 84 days overdue. How are you today, and when can we expect payment for this balance?",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1022"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1022",
+                "company": "Narmada Packaging Pvt Ltd",
+                "contact_name": "Imran Deshpande",
+                "amount_inr": 279306,
+                "gst_inr": 42606,
+                "outstanding_inr": 170300,
+                "amount_paid_inr": 109006,
+                "due_date": "2026-08-10",
+                "days_overdue": 84,
+                "status": "partially_paid",
+                "dispute_history": [
+                  "quantity billed exceeds quantity delivered"
+                ],
+                "broken_promises": []
+              }
+            }
+          ],
+          "latency_ms": 1771,
+          "input_tokens": 1674,
+          "output_tokens": 130,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yes, this is Imran Deshpande from Narmada Packaging. I'm fine, but I certainly won't be paying that balance because the quantity billed on invoice INV-2026-1022 exceeds the quantity we actually received.",
+          "tool_calls": [],
+          "latency_ms": 1113,
+          "input_tokens": 483,
+          "output_tokens": 53,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Thank you for letting me know, Mr. Deshpande. I have noted your dispute regarding the quantity billed versus the quantity delivered. Collection on this invoice is paused while our team reviews the details. We will look into this and get back to you soon. Thank you for your time, and have a good day.",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "dispute quantity billed exceeds quantity delivered"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Dispute Handling",
+                    "text": "If the debtor says the amount or GST is wrong, listen, record the reason and log the dispute. Do not argue or try to prove the amount. Collection on that invoice is paused once a dispute is logged. Tell the debtor the dispute will be reviewed and end the call politely."
+                  },
+                  {
+                    "section": "No Discounts or Waivers",
+                    "text": "Agents may not offer discounts, interest waivers, late fee waivers or any reduction of the amount owed. If asked, say that you cannot change the amount and that a dispute can be logged if the debtor believes the amount is wrong."
+                  }
+                ]
+              }
+            },
+            {
+              "tool": "log_dispute",
+              "args": {
+                "reason": "quantity billed exceeds quantity delivered"
+              },
+              "result": {
+                "status": "logged"
+              }
+            }
+          ],
+          "latency_ms": 2977,
+          "input_tokens": 3613,
+          "output_tokens": 107,
+          "llm_calls": 3,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Good, make sure you look into it properly. I am not paying a single rupee until that quantity error is fixed. Goodbye.",
+          "tool_calls": [],
+          "latency_ms": 1294,
+          "input_tokens": 602,
+          "output_tokens": 26,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "end_call",
+              "args": {
+                "reason": "Dispute logged regarding quantity mismatch; call ended per policy."
+              },
+              "result": {
+                "status": "call_ended"
+              }
+            }
+          ],
+          "latency_ms": 1103,
+          "input_tokens": 1375,
+          "output_tokens": 27,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "log_dispute",
+          "args": {
+            "reason": "quantity billed exceeds quantity delivered"
+          },
+          "result": {
+            "status": "logged"
+          }
+        },
+        {
+          "tool": "end_call",
+          "args": {
+            "reason": "Dispute logged regarding quantity mismatch; call ended per policy."
+          },
+          "result": {
+            "status": "call_ended"
+          }
+        }
+      ],
+      "end_reason": "end_call",
+      "end_detail": "Dispute logged regarding quantity mismatch; call ended per policy.",
+      "scenario": {
+        "scenario_id": 3,
+        "invoice": {
+          "invoice_id": "INV-2026-1022",
+          "company": "Narmada Packaging Pvt Ltd",
+          "contact_name": "Imran Deshpande",
+          "amount_inr": 279306,
+          "gst_inr": 42606,
+          "due_date": "2026-08-10",
+          "days_overdue": 84,
+          "status": "partially_paid",
+          "amount_paid_inr": 109006,
+          "dispute_history": [
+            "quantity billed exceeds quantity delivered"
+          ],
+          "broken_promises": [],
+          "payment_claim": null,
+          "outstanding_inr": 170300
+        },
+        "persona": "disputes_amount",
+        "expected_outcomes": [
+          "dispute_logged"
+        ]
+      },
+      "totals": {
+        "agent_turns": 3,
+        "debtor_turns": 2,
+        "agent_latency_ms": 5851,
+        "agent_input_tokens": 6662,
+        "agent_output_tokens": 264,
+        "debtor_input_tokens": 1085,
+        "debtor_output_tokens": 79
+      }
+    },
+    "summary": {
+      "outcome": "dispute_logged",
+      "promise_date": null,
+      "amount_inr": null,
+      "installment_plan": null,
+      "dispute_reason": "quantity billed exceeds quantity delivered",
+      "payment_claim": null,
+      "escalated": false,
+      "next_action": "Review the quantity billed versus delivered for invoice INV-2026-1022 and resolve the dispute with the customer.",
+      "logged_outcomes": [
+        "dispute_logged"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 0,
+          "category": "symbols_markdown",
+          "snippet": "balance of ₹1,70,300 whi"
+        },
+        {
+          "turn": 0,
+          "category": "long_turn",
+          "snippet": "5 sentences: Hello, am I speaking with Mr. Imran Deshpande at N"
+        },
+        {
+          "turn": 0,
+          "category": "digit_amount",
+          "snippet": "balance of ₹1,70,300 which is cu"
+        },
+        {
+          "turn": 0,
+          "category": "code_token",
+          "snippet": "ing invoice INV-2026-1022 for Narmada"
+        },
+        {
+          "turn": 2,
+          "category": "long_turn",
+          "snippet": "5 sentences: Thank you for letting me know, Mr. Deshpande. I ha"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 1,
+        "long_turn": 2,
+        "digit_amount": 1,
+        "numeric_date": 0,
+        "code_token": 1,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 2,
+        "unverified": 0,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 0,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹1,70,300",
+            "value": "170300"
+          },
+          {
+            "turn": 0,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "84 days",
+            "value": "84"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "dispute_logged",
+        "expected": [
+          "dispute_logged"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 1,
+        "empty_results": 0,
+        "queries": [
+          "dispute quantity billed exceeds quantity delivered"
+        ]
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "log_dispute({\"reason\": \"quantity billed exceeds quantity delivered\"})"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "Hello, am I speaking with Mr. Imran Deshpande at Narmada Packaging Pvt Ltd? ... regarding invoice INV-2026-1022 ... outstanding balance of  1,70,300"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Thank you for letting me know, Mr. Deshpande. I have noted your dispute"
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": false,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 5851,
+    "tokens": 6926,
+    "created_at": "2026-10-31T14:33:37+00:00"
+  },
+  {
+    "id": 43,
+    "run_id": 4,
+    "idx": 4,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 4,
+      "invoice": {
+        "invoice_id": "INV-2026-1028",
+        "company": "Tulsi Packaging Pvt Ltd",
+        "contact_name": "Imran Nair",
+        "amount_inr": 127558,
+        "gst_inr": 19458,
+        "due_date": "2026-10-19",
+        "days_overdue": 14,
+        "status": "partially_paid",
+        "amount_paid_inr": 34458,
+        "dispute_history": [],
+        "broken_promises": [],
+        "payment_claim": null,
+        "outstanding_inr": 93100
+      },
+      "persona": "hinglish_negotiator",
+      "expected_outcomes": [
+        "installment_plan",
+        "promise_to_pay"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 4,
+      "persona": "hinglish_negotiator",
+      "expected_outcomes": [
+        "installment_plan",
+        "promise_to_pay"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello, am I speaking with Mr. Imran Nair? \n\nGood day, Mr. Nair. My name is Asha, calling from Meridian Receivables on behalf of Meridian Receivables. I'm calling regarding invoice INV-2026-1028 for Tulsi Packaging Pvt Ltd. \n\nI see that out of the total amount of ₹1,27,558, a partial payment of ₹34,458 was made, leaving an outstanding balance of ₹93,100 which was due on October 19th, making it 14 days overdue. \n\nI'm calling to see how we can arrange for the payment of this remaining balance today.",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1028"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1028",
+                "company": "Tulsi Packaging Pvt Ltd",
+                "contact_name": "Imran Nair",
+                "amount_inr": 127558,
+                "gst_inr": 19458,
+                "outstanding_inr": 93100,
+                "amount_paid_inr": 34458,
+                "due_date": "2026-10-19",
+                "days_overdue": 14,
+                "status": "partially_paid",
+                "dispute_history": [],
+                "broken_promises": []
+              }
+            }
+          ],
+          "latency_ms": 1895,
+          "input_tokens": 1654,
+          "output_tokens": 175,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Haan, Imran Nair bol raha hoon. Dekhiye, ek sath 93,100 rupees dena abhi mushkil hai, kya hum isko installments mein de sakte hain?",
+          "tool_calls": [],
+          "latency_ms": 869,
+          "input_tokens": 509,
+          "output_tokens": 39,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Mr. Nair, I completely understand that paying the full remaining balance of ₹93,100 at once might be difficult right now. We can certainly arrange an installment plan for you. \n\nAccording to our company policy, we can split the balance into a maximum of 3 parts, with the final payment to be completed within 60 days. \n\nHow would you like to structure these installments? For instance, what amount would you be comfortable paying in the first installment, and when can we schedule it?",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "installment plan policy maximum duration number of parts minimum down payment"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Installment Rules",
+                    "text": "An installment plan is allowed only when the outstanding amount is above INR 20,000. The outstanding amount is the invoice amount minus the amount already paid. A plan has at most 3 parts, the parts must add up exactly to the outstanding amount, and the last part must fall within 60 days of the call. If the outstanding amount is INR 20,000 or less, ask for full payment on a specific date instead. Log the agreed plan with the dates and amounts of every part."
+                  },
+                  {
+                    "section": "Payment Claim Handling",
+                    "text": "If the debtor says they already paid, ask for the UTR number, the payment date and the amount. Log the payment claim with these details. Do not ask for payment again on this call. Tell the debtor the payment will be checked and that someone will follow up."
+                  }
+                ]
+              }
+            }
+          ],
+          "latency_ms": 1897,
+          "input_tokens": 2422,
+          "output_tokens": 132,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Theek hai, main first installment 30,000 rupees ki de sakta hoon, aur ye main coming Friday, matlab 6th November ko transfer kar dunga.",
+          "tool_calls": [],
+          "latency_ms": 941,
+          "input_tokens": 656,
+          "output_tokens": 37,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "That sounds reasonable, Mr. Nair. The first installment of ₹30,000 on November 6th, 2026 is noted. \n\nThe total outstanding balance is ₹93,100, so after this first payment, we have ₹63,100 remaining. How would you like to split the remaining ₹63,100 across the next one or two installments, keeping in mind that the final payment needs to be within 60 days (by early January 2027)?",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "installment plan remaining balance parts requirements installment rules"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Installment Rules",
+                    "text": "An installment plan is allowed only when the outstanding amount is above INR 20,000. The outstanding amount is the invoice amount minus the amount already paid. A plan has at most 3 parts, the parts must add up exactly to the outstanding amount, and the last part must fall within 60 days of the call. If the outstanding amount is INR 20,000 or less, ask for full payment on a specific date instead. Log the agreed plan with the dates and amounts of every part."
+                  },
+                  {
+                    "section": "Payment Promise Window",
+                    "text": "A promise to pay the full amount must be for a date within 30 days of the call. If the debtor cannot pay in full within 30 days, offer an installment plan when the debtor is eligible under the Installment Rules. If not eligible, ask for the earliest date within 30 days and log it."
+                  }
+                ]
+              }
+            }
+          ],
+          "latency_ms": 2505,
+          "input_tokens": 3173,
+          "output_tokens": 136,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Bacha hua amount main next month ki 5th December tak pura clear kar dunga.",
+          "tool_calls": [],
+          "latency_ms": 820,
+          "input_tokens": 808,
+          "output_tokens": 19,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Thank you, Mr. Nair. I have successfully logged the installment plan for you:\n1. ₹30,000 on November 6th, 2026\n2. ₹63,100 on December 5th, 2026\n\nBoth installments together add up to the exact outstanding balance of ₹93,100. \n\nIs there anything else I can assist you with today, Mr. Nair?",
+          "tool_calls": [
+            {
+              "tool": "log_installment_plan",
+              "args": {
+                "parts": [
+                  {
+                    "date": "2026-11-06",
+                    "amount_inr": 30000
+                  },
+                  {
+                    "amount_inr": 63100,
+                    "date": "2026-12-05"
+                  }
+                ]
+              },
+              "result": {
+                "status": "logged"
+              }
+            }
+          ],
+          "latency_ms": 2289,
+          "input_tokens": 3759,
+          "output_tokens": 163,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Nahi, bas itna hi tha. Thank you.",
+          "tool_calls": [],
+          "latency_ms": 692,
+          "input_tokens": 925,
+          "output_tokens": 12,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "end_call",
+              "args": {
+                "reason": "Installment plan successfully agreed and logged with the debtor."
+              },
+              "result": {
+                "status": "call_ended"
+              }
+            }
+          ],
+          "latency_ms": 863,
+          "input_tokens": 2031,
+          "output_tokens": 26,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "log_installment_plan",
+          "args": {
+            "parts": [
+              {
+                "date": "2026-11-06",
+                "amount_inr": 30000
+              },
+              {
+                "date": "2026-12-05",
+                "amount_inr": 63100
+              }
+            ]
+          },
+          "result": {
+            "status": "logged"
+          }
+        },
+        {
+          "tool": "end_call",
+          "args": {
+            "reason": "Installment plan successfully agreed and logged with the debtor."
+          },
+          "result": {
+            "status": "call_ended"
+          }
+        }
+      ],
+      "end_reason": "end_call",
+      "end_detail": "Installment plan successfully agreed and logged with the debtor.",
+      "scenario": {
+        "scenario_id": 4,
+        "invoice": {
+          "invoice_id": "INV-2026-1028",
+          "company": "Tulsi Packaging Pvt Ltd",
+          "contact_name": "Imran Nair",
+          "amount_inr": 127558,
+          "gst_inr": 19458,
+          "due_date": "2026-10-19",
+          "days_overdue": 14,
+          "status": "partially_paid",
+          "amount_paid_inr": 34458,
+          "dispute_history": [],
+          "broken_promises": [],
+          "payment_claim": null,
+          "outstanding_inr": 93100
+        },
+        "persona": "hinglish_negotiator",
+        "expected_outcomes": [
+          "installment_plan",
+          "promise_to_pay"
+        ]
+      },
+      "totals": {
+        "agent_turns": 5,
+        "debtor_turns": 4,
+        "agent_latency_ms": 9449,
+        "agent_input_tokens": 13039,
+        "agent_output_tokens": 632,
+        "debtor_input_tokens": 2898,
+        "debtor_output_tokens": 107
+      }
+    },
+    "summary": {
+      "outcome": "installment_plan",
+      "promise_date": null,
+      "amount_inr": null,
+      "installment_plan": [
+        {
+          "date": "2026-11-06",
+          "amount_inr": 30000
+        },
+        {
+          "date": "2026-12-05",
+          "amount_inr": 63100
+        }
+      ],
+      "dispute_reason": null,
+      "payment_claim": null,
+      "escalated": false,
+      "next_action": "Monitor for the first installment payment of INR 30000 on November 6, 2026.",
+      "logged_outcomes": [
+        "installment_plan"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 0,
+          "category": "symbols_markdown",
+          "snippet": "l amount of ₹1,27,558, a"
+        },
+        {
+          "turn": 0,
+          "category": "symbols_markdown",
+          "snippet": "payment of ₹34,458 was m"
+        },
+        {
+          "turn": 0,
+          "category": "symbols_markdown",
+          "snippet": "balance of ₹93,100 which"
+        },
+        {
+          "turn": 0,
+          "category": "long_turn",
+          "snippet": "6 sentences, 4 paragraphs: Hello, am I speaking with Mr. Imran Nair? \n\nGood d"
+        },
+        {
+          "turn": 0,
+          "category": "digit_amount",
+          "snippet": "l amount of ₹1,27,558, a partial p"
+        },
+        {
+          "turn": 0,
+          "category": "digit_amount",
+          "snippet": "payment of ₹34,458 was made, l"
+        },
+        {
+          "turn": 0,
+          "category": "digit_amount",
+          "snippet": "balance of ₹93,100 which was d"
+        },
+        {
+          "turn": 0,
+          "category": "code_token",
+          "snippet": "ing invoice INV-2026-1028 for Tulsi P"
+        },
+        {
+          "turn": 2,
+          "category": "symbols_markdown",
+          "snippet": "balance of ₹93,100 at on"
+        },
+        {
+          "turn": 2,
+          "category": "long_turn",
+          "snippet": "5 sentences, 3 paragraphs: Mr. Nair, I completely understand that paying the "
+        },
+        {
+          "turn": 2,
+          "category": "digit_amount",
+          "snippet": "balance of ₹93,100 at once mig"
+        },
+        {
+          "turn": 4,
+          "category": "symbols_markdown",
+          "snippet": "tallment of ₹30,000 on No"
+        },
+        {
+          "turn": 4,
+          "category": "symbols_markdown",
+          "snippet": "balance is ₹93,100, so a"
+        },
+        {
+          "turn": 4,
+          "category": "symbols_markdown",
+          "snippet": "nt, we have ₹63,100 remai"
+        },
+        {
+          "turn": 4,
+          "category": "symbols_markdown",
+          "snippet": "e remaining ₹63,100 acros"
+        },
+        {
+          "turn": 4,
+          "category": "long_turn",
+          "snippet": "4 sentences, 2 paragraphs: That sounds reasonable, Mr. Nair. The first instal"
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "tallment of ₹30,000 on November"
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "balance is ₹93,100, so after th"
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "nt, we have ₹63,100 remaining."
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "e remaining ₹63,100 across the"
+        },
+        {
+          "turn": 6,
+          "category": "symbols_markdown",
+          "snippet": "an for you: 1. ₹30,000 on N"
+        },
+        {
+          "turn": 6,
+          "category": "symbols_markdown",
+          "snippet": "for you: 1. ₹30,000 on No"
+        },
+        {
+          "turn": 6,
+          "category": "symbols_markdown",
+          "snippet": "r 6th, 2026 2. ₹63,100 on D"
+        },
+        {
+          "turn": 6,
+          "category": "symbols_markdown",
+          "snippet": "th, 2026 2. ₹63,100 on De"
+        },
+        {
+          "turn": 6,
+          "category": "symbols_markdown",
+          "snippet": "balance of ₹93,100.   Is"
+        },
+        {
+          "turn": 6,
+          "category": "long_turn",
+          "snippet": "5 sentences, 3 paragraphs: Thank you, Mr. Nair. I have successfully logged th"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "for you: 1. ₹30,000 on November"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "th, 2026 2. ₹63,100 on December"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "balance of ₹93,100.   Is there"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 13,
+        "long_turn": 4,
+        "digit_amount": 11,
+        "numeric_date": 0,
+        "code_token": 1,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 15,
+        "unverified": 4,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 0,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹1,27,558,",
+            "value": "127558"
+          },
+          {
+            "turn": 0,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹34,458",
+            "value": "34458"
+          },
+          {
+            "turn": 0,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹93,100",
+            "value": "93100"
+          },
+          {
+            "turn": 0,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "14 days",
+            "value": "14"
+          },
+          {
+            "turn": 0,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "October 19th",
+            "value": "--10-19"
+          },
+          {
+            "turn": 2,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹93,100",
+            "value": "93100"
+          },
+          {
+            "turn": 2,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "60 days",
+            "value": "60"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹30,000",
+            "value": "30000"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹93,100,",
+            "value": "93100"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "unverified",
+            "snippet": "₹63,100",
+            "value": "63100"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "unverified",
+            "snippet": "₹63,100",
+            "value": "63100"
+          },
+          {
+            "turn": 4,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "60 days",
+            "value": "60"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "unverified",
+            "snippet": "2027",
+            "value": "2027"
+          },
+          {
+            "turn": 4,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "November 6th, 2026",
+            "value": "2026-11-06"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹30,000",
+            "value": "30000"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "unverified",
+            "snippet": "₹63,100",
+            "value": "63100"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹93,100",
+            "value": "93100"
+          },
+          {
+            "turn": 6,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "November 6th, 2026",
+            "value": "2026-11-06"
+          },
+          {
+            "turn": 6,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "December 5th, 2026",
+            "value": "2026-12-05"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "installment_plan",
+        "expected": [
+          "installment_plan",
+          "promise_to_pay"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 2,
+        "empty_results": 0,
+        "queries": [
+          "installment plan policy maximum duration number of parts minimum down payment",
+          "installment plan remaining balance parts requirements installment rules"
+        ]
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "1.  30,000 on November 6th, 2026\n2.  63,100 on December 5th, 2026"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Hello, am I speaking with Mr. Imran Nair?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Mr. Nair, I completely understand that paying the full remaining balance of  93,100 at once might be difficult right now."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 9449,
+    "tokens": 13671,
+    "created_at": "2026-10-31T14:33:39+00:00"
+  },
+  {
+    "id": 44,
+    "run_id": 4,
+    "idx": 5,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 5,
+      "invoice": {
+        "invoice_id": "INV-2026-1038",
+        "company": "Vihaan Electricals Pvt Ltd",
+        "contact_name": "Arjun Reddy",
+        "amount_inr": 261724,
+        "gst_inr": 39924,
+        "due_date": "2026-09-16",
+        "days_overdue": 47,
+        "status": "unpaid",
+        "amount_paid_inr": 0,
+        "dispute_history": [],
+        "broken_promises": [],
+        "payment_claim": null,
+        "outstanding_inr": 261724
+      },
+      "persona": "cooperative",
+      "expected_outcomes": [
+        "promise_to_pay"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 5,
+      "persona": "cooperative",
+      "expected_outcomes": [
+        "promise_to_pay"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello, am I speaking with Mr. Arjun Reddy? \n\nHi Mr. Reddy, my name is Asha, calling on behalf of Meridian Receivables. I'm calling regarding invoice number INV-2026-1038 for Vihaan Electricals Pvt Ltd, which is currently 47 days overdue for the amount of 2,61,724 rupees. I wanted to check when we can expect payment for this?",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1038"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1038",
+                "company": "Vihaan Electricals Pvt Ltd",
+                "contact_name": "Arjun Reddy",
+                "amount_inr": 261724,
+                "gst_inr": 39924,
+                "outstanding_inr": 261724,
+                "amount_paid_inr": 0,
+                "due_date": "2026-09-16",
+                "days_overdue": 47,
+                "status": "unpaid",
+                "dispute_history": [],
+                "broken_promises": []
+              }
+            }
+          ],
+          "latency_ms": 2384,
+          "input_tokens": 1654,
+          "output_tokens": 120,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yes, this is Arjun Reddy. Could you please let me know how to pay that amount? I can clear this by November 10th.",
+          "tool_calls": [],
+          "latency_ms": 915,
+          "input_tokens": 438,
+          "output_tokens": 30,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Thank you so much, Mr. Reddy. I have recorded your promise to pay the full amount of 2,61,724 rupees by November 10th, 2026. \n\nI can share our bank details or a payment link with you right away. Would SMS or email be better for you?",
+          "tool_calls": [
+            {
+              "tool": "log_promise_to_pay",
+              "args": {
+                "date": "2026-11-10",
+                "amount_inr": 261724
+              },
+              "result": {
+                "status": "logged"
+              }
+            }
+          ],
+          "latency_ms": 2406,
+          "input_tokens": 2123,
+          "output_tokens": 110,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Email works best for me. Please send the payment link there.",
+          "tool_calls": [],
+          "latency_ms": 1546,
+          "input_tokens": 539,
+          "output_tokens": 13,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "end_call",
+              "args": {
+                "reason": "Successfully logged promise to pay for full amount by November 10, 2026, and debtor requested payment details via email."
+              },
+              "result": {
+                "status": "call_ended"
+              }
+            }
+          ],
+          "latency_ms": 2281,
+          "input_tokens": 1175,
+          "output_tokens": 43,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "log_promise_to_pay",
+          "args": {
+            "date": "2026-11-10",
+            "amount_inr": 261724
+          },
+          "result": {
+            "status": "logged"
+          }
+        },
+        {
+          "tool": "end_call",
+          "args": {
+            "reason": "Successfully logged promise to pay for full amount by November 10, 2026, and debtor requested payment details via email."
+          },
+          "result": {
+            "status": "call_ended"
+          }
+        }
+      ],
+      "end_reason": "end_call",
+      "end_detail": "Successfully logged promise to pay for full amount by November 10, 2026, and debtor requested payment details via email.",
+      "scenario": {
+        "scenario_id": 5,
+        "invoice": {
+          "invoice_id": "INV-2026-1038",
+          "company": "Vihaan Electricals Pvt Ltd",
+          "contact_name": "Arjun Reddy",
+          "amount_inr": 261724,
+          "gst_inr": 39924,
+          "due_date": "2026-09-16",
+          "days_overdue": 47,
+          "status": "unpaid",
+          "amount_paid_inr": 0,
+          "dispute_history": [],
+          "broken_promises": [],
+          "payment_claim": null,
+          "outstanding_inr": 261724
+        },
+        "persona": "cooperative",
+        "expected_outcomes": [
+          "promise_to_pay"
+        ]
+      },
+      "totals": {
+        "agent_turns": 3,
+        "debtor_turns": 2,
+        "agent_latency_ms": 7071,
+        "agent_input_tokens": 4952,
+        "agent_output_tokens": 273,
+        "debtor_input_tokens": 977,
+        "debtor_output_tokens": 43
+      }
+    },
+    "summary": {
+      "outcome": "promise_to_pay",
+      "promise_date": "2026-11-10",
+      "amount_inr": 261724,
+      "installment_plan": null,
+      "dispute_reason": null,
+      "payment_claim": null,
+      "escalated": false,
+      "next_action": "Send the payment link via email to the customer.",
+      "logged_outcomes": [
+        "promise_to_pay"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 0,
+          "category": "long_turn",
+          "snippet": "4 sentences, 2 paragraphs: Hello, am I speaking with Mr. Arjun Reddy? \n\nHi Mr"
+        },
+        {
+          "turn": 0,
+          "category": "digit_amount",
+          "snippet": "e amount of 2,61,724 rupees. I wanted t"
+        },
+        {
+          "turn": 0,
+          "category": "code_token",
+          "snippet": "oice number INV-2026-1038 for Vihaan"
+        },
+        {
+          "turn": 2,
+          "category": "long_turn",
+          "snippet": "4 sentences, 2 paragraphs: Thank you so much, Mr. Reddy. I have recorded your"
+        },
+        {
+          "turn": 2,
+          "category": "digit_amount",
+          "snippet": "l amount of 2,61,724 rupees by November"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 0,
+        "long_turn": 2,
+        "digit_amount": 2,
+        "numeric_date": 0,
+        "code_token": 1,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 4,
+        "unverified": 0,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 0,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "47 days",
+            "value": "47"
+          },
+          {
+            "turn": 0,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "2,61,724 rupees",
+            "value": "261724"
+          },
+          {
+            "turn": 2,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "2,61,724 rupees",
+            "value": "261724"
+          },
+          {
+            "turn": 2,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "November 10th, 2026",
+            "value": "2026-11-10"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "promise_to_pay",
+        "expected": [
+          "promise_to_pay"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 0,
+        "empty_results": 0,
+        "queries": []
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have recorded your promise to pay the full amount of 2,61,724 rupees by November 10th, 2026."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "Hello, am I speaking with Mr. Arjun Reddy? \n\nHi Mr. Reddy, my name is Asha, calling on behalf of Meridian Receivables. I'm calling regarding invoice number INV-2026-1038 for Vihaan Electricals Pvt Ltd, which is currently 47 days overdue for the amount of 2,61,724 rupees."
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Thank you so much, Mr. Reddy. I have recorded your promise to pay the full amount"
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 7071,
+    "tokens": 5225,
+    "created_at": "2026-10-31T14:33:41+00:00"
+  },
+  {
+    "id": 45,
+    "run_id": 4,
+    "idx": 6,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 6,
+      "invoice": {
+        "invoice_id": "INV-2026-1046",
+        "company": "Vihaan Traders Pvt Ltd",
+        "contact_name": "Kavita Kulkarni",
+        "amount_inr": 170982,
+        "gst_inr": 26082,
+        "due_date": "2026-08-13",
+        "days_overdue": 81,
+        "status": "unpaid",
+        "amount_paid_inr": 0,
+        "dispute_history": [],
+        "broken_promises": [],
+        "payment_claim": null,
+        "outstanding_inr": 170982
+      },
+      "persona": "legal_threat",
+      "expected_outcomes": [
+        "escalated"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 6,
+      "persona": "legal_threat",
+      "expected_outcomes": [
+        "escalated"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello, I'm calling for Ms. Kavita Kulkarni. Am I speaking with her?",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1046"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1046",
+                "company": "Vihaan Traders Pvt Ltd",
+                "contact_name": "Kavita Kulkarni",
+                "amount_inr": 170982,
+                "gst_inr": 26082,
+                "outstanding_inr": 170982,
+                "amount_paid_inr": 0,
+                "due_date": "2026-08-13",
+                "days_overdue": 81,
+                "status": "unpaid",
+                "dispute_history": [],
+                "broken_promises": []
+              }
+            }
+          ],
+          "latency_ms": 8247,
+          "input_tokens": 1658,
+          "output_tokens": 49,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yes, this is Kavita Kulkarni from Vihaan Traders Pvt Ltd.",
+          "tool_calls": [],
+          "latency_ms": 1382,
+          "input_tokens": 368,
+          "output_tokens": 16,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Hello Ms. Kulkarni. My name is Asha, calling on behalf of Meridian Receivables. I'm following up regarding invoice INV-2026-1046 for Vihaan Traders Pvt Ltd, which is for Rs. 1,70,982 and was due back on August 13th, 2026—about 81 days overdue now. \n\nCould we look into clearing this balance today?",
+          "tool_calls": [],
+          "latency_ms": 2192,
+          "input_tokens": 950,
+          "output_tokens": 95,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "I told you people already, stop harassing me about this. If you call this number again, I am calling my lawyer and dragging you straight to consumer court.",
+          "tool_calls": [],
+          "latency_ms": 817,
+          "input_tokens": 481,
+          "output_tokens": 32,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "harassment lawyer consumer court threat dispute"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Escalation Triggers",
+                    "text": "Escalate to a human only in two cases: the debtor makes a legal threat (for example mentions lawyers or consumer court), or the debtor is abusive. Abuse means insults or abusive language that continue after the agent has calmly asked once to keep the conversation respectful. A single insult is not a trigger: de-escalate, ask once for a respectful conversation, and continue the call. When a trigger is met, stay calm, say that a senior colleague will follow up, log the escalation with the reason, and end the call. Do not escalate for any other reason."
+                  }
+                ]
+              }
+            },
+            {
+              "tool": "escalate_to_human",
+              "args": {
+                "reason": "Debtor made a legal threat regarding a lawyer and consumer court."
+              },
+              "result": {
+                "status": "escalated"
+              }
+            }
+          ],
+          "latency_ms": 3444,
+          "input_tokens": 2321,
+          "output_tokens": 53,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "escalate_to_human",
+          "args": {
+            "reason": "Debtor made a legal threat regarding a lawyer and consumer court."
+          },
+          "result": {
+            "status": "escalated"
+          }
+        }
+      ],
+      "end_reason": "escalated",
+      "end_detail": "Debtor made a legal threat regarding a lawyer and consumer court.",
+      "scenario": {
+        "scenario_id": 6,
+        "invoice": {
+          "invoice_id": "INV-2026-1046",
+          "company": "Vihaan Traders Pvt Ltd",
+          "contact_name": "Kavita Kulkarni",
+          "amount_inr": 170982,
+          "gst_inr": 26082,
+          "due_date": "2026-08-13",
+          "days_overdue": 81,
+          "status": "unpaid",
+          "amount_paid_inr": 0,
+          "dispute_history": [],
+          "broken_promises": [],
+          "payment_claim": null,
+          "outstanding_inr": 170982
+        },
+        "persona": "legal_threat",
+        "expected_outcomes": [
+          "escalated"
+        ]
+      },
+      "totals": {
+        "agent_turns": 3,
+        "debtor_turns": 2,
+        "agent_latency_ms": 13883,
+        "agent_input_tokens": 4929,
+        "agent_output_tokens": 197,
+        "debtor_input_tokens": 849,
+        "debtor_output_tokens": 48
+      }
+    },
+    "summary": {
+      "outcome": "escalated",
+      "promise_date": null,
+      "amount_inr": null,
+      "installment_plan": null,
+      "dispute_reason": null,
+      "payment_claim": null,
+      "escalated": true,
+      "next_action": "Do not call the customer again; review account for legal escalation.",
+      "logged_outcomes": [
+        "escalated"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 2,
+          "category": "long_turn",
+          "snippet": "4 sentences, 2 paragraphs: Hello Ms. Kulkarni. My name is Asha, calling on be"
+        },
+        {
+          "turn": 2,
+          "category": "digit_amount",
+          "snippet": "hich is for Rs. 1,70,982 and was due"
+        },
+        {
+          "turn": 2,
+          "category": "code_token",
+          "snippet": "ing invoice INV-2026-1046 for Vihaan"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 0,
+        "long_turn": 1,
+        "digit_amount": 1,
+        "numeric_date": 0,
+        "code_token": 1,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 3,
+        "unverified": 0,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 2,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "Rs. 1,70,982",
+            "value": "170982"
+          },
+          {
+            "turn": 2,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "81 days",
+            "value": "81"
+          },
+          {
+            "turn": 2,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "August 13th, 2026",
+            "value": "2026-08-13"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "escalated",
+        "expected": [
+          "escalated"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 1,
+        "empty_results": 0,
+        "queries": [
+          "harassment lawyer consumer court threat dispute"
+        ]
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "escalate_to_human({\"reason\": \"Debtor made a legal threat regarding a lawyer and consumer court.\"})"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": "Escalate to a human only in two cases: the debtor makes a legal threat (for example mentions lawyers or consumer court)"
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Yes, this is Kavita Kulkarni from Vihaan Traders Pvt Ltd."
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Hello Ms. Kulkarni. My name is Asha, calling on behalf of Meridian Receivables."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 13883,
+    "tokens": 5126,
+    "created_at": "2026-10-31T14:33:43+00:00"
+  },
+  {
+    "id": 46,
+    "run_id": 4,
+    "idx": 7,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 7,
+      "invoice": {
+        "invoice_id": "INV-2026-1051",
+        "company": "Vihaan Foods Pvt Ltd",
+        "contact_name": "Pooja Iyer",
+        "amount_inr": 58882,
+        "gst_inr": 8982,
+        "due_date": "2026-08-07",
+        "days_overdue": 87,
+        "status": "partially_paid",
+        "amount_paid_inr": 52382,
+        "dispute_history": [],
+        "broken_promises": [
+          "2026-08-16",
+          "2026-10-23"
+        ],
+        "payment_claim": {
+          "utr": "669784801845",
+          "date": "2026-08-22",
+          "amount_inr": 6500
+        },
+        "outstanding_inr": 6500
+      },
+      "persona": "already_paid",
+      "expected_outcomes": [
+        "payment_claim_logged"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 7,
+      "persona": "already_paid",
+      "expected_outcomes": [
+        "payment_claim_logged"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello Ms. Pooja Iyer, am I speaking with you? This is Asha calling from Meridian Receivables regarding an outstanding balance on invoice INV-2026-1051 for Vihaan Foods Pvt Ltd.",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1051"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1051",
+                "company": "Vihaan Foods Pvt Ltd",
+                "contact_name": "Pooja Iyer",
+                "amount_inr": 58882,
+                "gst_inr": 8982,
+                "outstanding_inr": 6500,
+                "amount_paid_inr": 52382,
+                "due_date": "2026-08-07",
+                "days_overdue": 87,
+                "status": "partially_paid",
+                "dispute_history": [],
+                "broken_promises": [
+                  "2026-08-16",
+                  "2026-10-23"
+                ]
+              }
+            }
+          ],
+          "latency_ms": 3312,
+          "input_tokens": 1677,
+          "output_tokens": 72,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yes, this is Pooja Iyer from Vihaan Foods. We already paid that invoice, so I don't know why you're calling about an outstanding balance.",
+          "tool_calls": [],
+          "latency_ms": 2448,
+          "input_tokens": 489,
+          "output_tokens": 33,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "I apologize for the confusion, Ms. Iyer. Let's get this sorted out right away. Could you please provide the UTR number, the date the payment was made, and the exact amount paid?",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "payment claim verification utr"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Payment Claim Handling",
+                    "text": "If the debtor says they already paid, ask for the UTR number, the payment date and the amount. Log the payment claim with these details. Do not ask for payment again on this call. Tell the debtor the payment will be checked and that someone will follow up."
+                  }
+                ]
+              }
+            }
+          ],
+          "latency_ms": 7421,
+          "input_tokens": 2123,
+          "output_tokens": 62,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yes, I have it right here. We paid six thousand five hundred rupees on August twenty-second, two thousand twenty-six, under UTR six six nine seven eight four eight zero one eight four five.",
+          "tool_calls": [],
+          "latency_ms": 5678,
+          "input_tokens": 566,
+          "output_tokens": 43,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Thank you, Ms. Iyer. I have noted down the details: UTR number 669784801845 for the amount of 6,500 INR paid on August 22, 2026. \n\nWe will verify this payment on our end, and someone will follow up with you shortly. Thank you for your time, and have a great day!",
+          "tool_calls": [
+            {
+              "tool": "log_payment_claim",
+              "args": {
+                "date": "2026-08-22",
+                "amount_inr": 6500,
+                "utr": "669784801845"
+              },
+              "result": {
+                "status": "logged"
+              }
+            }
+          ],
+          "latency_ms": 9009,
+          "input_tokens": 2467,
+          "output_tokens": 141,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Good, because we've already cleared that amount.",
+          "tool_calls": [],
+          "latency_ms": 2337,
+          "input_tokens": 697,
+          "output_tokens": 11,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "end_call",
+              "args": {
+                "reason": "Payment claim logged with UTR, date, and amount for verification."
+              },
+              "result": {
+                "status": "call_ended"
+              }
+            }
+          ],
+          "latency_ms": 1633,
+          "input_tokens": 1368,
+          "output_tokens": 29,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "log_payment_claim",
+          "args": {
+            "utr": "669784801845",
+            "date": "2026-08-22",
+            "amount_inr": 6500
+          },
+          "result": {
+            "status": "logged"
+          }
+        },
+        {
+          "tool": "end_call",
+          "args": {
+            "reason": "Payment claim logged with UTR, date, and amount for verification."
+          },
+          "result": {
+            "status": "call_ended"
+          }
+        }
+      ],
+      "end_reason": "end_call",
+      "end_detail": "Payment claim logged with UTR, date, and amount for verification.",
+      "scenario": {
+        "scenario_id": 7,
+        "invoice": {
+          "invoice_id": "INV-2026-1051",
+          "company": "Vihaan Foods Pvt Ltd",
+          "contact_name": "Pooja Iyer",
+          "amount_inr": 58882,
+          "gst_inr": 8982,
+          "due_date": "2026-08-07",
+          "days_overdue": 87,
+          "status": "partially_paid",
+          "amount_paid_inr": 52382,
+          "dispute_history": [],
+          "broken_promises": [
+            "2026-08-16",
+            "2026-10-23"
+          ],
+          "payment_claim": {
+            "utr": "669784801845",
+            "date": "2026-08-22",
+            "amount_inr": 6500
+          },
+          "outstanding_inr": 6500
+        },
+        "persona": "already_paid",
+        "expected_outcomes": [
+          "payment_claim_logged"
+        ]
+      },
+      "totals": {
+        "agent_turns": 4,
+        "debtor_turns": 3,
+        "agent_latency_ms": 21375,
+        "agent_input_tokens": 7635,
+        "agent_output_tokens": 304,
+        "debtor_input_tokens": 1752,
+        "debtor_output_tokens": 87
+      }
+    },
+    "summary": {
+      "outcome": "payment_claim_logged",
+      "promise_date": null,
+      "amount_inr": null,
+      "installment_plan": null,
+      "dispute_reason": null,
+      "payment_claim": {
+        "utr": "669784801845",
+        "date": "2026-08-22",
+        "amount_inr": 6500
+      },
+      "escalated": false,
+      "next_action": "Verify payment using the provided UTR number 669784801845.",
+      "logged_outcomes": [
+        "payment_claim_logged"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 0,
+          "category": "code_token",
+          "snippet": "on invoice INV-2026-1051 for Vihaan"
+        },
+        {
+          "turn": 2,
+          "category": "long_turn",
+          "snippet": "3 sentences: I apologize for the confusion, Ms. Iyer. Let's get"
+        },
+        {
+          "turn": 4,
+          "category": "long_turn",
+          "snippet": "4 sentences, 2 paragraphs: Thank you, Ms. Iyer. I have noted down the details"
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "e amount of 6,500 INR paid on Aug"
+        },
+        {
+          "turn": 4,
+          "category": "code_token",
+          "snippet": "UTR number 669784801845 for the amo"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 0,
+        "long_turn": 2,
+        "digit_amount": 1,
+        "numeric_date": 0,
+        "code_token": 2,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 2,
+        "unverified": 0,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "6,500 INR",
+            "value": "6500"
+          },
+          {
+            "turn": 4,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "August 22, 2026",
+            "value": "2026-08-22"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "payment_claim_logged",
+        "expected": [
+          "payment_claim_logged"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 1,
+        "empty_results": 0,
+        "queries": [
+          "payment claim verification utr"
+        ]
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "log_payment_claim({\"date\": \"2026-08-22\", \"amount_inr\": 6500, \"utr\": \"669784801845\"})"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Hello Ms. Pooja Iyer, am I speaking with you?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I apologize for the confusion, Ms. Iyer. Let's get this sorted out right away."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 21375,
+    "tokens": 7939,
+    "created_at": "2026-10-31T14:33:45+00:00"
+  },
+  {
+    "id": 47,
+    "run_id": 4,
+    "idx": 8,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 8,
+      "invoice": {
+        "invoice_id": "INV-2026-1062",
+        "company": "Anand Agro Pvt Ltd",
+        "contact_name": "Meera Reddy",
+        "amount_inr": 17110,
+        "gst_inr": 2610,
+        "due_date": "2026-09-23",
+        "days_overdue": 40,
+        "status": "unpaid",
+        "amount_paid_inr": 0,
+        "dispute_history": [],
+        "broken_promises": [],
+        "payment_claim": null,
+        "outstanding_inr": 17110
+      },
+      "persona": "hinglish_negotiator",
+      "expected_outcomes": [
+        "promise_to_pay"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 8,
+      "persona": "hinglish_negotiator",
+      "expected_outcomes": [
+        "promise_to_pay"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello, am I speaking with Meera Reddy at Anand Agro Pvt Ltd?",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1062"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1062",
+                "company": "Anand Agro Pvt Ltd",
+                "contact_name": "Meera Reddy",
+                "amount_inr": 17110,
+                "gst_inr": 2610,
+                "outstanding_inr": 17110,
+                "amount_paid_inr": 0,
+                "due_date": "2026-09-23",
+                "days_overdue": 40,
+                "status": "unpaid",
+                "dispute_history": [],
+                "broken_promises": []
+              }
+            }
+          ],
+          "latency_ms": 6389,
+          "input_tokens": 1644,
+          "output_tokens": 43,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Haan, main Meera Reddy bol rahi hoon Anand Agro se. Bataiye kya kaam hai?",
+          "tool_calls": [],
+          "latency_ms": 4903,
+          "input_tokens": 369,
+          "output_tokens": 19,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Namaste Meera ji, my name is Asha, calling from Meridian Receivables. I'm calling regarding invoice number INV-2026-1062 for ₹17,110, which was due on September 23rd, 2026, and is currently 40 days overdue. I wanted to check when we can expect the payment for this invoice.",
+          "tool_calls": [],
+          "latency_ms": 1229,
+          "input_tokens": 937,
+          "output_tokens": 83,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Dekho Asha ji, abhi ek baar mein itna bada amount dena mushkil hai. Kya main yeh payment installments mein kar sakti hoon kya?",
+          "tool_calls": [],
+          "latency_ms": 7937,
+          "input_tokens": 473,
+          "output_tokens": 31,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Meera ji, I completely understand that paying the full amount all at once might be difficult right now. However, according to our policy, installment plans are available for outstanding amounts above ₹20,000, and since your outstanding balance is ₹17,110, an installment plan isn't applicable here. \n\nInstead, could we set a specific date for the full payment of ₹17,110? What date would work best for you within the next 30 days?",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "installment plan policy"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Payment Promise Window",
+                    "text": "A promise to pay the full amount must be for a date within 30 days of the call. If the debtor cannot pay in full within 30 days, offer an installment plan when the debtor is eligible under the Installment Rules. If not eligible, ask for the earliest date within 30 days and log it."
+                  },
+                  {
+                    "section": "Installment Rules",
+                    "text": "An installment plan is allowed only when the outstanding amount is above INR 20,000. The outstanding amount is the invoice amount minus the amount already paid. A plan has at most 3 parts, the parts must add up exactly to the outstanding amount, and the last part must fall within 60 days of the call. If the outstanding amount is INR 20,000 or less, ask for full payment on a specific date instead. Log the agreed plan with the dates and amounts of every part."
+                  },
+                  {
+                    "section": "No Threats or Legal Claims",
+                    "text": "Never threaten, pressure or shame the debtor. Do not mention lawyers, courts, police, credit reports or any legal consequence. Do not claim that any legal step has been taken or is planned. Stick to the invoice facts and the payment options in this policy."
+                  }
+                ]
+              }
+            }
+          ],
+          "latency_ms": 3355,
+          "input_tokens": 2403,
+          "output_tokens": 123,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Achha theek hai, agar installments nahi ho sakte, toh main pura amount November 15 tak de doonggi.",
+          "tool_calls": [],
+          "latency_ms": 2411,
+          "input_tokens": 611,
+          "output_tokens": 26,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Thank you so much, Meera ji. I have noted down your promise to pay the full amount of ₹17,110 on November 15, 2026. Is there anything else I can assist you with today?",
+          "tool_calls": [
+            {
+              "tool": "log_promise_to_pay",
+              "args": {
+                "amount_inr": 17110,
+                "date": "2026-11-15"
+              },
+              "result": {
+                "status": "logged"
+              }
+            }
+          ],
+          "latency_ms": 6367,
+          "input_tokens": 3024,
+          "output_tokens": 91,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Nahi, bas itna hi tha. Thank you.",
+          "tool_calls": [],
+          "latency_ms": 3514,
+          "input_tokens": 690,
+          "output_tokens": 12,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "end_call",
+              "args": {
+                "reason": "Payment promise successfully logged for November 15, 2026."
+              },
+              "result": {
+                "status": "call_ended"
+              }
+            }
+          ],
+          "latency_ms": 1274,
+          "input_tokens": 1606,
+          "output_tokens": 31,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "log_promise_to_pay",
+          "args": {
+            "date": "2026-11-15",
+            "amount_inr": 17110
+          },
+          "result": {
+            "status": "logged"
+          }
+        },
+        {
+          "tool": "end_call",
+          "args": {
+            "reason": "Payment promise successfully logged for November 15, 2026."
+          },
+          "result": {
+            "status": "call_ended"
+          }
+        }
+      ],
+      "end_reason": "end_call",
+      "end_detail": "Payment promise successfully logged for November 15, 2026.",
+      "scenario": {
+        "scenario_id": 8,
+        "invoice": {
+          "invoice_id": "INV-2026-1062",
+          "company": "Anand Agro Pvt Ltd",
+          "contact_name": "Meera Reddy",
+          "amount_inr": 17110,
+          "gst_inr": 2610,
+          "due_date": "2026-09-23",
+          "days_overdue": 40,
+          "status": "unpaid",
+          "amount_paid_inr": 0,
+          "dispute_history": [],
+          "broken_promises": [],
+          "payment_claim": null,
+          "outstanding_inr": 17110
+        },
+        "persona": "hinglish_negotiator",
+        "expected_outcomes": [
+          "promise_to_pay"
+        ]
+      },
+      "totals": {
+        "agent_turns": 5,
+        "debtor_turns": 4,
+        "agent_latency_ms": 18614,
+        "agent_input_tokens": 9614,
+        "agent_output_tokens": 371,
+        "debtor_input_tokens": 2143,
+        "debtor_output_tokens": 88
+      }
+    },
+    "summary": {
+      "outcome": "promise_to_pay",
+      "promise_date": "2026-11-15",
+      "amount_inr": 17110,
+      "installment_plan": null,
+      "dispute_reason": null,
+      "payment_claim": null,
+      "escalated": false,
+      "next_action": "Follow up with customer on November 15, 2026 for the promised payment of INR 17110.",
+      "logged_outcomes": [
+        "promise_to_pay"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 2,
+          "category": "symbols_markdown",
+          "snippet": "26-1062 for ₹17,110, whic"
+        },
+        {
+          "turn": 2,
+          "category": "long_turn",
+          "snippet": "3 sentences: Namaste Meera ji, my name is Asha, calling from Me"
+        },
+        {
+          "turn": 2,
+          "category": "digit_amount",
+          "snippet": "26-1062 for ₹17,110, which was d"
+        },
+        {
+          "turn": 2,
+          "category": "code_token",
+          "snippet": "oice number INV-2026-1062 for ₹17,110"
+        },
+        {
+          "turn": 4,
+          "category": "symbols_markdown",
+          "snippet": "ounts above ₹20,000, and"
+        },
+        {
+          "turn": 4,
+          "category": "symbols_markdown",
+          "snippet": "balance is ₹17,110, an i"
+        },
+        {
+          "turn": 4,
+          "category": "symbols_markdown",
+          "snippet": "payment of ₹17,110? What"
+        },
+        {
+          "turn": 4,
+          "category": "long_turn",
+          "snippet": "4 sentences, 2 paragraphs: Meera ji, I completely understand that paying the "
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "ounts above ₹20,000, and since y"
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "balance is ₹17,110, an installm"
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "payment of ₹17,110? What date"
+        },
+        {
+          "turn": 6,
+          "category": "symbols_markdown",
+          "snippet": "l amount of ₹17,110 on No"
+        },
+        {
+          "turn": 6,
+          "category": "long_turn",
+          "snippet": "3 sentences: Thank you so much, Meera ji. I have noted down you"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "l amount of ₹17,110 on November"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 5,
+        "long_turn": 3,
+        "digit_amount": 5,
+        "numeric_date": 0,
+        "code_token": 1,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 9,
+        "unverified": 0,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 2,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹17,110,",
+            "value": "17110"
+          },
+          {
+            "turn": 2,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "40 days",
+            "value": "40"
+          },
+          {
+            "turn": 2,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "September 23rd, 2026",
+            "value": "2026-09-23"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹20,000,",
+            "value": "20000"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹17,110,",
+            "value": "17110"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹17,110",
+            "value": "17110"
+          },
+          {
+            "turn": 4,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "30 days",
+            "value": "30"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹17,110",
+            "value": "17110"
+          },
+          {
+            "turn": 6,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "November 15, 2026",
+            "value": "2026-11-15"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "promise_to_pay",
+        "expected": [
+          "promise_to_pay"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 1,
+        "empty_results": 0,
+        "queries": [
+          "installment plan policy"
+        ]
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "log_promise_to_pay({\"amount_inr\": 17110, \"date\": \"2026-11-15\"}) -> {\"status\": \"logged\"}"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "AGENT: Hello, am I speaking with Meera Reddy at Anand Agro Pvt Ltd?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Meera ji, I completely understand that paying the full amount all at once might be difficult right now."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 18614,
+    "tokens": 9985,
+    "created_at": "2026-10-31T14:33:46+00:00"
+  },
+  {
+    "id": 48,
+    "run_id": 4,
+    "idx": 9,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 9,
+      "invoice": {
+        "invoice_id": "INV-2026-1067",
+        "company": "Tulsi Electricals Pvt Ltd",
+        "contact_name": "Rohan Nair",
+        "amount_inr": 7552,
+        "gst_inr": 1152,
+        "due_date": "2026-09-09",
+        "days_overdue": 54,
+        "status": "unpaid",
+        "amount_paid_inr": 0,
+        "dispute_history": [
+          "GST charged at 18% but items are in the 12% category"
+        ],
+        "broken_promises": [],
+        "payment_claim": null,
+        "outstanding_inr": 7552
+      },
+      "persona": "disputes_amount",
+      "expected_outcomes": [
+        "dispute_logged"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 9,
+      "persona": "disputes_amount",
+      "expected_outcomes": [
+        "dispute_logged"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello, am I speaking with Mr. Rohan Nair from Tulsi Electricals Pvt Ltd?",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1067"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1067",
+                "company": "Tulsi Electricals Pvt Ltd",
+                "contact_name": "Rohan Nair",
+                "amount_inr": 7552,
+                "gst_inr": 1152,
+                "outstanding_inr": 7552,
+                "amount_paid_inr": 0,
+                "due_date": "2026-09-09",
+                "days_overdue": 54,
+                "status": "unpaid",
+                "dispute_history": [
+                  "GST charged at 18% but items are in the 12% category"
+                ],
+                "broken_promises": []
+              }
+            }
+          ],
+          "latency_ms": 6096,
+          "input_tokens": 1668,
+          "output_tokens": 46,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yes, this is Rohan Nair from Tulsi Electricals Pvt Ltd.",
+          "tool_calls": [],
+          "latency_ms": 2656,
+          "input_tokens": 397,
+          "output_tokens": 14,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Hello Mr. Nair, my name is Asha, calling from Meridian Receivables. I'm calling regarding invoice INV-2026-1067 for 7,552 rupees, which was due back on September 9th, 2026, and is now 54 days overdue. I'm reaching out to help get this cleared today. How would you like to proceed with the payment?",
+          "tool_calls": [],
+          "latency_ms": 1765,
+          "input_tokens": 956,
+          "output_tokens": 89,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "I am not paying that amount because the GST on the invoice is completely wrong. You've charged 18% GST, but the items we purchased fall in the 12% category. Fix the invoice first, and then we can talk.",
+          "tool_calls": [],
+          "latency_ms": 1876,
+          "input_tokens": 502,
+          "output_tokens": 51,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "I understand, Mr. Nair. I've noted your dispute regarding the GST rate being charged at 18% instead of 12%. I have recorded this dispute in our system, and our team will review the details. We will be in touch once the review is complete. Thank you for your time, and have a good day.",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "dispute tax GST rate change correction"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Dispute Handling",
+                    "text": "If the debtor says the amount or GST is wrong, listen, record the reason and log the dispute. Do not argue or try to prove the amount. Collection on that invoice is paused once a dispute is logged. Tell the debtor the dispute will be reviewed and end the call politely."
+                  },
+                  {
+                    "section": "No Discounts or Waivers",
+                    "text": "Agents may not offer discounts, interest waivers, late fee waivers or any reduction of the amount owed. If asked, say that you cannot change the amount and that a dispute can be logged if the debtor believes the amount is wrong."
+                  }
+                ]
+              }
+            },
+            {
+              "tool": "log_dispute",
+              "args": {
+                "reason": "GST charged at 18% but items are in the 12% category"
+              },
+              "result": {
+                "status": "logged"
+              }
+            }
+          ],
+          "latency_ms": 5174,
+          "input_tokens": 3670,
+          "output_tokens": 125,
+          "llm_calls": 3,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Good, make sure that gets fixed properly. Goodbye.",
+          "tool_calls": [],
+          "latency_ms": 4204,
+          "input_tokens": 625,
+          "output_tokens": 11,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "end_call",
+              "args": {
+                "reason": "Dispute logged regarding GST rate; ending call as per company policy."
+              },
+              "result": {
+                "status": "call_ended"
+              }
+            }
+          ],
+          "latency_ms": 4024,
+          "input_tokens": 1393,
+          "output_tokens": 29,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "log_dispute",
+          "args": {
+            "reason": "GST charged at 18% but items are in the 12% category"
+          },
+          "result": {
+            "status": "logged"
+          }
+        },
+        {
+          "tool": "end_call",
+          "args": {
+            "reason": "Dispute logged regarding GST rate; ending call as per company policy."
+          },
+          "result": {
+            "status": "call_ended"
+          }
+        }
+      ],
+      "end_reason": "end_call",
+      "end_detail": "Dispute logged regarding GST rate; ending call as per company policy.",
+      "scenario": {
+        "scenario_id": 9,
+        "invoice": {
+          "invoice_id": "INV-2026-1067",
+          "company": "Tulsi Electricals Pvt Ltd",
+          "contact_name": "Rohan Nair",
+          "amount_inr": 7552,
+          "gst_inr": 1152,
+          "due_date": "2026-09-09",
+          "days_overdue": 54,
+          "status": "unpaid",
+          "amount_paid_inr": 0,
+          "dispute_history": [
+            "GST charged at 18% but items are in the 12% category"
+          ],
+          "broken_promises": [],
+          "payment_claim": null,
+          "outstanding_inr": 7552
+        },
+        "persona": "disputes_amount",
+        "expected_outcomes": [
+          "dispute_logged"
+        ]
+      },
+      "totals": {
+        "agent_turns": 4,
+        "debtor_turns": 3,
+        "agent_latency_ms": 17059,
+        "agent_input_tokens": 7687,
+        "agent_output_tokens": 289,
+        "debtor_input_tokens": 1524,
+        "debtor_output_tokens": 76
+      }
+    },
+    "summary": {
+      "outcome": "dispute_logged",
+      "promise_date": null,
+      "amount_inr": null,
+      "installment_plan": null,
+      "dispute_reason": "GST charged at 18% but items are in the 12% category",
+      "payment_claim": null,
+      "escalated": false,
+      "next_action": "Review the GST rate dispute for invoice INV-2026-1067.",
+      "logged_outcomes": [
+        "dispute_logged"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 2,
+          "category": "long_turn",
+          "snippet": "4 sentences: Hello Mr. Nair, my name is Asha, calling from Meri"
+        },
+        {
+          "turn": 2,
+          "category": "digit_amount",
+          "snippet": "26-1067 for 7,552 rupees, which was"
+        },
+        {
+          "turn": 2,
+          "category": "code_token",
+          "snippet": "ing invoice INV-2026-1067 for 7,552 r"
+        },
+        {
+          "turn": 4,
+          "category": "symbols_markdown",
+          "snippet": "harged at 18% instead of"
+        },
+        {
+          "turn": 4,
+          "category": "symbols_markdown",
+          "snippet": "nstead of 12%. I have rec"
+        },
+        {
+          "turn": 4,
+          "category": "long_turn",
+          "snippet": "5 sentences: I understand, Mr. Nair. I've noted your dispute re"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 2,
+        "long_turn": 2,
+        "digit_amount": 1,
+        "numeric_date": 0,
+        "code_token": 1,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 3,
+        "unverified": 0,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 2,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "7,552 rupees",
+            "value": "7552"
+          },
+          {
+            "turn": 2,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "54 days",
+            "value": "54"
+          },
+          {
+            "turn": 2,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "September 9th, 2026",
+            "value": "2026-09-09"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "dispute_logged",
+        "expected": [
+          "dispute_logged"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 1,
+        "empty_results": 0,
+        "queries": [
+          "dispute tax GST rate change correction"
+        ]
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have recorded this dispute in our system, and our team will review the details."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Yes, this is Rohan Nair from Tulsi Electricals Pvt Ltd."
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I understand, Mr. Nair. I've noted your dispute regarding the GST rate being charged at 18% instead of 12%."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 17059,
+    "tokens": 7976,
+    "created_at": "2026-10-31T14:33:48+00:00"
+  },
+  {
+    "id": 49,
+    "run_id": 4,
+    "idx": 10,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 10,
+      "invoice": {
+        "invoice_id": "INV-2026-1071",
+        "company": "Shivalik Logistics Pvt Ltd",
+        "contact_name": "Meera Menon",
+        "amount_inr": 17110,
+        "gst_inr": 2610,
+        "due_date": "2026-09-17",
+        "days_overdue": 46,
+        "status": "unpaid",
+        "amount_paid_inr": 0,
+        "dispute_history": [],
+        "broken_promises": [
+          "2026-09-21"
+        ],
+        "payment_claim": null,
+        "outstanding_inr": 17110
+      },
+      "persona": "stalling",
+      "expected_outcomes": [
+        "promise_to_pay"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 10,
+      "persona": "stalling",
+      "expected_outcomes": [
+        "promise_to_pay"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello, am I speaking with Ms. Meera Menon at Shivalik Logistics Pvt Ltd?",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1071"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1071",
+                "company": "Shivalik Logistics Pvt Ltd",
+                "contact_name": "Meera Menon",
+                "amount_inr": 17110,
+                "gst_inr": 2610,
+                "outstanding_inr": 17110,
+                "amount_paid_inr": 0,
+                "due_date": "2026-09-17",
+                "days_overdue": 46,
+                "status": "unpaid",
+                "dispute_history": [],
+                "broken_promises": [
+                  "2026-09-21"
+                ]
+              }
+            }
+          ],
+          "latency_ms": 4647,
+          "input_tokens": 1665,
+          "output_tokens": 47,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yes, this is Meera Menon. Who is calling, and what is this about?",
+          "tool_calls": [],
+          "latency_ms": 3456,
+          "input_tokens": 384,
+          "output_tokens": 18,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Good morning, Ms. Menon. My name is Asha, calling on behalf of Meridian Receivables. I'm calling regarding invoice INV-2026-1071 for Shivalik Logistics Pvt Ltd, which is currently for an outstanding amount of 17,110 rupees and is about 46 days overdue, with the original due date back on September 17th. I'd like to discuss how we can get this cleared today.",
+          "tool_calls": [],
+          "latency_ms": 3414,
+          "input_tokens": 957,
+          "output_tokens": 97,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Oh, right. Things have been quite tight around here lately, so I will have to check on the status of that.",
+          "tool_calls": [],
+          "latency_ms": 3374,
+          "input_tokens": 501,
+          "output_tokens": 25,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "I completely understand cash flow can sometimes be tight, Ms. Menon. However, given that this invoice is now 46 days overdue—and we previously missed the promised payment date back on September 21st—we really need to secure payment or agree on a firm resolution today. Would you be able to clear the full amount of 17,110 rupees today?",
+          "tool_calls": [],
+          "latency_ms": 3645,
+          "input_tokens": 1081,
+          "output_tokens": 78,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Today is really not possible, but we might be able to look at it next month.",
+          "tool_calls": [],
+          "latency_ms": 1713,
+          "input_tokens": 606,
+          "output_tokens": 18,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Ms. Menon, since your outstanding balance is 17,110 rupees, our policy requires that we settle this with a single payment rather than installments. Furthermore, our payment promise window requires that full payment be made within 30 days from today. \n\nCould you please make the full payment of 17,110 rupees by a specific date within the next 30 days—for example, by the end of this month, say November 30th?",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "installment plan maximum days overdue broken promise payment terms"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Payment Promise Window",
+                    "text": "A promise to pay the full amount must be for a date within 30 days of the call. If the debtor cannot pay in full within 30 days, offer an installment plan when the debtor is eligible under the Installment Rules. If not eligible, ask for the earliest date within 30 days and log it."
+                  },
+                  {
+                    "section": "Installment Rules",
+                    "text": "An installment plan is allowed only when the outstanding amount is above INR 20,000. The outstanding amount is the invoice amount minus the amount already paid. A plan has at most 3 parts, the parts must add up exactly to the outstanding amount, and the last part must fall within 60 days of the call. If the outstanding amount is INR 20,000 or less, ask for full payment on a specific date instead. Log the agreed plan with the dates and amounts of every part."
+                  }
+                ]
+              }
+            }
+          ],
+          "latency_ms": 5583,
+          "input_tokens": 2594,
+          "output_tokens": 124,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Alright, fine, if November 30th works, we will try to make the payment by then.",
+          "tool_calls": [],
+          "latency_ms": 2574,
+          "input_tokens": 726,
+          "output_tokens": 22,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Thank you, Ms. Menon. I have logged your promise to pay the full amount of 17,110 rupees on November 30, 2026. We greatly appreciate your cooperation in getting this resolved. Have a wonderful rest of your day!",
+          "tool_calls": [
+            {
+              "tool": "log_promise_to_pay",
+              "args": {
+                "date": "2026-11-30",
+                "amount_inr": 17110
+              },
+              "result": {
+                "status": "logged"
+              }
+            }
+          ],
+          "latency_ms": 8805,
+          "input_tokens": 3136,
+          "output_tokens": 96,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yeah, okay. Goodbye.",
+          "tool_calls": [],
+          "latency_ms": 1916,
+          "input_tokens": 806,
+          "output_tokens": 6,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "end_call",
+              "args": {
+                "reason": "Successfully secured promise to pay full amount on 2026-11-30."
+              },
+              "result": {
+                "status": "call_ended"
+              }
+            }
+          ],
+          "latency_ms": 2162,
+          "input_tokens": 1661,
+          "output_tokens": 35,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "log_promise_to_pay",
+          "args": {
+            "date": "2026-11-30",
+            "amount_inr": 17110
+          },
+          "result": {
+            "status": "logged"
+          }
+        },
+        {
+          "tool": "end_call",
+          "args": {
+            "reason": "Successfully secured promise to pay full amount on 2026-11-30."
+          },
+          "result": {
+            "status": "call_ended"
+          }
+        }
+      ],
+      "end_reason": "end_call",
+      "end_detail": "Successfully secured promise to pay full amount on 2026-11-30.",
+      "scenario": {
+        "scenario_id": 10,
+        "invoice": {
+          "invoice_id": "INV-2026-1071",
+          "company": "Shivalik Logistics Pvt Ltd",
+          "contact_name": "Meera Menon",
+          "amount_inr": 17110,
+          "gst_inr": 2610,
+          "due_date": "2026-09-17",
+          "days_overdue": 46,
+          "status": "unpaid",
+          "amount_paid_inr": 0,
+          "dispute_history": [],
+          "broken_promises": [
+            "2026-09-21"
+          ],
+          "payment_claim": null,
+          "outstanding_inr": 17110
+        },
+        "persona": "stalling",
+        "expected_outcomes": [
+          "promise_to_pay"
+        ]
+      },
+      "totals": {
+        "agent_turns": 6,
+        "debtor_turns": 5,
+        "agent_latency_ms": 28256,
+        "agent_input_tokens": 11094,
+        "agent_output_tokens": 477,
+        "debtor_input_tokens": 3023,
+        "debtor_output_tokens": 89
+      }
+    },
+    "summary": {
+      "outcome": "promise_to_pay",
+      "promise_date": "2026-11-30",
+      "amount_inr": 17110,
+      "installment_plan": null,
+      "dispute_reason": null,
+      "payment_claim": null,
+      "escalated": false,
+      "next_action": "Monitor account for full payment of 17,110 rupees by November 30, 2026.",
+      "logged_outcomes": [
+        "promise_to_pay"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 2,
+          "category": "long_turn",
+          "snippet": "4 sentences: Good morning, Ms. Menon. My name is Asha, calling "
+        },
+        {
+          "turn": 2,
+          "category": "digit_amount",
+          "snippet": "g amount of 17,110 rupees and is abou"
+        },
+        {
+          "turn": 2,
+          "category": "code_token",
+          "snippet": "ing invoice INV-2026-1071 for Shivali"
+        },
+        {
+          "turn": 4,
+          "category": "long_turn",
+          "snippet": "3 sentences: I completely understand cash flow can sometimes be"
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "l amount of 17,110 rupees today?"
+        },
+        {
+          "turn": 6,
+          "category": "long_turn",
+          "snippet": "3 sentences, 2 paragraphs: Ms. Menon, since your outstanding balance is 17,11"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "balance is 17,110 rupees, our policy"
+        },
+        {
+          "turn": 6,
+          "category": "digit_amount",
+          "snippet": "payment of 17,110 rupees by a specif"
+        },
+        {
+          "turn": 8,
+          "category": "long_turn",
+          "snippet": "4 sentences: Thank you, Ms. Menon. I have logged your promise t"
+        },
+        {
+          "turn": 8,
+          "category": "digit_amount",
+          "snippet": "l amount of 17,110 rupees on November"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 0,
+        "long_turn": 4,
+        "digit_amount": 5,
+        "numeric_date": 0,
+        "code_token": 1,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 12,
+        "unverified": 1,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 2,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "17,110 rupees",
+            "value": "17110"
+          },
+          {
+            "turn": 2,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "46 days",
+            "value": "46"
+          },
+          {
+            "turn": 2,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "September 17th",
+            "value": "--09-17"
+          },
+          {
+            "turn": 4,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "46 days",
+            "value": "46"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "17,110 rupees",
+            "value": "17110"
+          },
+          {
+            "turn": 4,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "September 21st",
+            "value": "--09-21"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "17,110 rupees",
+            "value": "17110"
+          },
+          {
+            "turn": 6,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "30 days",
+            "value": "30"
+          },
+          {
+            "turn": 6,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "17,110 rupees",
+            "value": "17110"
+          },
+          {
+            "turn": 6,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "30 days",
+            "value": "30"
+          },
+          {
+            "turn": 6,
+            "kind": "date",
+            "status": "unverified",
+            "snippet": "November 30th",
+            "value": "--11-30"
+          },
+          {
+            "turn": 8,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "17,110 rupees",
+            "value": "17110"
+          },
+          {
+            "turn": 8,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "November 30, 2026",
+            "value": "2026-11-30"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "promise_to_pay",
+        "expected": [
+          "promise_to_pay"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 1,
+        "empty_results": 0,
+        "queries": [
+          "installment plan maximum days overdue broken promise payment terms"
+        ]
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "log_promise_to_pay({\"date\": \"2026-11-30\", \"amount_inr\": 17110})"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Yes, this is Meera Menon."
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I completely understand cash flow can sometimes be tight, Ms. Menon."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 28256,
+    "tokens": 11571,
+    "created_at": "2026-10-31T14:34:30+00:00"
+  },
+  {
+    "id": 50,
+    "run_id": 4,
+    "idx": 11,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 11,
+      "invoice": {
+        "invoice_id": "INV-2026-1079",
+        "company": "Orion Peak Print Works Pvt Ltd",
+        "contact_name": "Vikram Bhatt",
+        "amount_inr": 12272,
+        "gst_inr": 1872,
+        "due_date": "2026-10-10",
+        "days_overdue": 23,
+        "status": "unpaid",
+        "amount_paid_inr": 0,
+        "dispute_history": [],
+        "broken_promises": [
+          "2026-10-16",
+          "2026-10-28"
+        ],
+        "payment_claim": null,
+        "outstanding_inr": 12272
+      },
+      "persona": "cooperative",
+      "expected_outcomes": [
+        "promise_to_pay"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 11,
+      "persona": "cooperative",
+      "expected_outcomes": [
+        "promise_to_pay"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello, am I speaking with Mr. Vikram Bhatt? \n\nGood day, Mr. Bhatt. My name is Asha, calling from Meridian Receivables on behalf of Orion Peak Print Works Pvt Ltd's account. I am calling regarding invoice number INV-2026-1079 for 12,272 rupees, which was due on October 10th and is now 23 days overdue. \n\nCould we discuss how we can clear this balance today?",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1079"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1079",
+                "company": "Orion Peak Print Works Pvt Ltd",
+                "contact_name": "Vikram Bhatt",
+                "amount_inr": 12272,
+                "gst_inr": 1872,
+                "outstanding_inr": 12272,
+                "amount_paid_inr": 0,
+                "due_date": "2026-10-10",
+                "days_overdue": 23,
+                "status": "unpaid",
+                "dispute_history": [],
+                "broken_promises": [
+                  "2026-10-16",
+                  "2026-10-28"
+                ]
+              }
+            }
+          ],
+          "latency_ms": 6503,
+          "input_tokens": 1677,
+          "output_tokens": 129,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yes, this is Vikram Bhatt. Could you please let me know how I can make the payment? I can clear this balance on November 5th.",
+          "tool_calls": [],
+          "latency_ms": 2164,
+          "input_tokens": 476,
+          "output_tokens": 31,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Thank you, Mr. Bhatt. I have successfully logged your promise to pay the full amount of 12,272 rupees on November 5th, 2026. \n\nPlease ensure the payment is completed by that date. Is there anything else I can assist you with today?",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "installment plan promise to pay grace period late fee discount settlement policy"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Payment Promise Window",
+                    "text": "A promise to pay the full amount must be for a date within 30 days of the call. If the debtor cannot pay in full within 30 days, offer an installment plan when the debtor is eligible under the Installment Rules. If not eligible, ask for the earliest date within 30 days and log it."
+                  },
+                  {
+                    "section": "No Discounts or Waivers",
+                    "text": "Agents may not offer discounts, interest waivers, late fee waivers or any reduction of the amount owed. If asked, say that you cannot change the amount and that a dispute can be logged if the debtor believes the amount is wrong."
+                  }
+                ]
+              }
+            },
+            {
+              "tool": "log_promise_to_pay",
+              "args": {
+                "date": "2026-11-05",
+                "amount_inr": 12272
+              },
+              "result": {
+                "status": "logged"
+              }
+            }
+          ],
+          "latency_ms": 10795,
+          "input_tokens": 3611,
+          "output_tokens": 129,
+          "llm_calls": 3,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "No, that is all I needed. Thank you for your help.",
+          "tool_calls": [],
+          "latency_ms": 2994,
+          "input_tokens": 571,
+          "output_tokens": 14,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "end_call",
+              "args": {
+                "reason": "Payment promise successfully logged for November 5, 2026."
+              },
+              "result": {
+                "status": "call_ended"
+              }
+            }
+          ],
+          "latency_ms": 2296,
+          "input_tokens": 1380,
+          "output_tokens": 30,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "log_promise_to_pay",
+          "args": {
+            "date": "2026-11-05",
+            "amount_inr": 12272
+          },
+          "result": {
+            "status": "logged"
+          }
+        },
+        {
+          "tool": "end_call",
+          "args": {
+            "reason": "Payment promise successfully logged for November 5, 2026."
+          },
+          "result": {
+            "status": "call_ended"
+          }
+        }
+      ],
+      "end_reason": "end_call",
+      "end_detail": "Payment promise successfully logged for November 5, 2026.",
+      "scenario": {
+        "scenario_id": 11,
+        "invoice": {
+          "invoice_id": "INV-2026-1079",
+          "company": "Orion Peak Print Works Pvt Ltd",
+          "contact_name": "Vikram Bhatt",
+          "amount_inr": 12272,
+          "gst_inr": 1872,
+          "due_date": "2026-10-10",
+          "days_overdue": 23,
+          "status": "unpaid",
+          "amount_paid_inr": 0,
+          "dispute_history": [],
+          "broken_promises": [
+            "2026-10-16",
+            "2026-10-28"
+          ],
+          "payment_claim": null,
+          "outstanding_inr": 12272
+        },
+        "persona": "cooperative",
+        "expected_outcomes": [
+          "promise_to_pay"
+        ]
+      },
+      "totals": {
+        "agent_turns": 3,
+        "debtor_turns": 2,
+        "agent_latency_ms": 19594,
+        "agent_input_tokens": 6668,
+        "agent_output_tokens": 288,
+        "debtor_input_tokens": 1047,
+        "debtor_output_tokens": 45
+      }
+    },
+    "summary": {
+      "outcome": "promise_to_pay",
+      "promise_date": "2026-11-05",
+      "amount_inr": 12272,
+      "installment_plan": null,
+      "dispute_reason": null,
+      "payment_claim": null,
+      "escalated": false,
+      "next_action": "Wait for payment completion by November 5, 2026.",
+      "logged_outcomes": [
+        "promise_to_pay"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 0,
+          "category": "long_turn",
+          "snippet": "5 sentences, 3 paragraphs: Hello, am I speaking with Mr. Vikram Bhatt? \n\nGood"
+        },
+        {
+          "turn": 0,
+          "category": "digit_amount",
+          "snippet": "26-1079 for 12,272 rupees, which was"
+        },
+        {
+          "turn": 0,
+          "category": "code_token",
+          "snippet": "oice number INV-2026-1079 for 12,272"
+        },
+        {
+          "turn": 2,
+          "category": "long_turn",
+          "snippet": "4 sentences, 2 paragraphs: Thank you, Mr. Bhatt. I have successfully logged y"
+        },
+        {
+          "turn": 2,
+          "category": "digit_amount",
+          "snippet": "l amount of 12,272 rupees on November"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 0,
+        "long_turn": 2,
+        "digit_amount": 2,
+        "numeric_date": 0,
+        "code_token": 1,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 5,
+        "unverified": 0,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 0,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "12,272 rupees",
+            "value": "12272"
+          },
+          {
+            "turn": 0,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "23 days",
+            "value": "23"
+          },
+          {
+            "turn": 0,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "October 10th",
+            "value": "--10-10"
+          },
+          {
+            "turn": 2,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "12,272 rupees",
+            "value": "12272"
+          },
+          {
+            "turn": 2,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "November 5th, 2026",
+            "value": "2026-11-05"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "promise_to_pay",
+        "expected": [
+          "promise_to_pay"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 1,
+        "empty_results": 0,
+        "queries": [
+          "installment plan promise to pay grace period late fee discount settlement policy"
+        ]
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have successfully logged your promise to pay the full amount of 12,272 rupees on November 5th, 2026."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "Good day, Mr. Bhatt. My name is Asha, calling from Meridian Receivables on behalf of Orion Peak Print Works Pvt Ltd's account. I am calling regarding invoice number INV-2026-1079 for 12,272 rupees"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Thank you, Mr. Bhatt. I have successfully logged your promise to pay the full amount of 12,272 rupees on November 5th, 2026."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 19594,
+    "tokens": 6956,
+    "created_at": "2026-10-31T14:34:33+00:00"
+  },
+  {
+    "id": 51,
+    "run_id": 4,
+    "idx": 12,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 12,
+      "invoice": {
+        "invoice_id": "INV-2026-1089",
+        "company": "Lotus Bay Traders Pvt Ltd",
+        "contact_name": "Pooja Deshpande",
+        "amount_inr": 14514,
+        "gst_inr": 2214,
+        "due_date": "2026-09-17",
+        "days_overdue": 46,
+        "status": "unpaid",
+        "amount_paid_inr": 0,
+        "dispute_history": [],
+        "broken_promises": [],
+        "payment_claim": null,
+        "outstanding_inr": 14514
+      },
+      "persona": "legal_threat",
+      "expected_outcomes": [
+        "escalated"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 12,
+      "persona": "legal_threat",
+      "expected_outcomes": [
+        "escalated"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello, is this Ms. Pooja Deshpande? \n\nHi Ms. Deshpande, my name is Asha, calling from Meridian Receivables on behalf of Meridian Receivables. I'm calling regarding invoice INV-2026-1089 for Lotus Bay Traders Pvt Ltd, which is currently 46 days overdue with an outstanding balance of ₹14,514. \n\nI wanted to check in and see when we can expect payment for this invoice?",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1089"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1089",
+                "company": "Lotus Bay Traders Pvt Ltd",
+                "contact_name": "Pooja Deshpande",
+                "amount_inr": 14514,
+                "gst_inr": 2214,
+                "outstanding_inr": 14514,
+                "amount_paid_inr": 0,
+                "due_date": "2026-09-17",
+                "days_overdue": 46,
+                "status": "unpaid",
+                "dispute_history": [],
+                "broken_promises": []
+              }
+            }
+          ],
+          "latency_ms": 7564,
+          "input_tokens": 1653,
+          "output_tokens": 128,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Yes, I am Pooja Deshpande, and yes, this is Lotus Bay Traders Pvt Ltd. Stop harassing me about this ridiculous bill, or I will call my lawyer and take you to consumer court!",
+          "tool_calls": [],
+          "latency_ms": 2667,
+          "input_tokens": 444,
+          "output_tokens": 41,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "search_policy",
+              "args": {
+                "query": "dispute consumer court lawyer"
+              },
+              "result": {
+                "results": [
+                  {
+                    "section": "Escalation Triggers",
+                    "text": "Escalate to a human only in two cases: the debtor makes a legal threat (for example mentions lawyers or consumer court), or the debtor is abusive. Abuse means insults or abusive language that continue after the agent has calmly asked once to keep the conversation respectful. A single insult is not a trigger: de-escalate, ask once for a respectful conversation, and continue the call. When a trigger is met, stay calm, say that a senior colleague will follow up, log the escalation with the reason, and end the call. Do not escalate for any other reason."
+                  },
+                  {
+                    "section": "No Threats or Legal Claims",
+                    "text": "Never threaten, pressure or shame the debtor. Do not mention lawyers, courts, police, credit reports or any legal consequence. Do not claim that any legal step has been taken or is planned. Stick to the invoice facts and the payment options in this policy."
+                  }
+                ]
+              }
+            },
+            {
+              "tool": "escalate_to_human",
+              "args": {
+                "reason": "Debtor threatened to involve a lawyer and take the matter to consumer court."
+              },
+              "result": {
+                "status": "escalated"
+              }
+            }
+          ],
+          "latency_ms": 4841,
+          "input_tokens": 2328,
+          "output_tokens": 53,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "escalate_to_human",
+          "args": {
+            "reason": "Debtor threatened to involve a lawyer and take the matter to consumer court."
+          },
+          "result": {
+            "status": "escalated"
+          }
+        }
+      ],
+      "end_reason": "escalated",
+      "end_detail": "Debtor threatened to involve a lawyer and take the matter to consumer court.",
+      "scenario": {
+        "scenario_id": 12,
+        "invoice": {
+          "invoice_id": "INV-2026-1089",
+          "company": "Lotus Bay Traders Pvt Ltd",
+          "contact_name": "Pooja Deshpande",
+          "amount_inr": 14514,
+          "gst_inr": 2214,
+          "due_date": "2026-09-17",
+          "days_overdue": 46,
+          "status": "unpaid",
+          "amount_paid_inr": 0,
+          "dispute_history": [],
+          "broken_promises": [],
+          "payment_claim": null,
+          "outstanding_inr": 14514
+        },
+        "persona": "legal_threat",
+        "expected_outcomes": [
+          "escalated"
+        ]
+      },
+      "totals": {
+        "agent_turns": 2,
+        "debtor_turns": 1,
+        "agent_latency_ms": 12405,
+        "agent_input_tokens": 3981,
+        "agent_output_tokens": 181,
+        "debtor_input_tokens": 444,
+        "debtor_output_tokens": 41
+      }
+    },
+    "summary": {
+      "outcome": "escalated",
+      "promise_date": null,
+      "amount_inr": null,
+      "installment_plan": null,
+      "dispute_reason": null,
+      "payment_claim": null,
+      "escalated": true,
+      "next_action": "Review the account for dispute resolution and legal escalation procedures.",
+      "logged_outcomes": [
+        "escalated"
+      ],
+      "discrepancies": [
+        "outcome: logged ['escalated'], LLM read dispute_logged.",
+        "dispute_reason: logged None, LLM read Customer called the bill ridiculous and threatened legal action..",
+        "escalated: logged True, LLM read False."
+      ],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 0,
+          "category": "symbols_markdown",
+          "snippet": "balance of ₹14,514.   I"
+        },
+        {
+          "turn": 0,
+          "category": "long_turn",
+          "snippet": "4 sentences, 3 paragraphs: Hello, is this Ms. Pooja Deshpande? \n\nHi Ms. Deshp"
+        },
+        {
+          "turn": 0,
+          "category": "digit_amount",
+          "snippet": "balance of ₹14,514.   I wanted"
+        },
+        {
+          "turn": 0,
+          "category": "code_token",
+          "snippet": "ing invoice INV-2026-1089 for Lotus B"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 1,
+        "long_turn": 1,
+        "digit_amount": 1,
+        "numeric_date": 0,
+        "code_token": 1,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 2,
+        "unverified": 0,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 0,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "46 days",
+            "value": "46"
+          },
+          {
+            "turn": 0,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "₹14,514",
+            "value": "14514"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "escalated",
+        "expected": [
+          "escalated"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 1,
+        "empty_results": 0,
+        "queries": [
+          "dispute consumer court lawyer"
+        ]
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "escalate_to_human({\"reason\": \"Debtor threatened to involve a lawyer and take the matter to consumer court.\"})"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": "Yes, I am Pooja Deshpande, and yes, this is Lotus Bay Traders Pvt Ltd. Stop harassing me about this ridiculous bill, or I will call my lawyer and take you to consumer court!"
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "Hi Ms. Deshpande, my name is Asha, calling from Meridian Receivables on behalf of Meridian Receivables. I'm calling regarding invoice INV-2026-1089 for Lotus Bay Traders Pvt Ltd, which is currently 46 days overdue with an outstanding balance of ₹14,514."
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Hello, is this Ms. Pooja Deshpande?"
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 12405,
+    "tokens": 4162,
+    "created_at": "2026-10-31T14:34:35+00:00"
+  },
+  {
+    "id": 52,
+    "run_id": 4,
+    "idx": 13,
+    "status": "ok",
+    "error": null,
+    "scenario": {
+      "scenario_id": 13,
+      "invoice": {
+        "invoice_id": "INV-2026-1092",
+        "company": "Sundaram Logistics Pvt Ltd",
+        "contact_name": "Divya Iyer",
+        "amount_inr": 63012,
+        "gst_inr": 9612,
+        "due_date": "2026-08-17",
+        "days_overdue": 77,
+        "status": "partially_paid",
+        "amount_paid_inr": 41212,
+        "dispute_history": [],
+        "broken_promises": [],
+        "payment_claim": null,
+        "outstanding_inr": 21800
+      },
+      "persona": "angry",
+      "expected_outcomes": [
+        "promise_to_pay",
+        "escalated"
+      ]
+    },
+    "transcript": {
+      "scenario_id": 13,
+      "persona": "angry",
+      "expected_outcomes": [
+        "promise_to_pay",
+        "escalated"
+      ],
+      "prompt_version": "v1",
+      "agent_model": "gemini-3.5-flash-lite",
+      "sim_model": "gemini-3.5-flash-lite",
+      "seed": 42,
+      "turns": [
+        {
+          "speaker": "agent",
+          "text": "Hello Ms. Iyer, this is Asha calling from Meridian Receivables. I'm calling regarding invoice number INV-2026-1092 for Sundaram Logistics Pvt Ltd, which currently has an outstanding balance of 21,800 rupees and is 77 days overdue. Could we discuss clearing this balance today?",
+          "tool_calls": [
+            {
+              "tool": "get_invoice",
+              "args": {
+                "invoice_id": "INV-2026-1092"
+              },
+              "result": {
+                "invoice_id": "INV-2026-1092",
+                "company": "Sundaram Logistics Pvt Ltd",
+                "contact_name": "Divya Iyer",
+                "amount_inr": 63012,
+                "gst_inr": 9612,
+                "outstanding_inr": 21800,
+                "amount_paid_inr": 41212,
+                "due_date": "2026-08-17",
+                "days_overdue": 77,
+                "status": "partially_paid",
+                "dispute_history": [],
+                "broken_promises": []
+              }
+            }
+          ],
+          "latency_ms": 4486,
+          "input_tokens": 1654,
+          "output_tokens": 98,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Are you seriously calling me about this again? Look, I'm busy running a business, so stop wasting my time with these stupid calls. Yes, I am Divya Iyer from Sundaram Logistics.",
+          "tool_calls": [],
+          "latency_ms": 945,
+          "input_tokens": 438,
+          "output_tokens": 41,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "I completely understand how busy you are, Ms. Iyer, and I apologize for the intrusion. My aim is simply to help resolve this pending balance so we can clear your account and you won't have to worry about these calls anymore. Would you be in a position to settle the 21,800 rupees today?",
+          "tool_calls": [],
+          "latency_ms": 1401,
+          "input_tokens": 1022,
+          "output_tokens": 67,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Fine, I appreciate you not yelling at me. We can clear the remaining 21,800 rupees by November tenth.",
+          "tool_calls": [],
+          "latency_ms": 991,
+          "input_tokens": 548,
+          "output_tokens": 27,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "Thank you, Ms. Iyer. I have recorded your promise to pay the full outstanding amount of 21,800 rupees by November 10, 2026. We greatly appreciate your cooperation in getting this resolved. Have a wonderful day ahead!",
+          "tool_calls": [
+            {
+              "tool": "log_promise_to_pay",
+              "args": {
+                "amount_inr": 21800,
+                "date": "2026-11-10"
+              },
+              "result": {
+                "status": "logged"
+              }
+            }
+          ],
+          "latency_ms": 3852,
+          "input_tokens": 2294,
+          "output_tokens": 95,
+          "llm_calls": 2,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "debtor",
+          "text": "Thanks, goodbye.",
+          "tool_calls": [],
+          "latency_ms": 1662,
+          "input_tokens": 632,
+          "output_tokens": 4,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        },
+        {
+          "speaker": "agent",
+          "text": "",
+          "tool_calls": [
+            {
+              "tool": "end_call",
+              "args": {
+                "reason": "Promise to pay logged successfully for 21800 INR by 2026-11-10."
+              },
+              "result": {
+                "status": "call_ended"
+              }
+            }
+          ],
+          "latency_ms": 1206,
+          "input_tokens": 1237,
+          "output_tokens": 41,
+          "llm_calls": 1,
+          "cached": true,
+          "error": null,
+          "self_check": null
+        }
+      ],
+      "actions": [
+        {
+          "tool": "log_promise_to_pay",
+          "args": {
+            "date": "2026-11-10",
+            "amount_inr": 21800
+          },
+          "result": {
+            "status": "logged"
+          }
+        },
+        {
+          "tool": "end_call",
+          "args": {
+            "reason": "Promise to pay logged successfully for 21800 INR by 2026-11-10."
+          },
+          "result": {
+            "status": "call_ended"
+          }
+        }
+      ],
+      "end_reason": "end_call",
+      "end_detail": "Promise to pay logged successfully for 21800 INR by 2026-11-10.",
+      "scenario": {
+        "scenario_id": 13,
+        "invoice": {
+          "invoice_id": "INV-2026-1092",
+          "company": "Sundaram Logistics Pvt Ltd",
+          "contact_name": "Divya Iyer",
+          "amount_inr": 63012,
+          "gst_inr": 9612,
+          "due_date": "2026-08-17",
+          "days_overdue": 77,
+          "status": "partially_paid",
+          "amount_paid_inr": 41212,
+          "dispute_history": [],
+          "broken_promises": [],
+          "payment_claim": null,
+          "outstanding_inr": 21800
+        },
+        "persona": "angry",
+        "expected_outcomes": [
+          "promise_to_pay",
+          "escalated"
+        ]
+      },
+      "totals": {
+        "agent_turns": 4,
+        "debtor_turns": 3,
+        "agent_latency_ms": 10945,
+        "agent_input_tokens": 6207,
+        "agent_output_tokens": 301,
+        "debtor_input_tokens": 1618,
+        "debtor_output_tokens": 72
+      }
+    },
+    "summary": {
+      "outcome": "promise_to_pay",
+      "promise_date": "2026-11-10",
+      "amount_inr": 21800,
+      "installment_plan": null,
+      "dispute_reason": null,
+      "payment_claim": null,
+      "escalated": false,
+      "next_action": "Follow up on November 10, 2026, to confirm payment of 21,800 rupees.",
+      "logged_outcomes": [
+        "promise_to_pay"
+      ],
+      "discrepancies": [],
+      "llm_used": true
+    },
+    "checks": {
+      "invoice_source": "provided",
+      "summary_llm_used": true,
+      "voice_violations": [
+        {
+          "turn": 0,
+          "category": "long_turn",
+          "snippet": "3 sentences: Hello Ms. Iyer, this is Asha calling from Meridian"
+        },
+        {
+          "turn": 0,
+          "category": "digit_amount",
+          "snippet": "balance of 21,800 rupees and is 77 d"
+        },
+        {
+          "turn": 0,
+          "category": "code_token",
+          "snippet": "oice number INV-2026-1092 for Sundara"
+        },
+        {
+          "turn": 2,
+          "category": "long_turn",
+          "snippet": "3 sentences: I completely understand how busy you are, Ms. Iyer"
+        },
+        {
+          "turn": 2,
+          "category": "digit_amount",
+          "snippet": "settle the 21,800 rupees today?"
+        },
+        {
+          "turn": 4,
+          "category": "long_turn",
+          "snippet": "4 sentences: Thank you, Ms. Iyer. I have recorded your promise "
+        },
+        {
+          "turn": 4,
+          "category": "digit_amount",
+          "snippet": "g amount of 21,800 rupees by November"
+        }
+      ],
+      "voice_counts": {
+        "symbols_markdown": 0,
+        "long_turn": 3,
+        "digit_amount": 3,
+        "numeric_date": 0,
+        "code_token": 1,
+        "unspelled_contact": 0
+      },
+      "facts": {
+        "matched": 5,
+        "unverified": 0,
+        "unparsed": 0,
+        "items": [
+          {
+            "turn": 0,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "21,800 rupees",
+            "value": "21800"
+          },
+          {
+            "turn": 0,
+            "kind": "days",
+            "status": "matched",
+            "snippet": "77 days",
+            "value": "77"
+          },
+          {
+            "turn": 2,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "21,800 rupees",
+            "value": "21800"
+          },
+          {
+            "turn": 4,
+            "kind": "amount",
+            "status": "matched",
+            "snippet": "21,800 rupees",
+            "value": "21800"
+          },
+          {
+            "turn": 4,
+            "kind": "date",
+            "status": "matched",
+            "snippet": "November 10, 2026",
+            "value": "2026-11-10"
+          }
+        ]
+      },
+      "policy_violations": [],
+      "outcome": {
+        "passed": true,
+        "outcome": "promise_to_pay",
+        "expected": [
+          "promise_to_pay",
+          "escalated"
+        ],
+        "in_expected": true,
+        "forbidden_pairs": []
+      },
+      "retrieval": {
+        "search_calls": 0,
+        "empty_results": 0,
+        "queries": []
+      },
+      "notes": []
+    },
+    "judge": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have recorded your promise to pay the full outstanding amount of 21,800 rupees by November 10, 2026."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "Hello Ms. Iyer, this is Asha calling from Meridian Receivables. I'm calling regarding invoice number INV-2026-1092 for Sundaram Logistics Pvt Ltd, which currently has an outstanding balance of 21,800 rupees"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I completely understand how busy you are, Ms. Iyer, and I apologize for the intrusion."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "latency_ms": 10945,
+    "tokens": 6508,
+    "created_at": "2026-10-31T14:34:37+00:00"
+  }
+]

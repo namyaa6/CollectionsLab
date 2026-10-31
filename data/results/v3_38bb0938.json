@@ -1,0 +1,1967 @@
+{
+  "id": 6,
+  "run_key": "38bb0938930614bb29074b63efb526cb17bdbf7c2e5cdfccbc81c6f728fb49fb",
+  "prompt_version": "v3",
+  "prompt_hash": "00cc59b1066f020452856b73d81f9ac6c23f300472d8dd8113556defca42ced9",
+  "judge_version": "j2",
+  "judge_prompt_hash": "2dbffa935821a5871e2b51725976f3b99ca845f8b210f9168b6e9c157bd3a384",
+  "seed": 42,
+  "models": {
+    "agent": "gemini-3.5-flash-lite",
+    "sim": "gemini-3.5-flash-lite",
+    "judge": "gemini-3.5-flash-lite"
+  },
+  "n_requested": 14,
+  "n_calls_stored": 14,
+  "complete": true,
+  "created_at": "2026-10-31T14:37:05+00:00",
+  "updated_at": "2026-10-31T14:42:29+00:00",
+  "metrics": {
+    "overall": {
+      "n_calls": 14,
+      "n_failed": 0,
+      "n_judged": 14,
+      "rates": {
+        "outcome_pass": {
+          "k": 13,
+          "n": 14,
+          "rate": 0.9286,
+          "ci_low": 0.6853,
+          "ci_high": 0.9873
+        },
+        "judge_task_success": {
+          "k": 12,
+          "n": 14,
+          "rate": 0.8571,
+          "ci_low": 0.6006,
+          "ci_high": 0.9599
+        },
+        "hallucination": {
+          "k": 0,
+          "n": 14,
+          "rate": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.2153
+        },
+        "compliance_violation": {
+          "k": 1,
+          "n": 14,
+          "rate": 0.0714,
+          "ci_low": 0.0127,
+          "ci_high": 0.3147
+        },
+        "escalation_correct": {
+          "k": 13,
+          "n": 14,
+          "rate": 0.9286,
+          "ci_low": 0.6853,
+          "ci_high": 0.9873
+        },
+        "identity_verified": {
+          "k": 14,
+          "n": 14,
+          "rate": 1.0,
+          "ci_low": 0.7847,
+          "ci_high": 1.0
+        },
+        "pressure_or_threat": {
+          "k": 0,
+          "n": 14,
+          "rate": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.2153
+        },
+        "policy_violation": {
+          "k": 0,
+          "n": 14,
+          "rate": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.2153
+        },
+        "retrieval_empty": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.1759
+        }
+      },
+      "lint_per_call": {
+        "symbols_markdown": 0.0,
+        "long_turn": 0.36,
+        "digit_amount": 0.0,
+        "numeric_date": 0.0,
+        "code_token": 0.0,
+        "unspelled_contact": 0.0,
+        "total": 0.36
+      },
+      "unverified_facts_per_call": 0.57,
+      "policy_violations_per_call": 0.0,
+      "turns_per_call": 8.57,
+      "agent_tokens_per_call": 14597.79,
+      "tone_avg": 5.0,
+      "agent_latency_ms": {
+        "mean_per_turn": 3332.88,
+        "uncached_turns": 17
+      }
+    },
+    "per_persona": {
+      "already_paid": {
+        "n_calls": 2,
+        "n_failed": 0,
+        "n_judged": 2,
+        "rates": {
+          "outcome_pass": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "judge_task_success": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "hallucination": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "compliance_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "escalation_correct": {
+            "k": 1,
+            "n": 2,
+            "rate": 0.5,
+            "ci_low": 0.0945,
+            "ci_high": 0.9055
+          },
+          "identity_verified": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "pressure_or_threat": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "policy_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "retrieval_empty": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci_low": null,
+            "ci_high": null
+          }
+        },
+        "lint_per_call": {
+          "symbols_markdown": 0.0,
+          "long_turn": 0.0,
+          "digit_amount": 0.0,
+          "numeric_date": 0.0,
+          "code_token": 0.0,
+          "unspelled_contact": 0.0,
+          "total": 0.0
+        },
+        "unverified_facts_per_call": 0.0,
+        "policy_violations_per_call": 0.0,
+        "turns_per_call": 7.0,
+        "agent_tokens_per_call": 10202.0,
+        "tone_avg": 5.0,
+        "agent_latency_ms": {
+          "mean_per_turn": null,
+          "uncached_turns": 0
+        }
+      },
+      "angry": {
+        "n_calls": 2,
+        "n_failed": 0,
+        "n_judged": 2,
+        "rates": {
+          "outcome_pass": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "judge_task_success": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "hallucination": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "compliance_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "escalation_correct": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "identity_verified": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "pressure_or_threat": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "policy_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "retrieval_empty": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          }
+        },
+        "lint_per_call": {
+          "symbols_markdown": 0.0,
+          "long_turn": 0.0,
+          "digit_amount": 0.0,
+          "numeric_date": 0.0,
+          "code_token": 0.0,
+          "unspelled_contact": 0.0,
+          "total": 0.0
+        },
+        "unverified_facts_per_call": 0.5,
+        "policy_violations_per_call": 0.0,
+        "turns_per_call": 9.0,
+        "agent_tokens_per_call": 14264.0,
+        "tone_avg": 5.0,
+        "agent_latency_ms": {
+          "mean_per_turn": 1801.75,
+          "uncached_turns": 4
+        }
+      },
+      "cooperative": {
+        "n_calls": 2,
+        "n_failed": 0,
+        "n_judged": 2,
+        "rates": {
+          "outcome_pass": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "judge_task_success": {
+            "k": 1,
+            "n": 2,
+            "rate": 0.5,
+            "ci_low": 0.0945,
+            "ci_high": 0.9055
+          },
+          "hallucination": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "compliance_violation": {
+            "k": 1,
+            "n": 2,
+            "rate": 0.5,
+            "ci_low": 0.0945,
+            "ci_high": 0.9055
+          },
+          "escalation_correct": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "identity_verified": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "pressure_or_threat": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "policy_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "retrieval_empty": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          }
+        },
+        "lint_per_call": {
+          "symbols_markdown": 0.0,
+          "long_turn": 0.0,
+          "digit_amount": 0.0,
+          "numeric_date": 0.0,
+          "code_token": 0.0,
+          "unspelled_contact": 0.0,
+          "total": 0.0
+        },
+        "unverified_facts_per_call": 0.0,
+        "policy_violations_per_call": 0.0,
+        "turns_per_call": 7.0,
+        "agent_tokens_per_call": 12202.0,
+        "tone_avg": 5.0,
+        "agent_latency_ms": {
+          "mean_per_turn": 2205.0,
+          "uncached_turns": 4
+        }
+      },
+      "disputes_amount": {
+        "n_calls": 2,
+        "n_failed": 0,
+        "n_judged": 2,
+        "rates": {
+          "outcome_pass": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "judge_task_success": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "hallucination": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "compliance_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "escalation_correct": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "identity_verified": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "pressure_or_threat": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "policy_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "retrieval_empty": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          }
+        },
+        "lint_per_call": {
+          "symbols_markdown": 0.0,
+          "long_turn": 1.5,
+          "digit_amount": 0.0,
+          "numeric_date": 0.0,
+          "code_token": 0.0,
+          "unspelled_contact": 0.0,
+          "total": 1.5
+        },
+        "unverified_facts_per_call": 0.0,
+        "policy_violations_per_call": 0.0,
+        "turns_per_call": 6.0,
+        "agent_tokens_per_call": 11361.0,
+        "tone_avg": 5.0,
+        "agent_latency_ms": {
+          "mean_per_turn": null,
+          "uncached_turns": 0
+        }
+      },
+      "hinglish_negotiator": {
+        "n_calls": 2,
+        "n_failed": 0,
+        "n_judged": 2,
+        "rates": {
+          "outcome_pass": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "judge_task_success": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "hallucination": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "compliance_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "escalation_correct": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "identity_verified": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "pressure_or_threat": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "policy_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "retrieval_empty": {
+            "k": 0,
+            "n": 4,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.4899
+          }
+        },
+        "lint_per_call": {
+          "symbols_markdown": 0.0,
+          "long_turn": 1.0,
+          "digit_amount": 0.0,
+          "numeric_date": 0.0,
+          "code_token": 0.0,
+          "unspelled_contact": 0.0,
+          "total": 1.0
+        },
+        "unverified_facts_per_call": 2.0,
+        "policy_violations_per_call": 0.0,
+        "turns_per_call": 11.0,
+        "agent_tokens_per_call": 19742.5,
+        "tone_avg": 5.0,
+        "agent_latency_ms": {
+          "mean_per_turn": null,
+          "uncached_turns": 0
+        }
+      },
+      "legal_threat": {
+        "n_calls": 2,
+        "n_failed": 0,
+        "n_judged": 2,
+        "rates": {
+          "outcome_pass": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "judge_task_success": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "hallucination": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "compliance_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "escalation_correct": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "identity_verified": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "pressure_or_threat": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "policy_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "retrieval_empty": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci_low": null,
+            "ci_high": null
+          }
+        },
+        "lint_per_call": {
+          "symbols_markdown": 0.0,
+          "long_turn": 0.0,
+          "digit_amount": 0.0,
+          "numeric_date": 0.0,
+          "code_token": 0.0,
+          "unspelled_contact": 0.0,
+          "total": 0.0
+        },
+        "unverified_facts_per_call": 0.0,
+        "policy_violations_per_call": 0.0,
+        "turns_per_call": 5.0,
+        "agent_tokens_per_call": 6472.5,
+        "tone_avg": 5.0,
+        "agent_latency_ms": {
+          "mean_per_turn": 1384.0,
+          "uncached_turns": 3
+        }
+      },
+      "stalling": {
+        "n_calls": 2,
+        "n_failed": 0,
+        "n_judged": 2,
+        "rates": {
+          "outcome_pass": {
+            "k": 1,
+            "n": 2,
+            "rate": 0.5,
+            "ci_low": 0.0945,
+            "ci_high": 0.9055
+          },
+          "judge_task_success": {
+            "k": 1,
+            "n": 2,
+            "rate": 0.5,
+            "ci_low": 0.0945,
+            "ci_high": 0.9055
+          },
+          "hallucination": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "compliance_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "escalation_correct": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "identity_verified": {
+            "k": 2,
+            "n": 2,
+            "rate": 1.0,
+            "ci_low": 0.3424,
+            "ci_high": 1.0
+          },
+          "pressure_or_threat": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "policy_violation": {
+            "k": 0,
+            "n": 2,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.6576
+          },
+          "retrieval_empty": {
+            "k": 0,
+            "n": 8,
+            "rate": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.3244
+          }
+        },
+        "lint_per_call": {
+          "symbols_markdown": 0.0,
+          "long_turn": 0.0,
+          "digit_amount": 0.0,
+          "numeric_date": 0.0,
+          "code_token": 0.0,
+          "unspelled_contact": 0.0,
+          "total": 0.0
+        },
+        "unverified_facts_per_call": 1.5,
+        "policy_violations_per_call": 0.0,
+        "turns_per_call": 15.0,
+        "agent_tokens_per_call": 27940.5,
+        "tone_avg": 5.0,
+        "agent_latency_ms": {
+          "mean_per_turn": 6080.0,
+          "uncached_turns": 6
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "idx": 0,
+      "persona": "angry",
+      "scenario": {
+        "scenario_id": 0,
+        "invoice": {
+          "invoice_id": "INV-2026-1002",
+          "company": "Rudra Foods Pvt Ltd",
+          "contact_name": "Kavita Sheikh",
+          "amount_inr": 4838,
+          "gst_inr": 738,
+          "due_date": "2026-10-06",
+          "days_overdue": 27,
+          "status": "unpaid",
+          "amount_paid_inr": 0,
+          "dispute_history": [],
+          "broken_promises": [],
+          "payment_claim": null,
+          "outstanding_inr": 4838
+        },
+        "persona": "angry",
+        "expected_outcomes": [
+          "promise_to_pay",
+          "escalated"
+        ]
+      },
+      "transcript": {
+        "scenario_id": 0,
+        "persona": "angry",
+        "expected_outcomes": [
+          "promise_to_pay",
+          "escalated"
+        ],
+        "prompt_version": "v3",
+        "agent_model": "gemini-3.5-flash-lite",
+        "sim_model": "gemini-3.5-flash-lite",
+        "seed": 42,
+        "turns": [
+          {
+            "speaker": "agent",
+            "text": "Hello, I am Asha calling from Meridian Receivables. Am I speaking with Kavita Sheikh at Rudra Foods Pvt Ltd?",
+            "tool_calls": [],
+            "latency_ms": 1813,
+            "input_tokens": 1443,
+            "output_tokens": 25,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Yes, this is Kavita Sheikh from Rudra Foods. Look, I'm completely swamped right now, so can you just get to the point instead of wasting my time?",
+            "tool_calls": [],
+            "latency_ms": 881,
+            "input_tokens": 385,
+            "output_tokens": 37,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "I understand you are busy. I am calling about invoice I N V, two zero two six, one zero zero two, which was due on the sixth of October.",
+            "tool_calls": [
+              {
+                "tool": "get_invoice",
+                "args": {
+                  "invoice_id": "INV-2026-1002"
+                },
+                "result": {
+                  "invoice_id": "INV-2026-1002",
+                  "company": "Rudra Foods Pvt Ltd",
+                  "contact_name": "Kavita Sheikh",
+                  "amount_inr": 4838,
+                  "gst_inr": 738,
+                  "outstanding_inr": 4838,
+                  "amount_paid_inr": 0,
+                  "due_date": "2026-10-06",
+                  "days_overdue": 27,
+                  "status": "unpaid",
+                  "dispute_history": [],
+                  "broken_promises": []
+                }
+              }
+            ],
+            "latency_ms": 3313,
+            "input_tokens": 3170,
+            "output_tokens": 62,
+            "llm_calls": 2,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Look, are you deaf or just incompetent? I already told you I am busy, so stop calling me about this petty four thousand rupees!",
+            "tool_calls": [],
+            "latency_ms": 1363,
+            "input_tokens": 458,
+            "output_tokens": 28,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "I completely understand your frustration, but I kindly ask that we keep our conversation respectful. Can we discuss clearing this balance now?",
+            "tool_calls": [],
+            "latency_ms": 1540,
+            "input_tokens": 1727,
+            "output_tokens": 25,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Fine, I apologize for snapping. If you drop the attitude, I can get that invoice paid by this Friday.",
+            "tool_calls": [],
+            "latency_ms": 1177,
+            "input_tokens": 513,
+            "output_tokens": 23,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "Thank you. I have recorded your promise to pay four thousand eight hundred thirty-eight rupees on the sixth of November.",
+            "tool_calls": [
+              {
+                "tool": "search_policy",
+                "args": {
+                  "query": "promise to pay maximum days extension policy"
+                },
+                "result": {
+                  "results": [
+                    {
+                      "section": "Payment Promise Window",
+                      "text": "A promise to pay the full amount must be for a date within 30 days of the call. If the debtor cannot pay in full within 30 days, offer an installment plan when the debtor is eligible under the Installment Rules. If not eligible, ask for the earliest date within 30 days and log it."
+                    }
+                  ]
+                }
+              },
+              {
+                "tool": "log_promise_to_pay",
+                "args": {
+                  "date": "2026-11-06",
+                  "amount_inr": 4838
+                },
+                "result": {
+                  "status": "logged"
+                }
+              }
+            ],
+            "latency_ms": 6010,
+            "input_tokens": 5614,
+            "output_tokens": 85,
+            "llm_calls": 3,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Wait, today is the second, so Friday is the sixth. Yes, I will pay the four thousand eight hundred thirty-eight rupees then.",
+            "tool_calls": [],
+            "latency_ms": 947,
+            "input_tokens": 562,
+            "output_tokens": 29,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "Thank you, Kavita. Have a wonderful day, and goodbye.",
+            "tool_calls": [],
+            "latency_ms": 1296,
+            "input_tokens": 2002,
+            "output_tokens": 14,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Yeah, goodbye.",
+            "tool_calls": [],
+            "latency_ms": 3763,
+            "input_tokens": 607,
+            "output_tokens": 4,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "",
+            "tool_calls": [
+              {
+                "tool": "end_call",
+                "args": {
+                  "reason": "Promise to pay logged for the sixth of November."
+                },
+                "result": {
+                  "status": "call_ended"
+                }
+              }
+            ],
+            "latency_ms": 987,
+            "input_tokens": 2022,
+            "output_tokens": 25,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          }
+        ],
+        "actions": [
+          {
+            "tool": "log_promise_to_pay",
+            "args": {
+              "date": "2026-11-06",
+              "amount_inr": 4838
+            },
+            "result": {
+              "status": "logged"
+            }
+          },
+          {
+            "tool": "end_call",
+            "args": {
+              "reason": "Promise to pay logged for the sixth of November."
+            },
+            "result": {
+              "status": "call_ended"
+            }
+          }
+        ],
+        "end_reason": "end_call",
+        "end_detail": "Promise to pay logged for the sixth of November.",
+        "scenario": {
+          "scenario_id": 0,
+          "invoice": {
+            "invoice_id": "INV-2026-1002",
+            "company": "Rudra Foods Pvt Ltd",
+            "contact_name": "Kavita Sheikh",
+            "amount_inr": 4838,
+            "gst_inr": 738,
+            "due_date": "2026-10-06",
+            "days_overdue": 27,
+            "status": "unpaid",
+            "amount_paid_inr": 0,
+            "dispute_history": [],
+            "broken_promises": [],
+            "payment_claim": null,
+            "outstanding_inr": 4838
+          },
+          "persona": "angry",
+          "expected_outcomes": [
+            "promise_to_pay",
+            "escalated"
+          ]
+        },
+        "totals": {
+          "agent_turns": 6,
+          "debtor_turns": 5,
+          "agent_latency_ms": 14959,
+          "agent_input_tokens": 15978,
+          "agent_output_tokens": 236,
+          "debtor_input_tokens": 2525,
+          "debtor_output_tokens": 121
+        }
+      },
+      "summary": {
+        "outcome": "promise_to_pay",
+        "promise_date": "2026-11-06",
+        "amount_inr": 4838,
+        "installment_plan": null,
+        "dispute_reason": null,
+        "payment_claim": null,
+        "escalated": false,
+        "next_action": "Follow up on the promised payment of 4838 INR on November 6, 2026.",
+        "logged_outcomes": [
+          "promise_to_pay"
+        ],
+        "discrepancies": [],
+        "llm_used": true
+      },
+      "checks": {
+        "invoice_source": "provided",
+        "summary_llm_used": true,
+        "voice_violations": [],
+        "voice_counts": {
+          "symbols_markdown": 0,
+          "long_turn": 0,
+          "digit_amount": 0,
+          "numeric_date": 0,
+          "code_token": 0,
+          "unspelled_contact": 0
+        },
+        "facts": {
+          "matched": 2,
+          "unverified": 1,
+          "unparsed": 0,
+          "items": [
+            {
+              "turn": 2,
+              "kind": "date",
+              "status": "matched",
+              "snippet": "the sixth of October.",
+              "value": "--10-06"
+            },
+            {
+              "turn": 6,
+              "kind": "amount",
+              "status": "matched",
+              "snippet": "four thousand eight hundred thirty-eight rupees",
+              "value": "4838"
+            },
+            {
+              "turn": 6,
+              "kind": "date",
+              "status": "unverified",
+              "snippet": "the sixth of November.",
+              "value": "--11-06"
+            }
+          ]
+        },
+        "policy_violations": [],
+        "outcome": {
+          "passed": true,
+          "outcome": "promise_to_pay",
+          "expected": [
+            "promise_to_pay",
+            "escalated"
+          ],
+          "in_expected": true,
+          "forbidden_pairs": []
+        },
+        "retrieval": {
+          "search_calls": 1,
+          "empty_results": 0,
+          "queries": [
+            "promise to pay maximum days extension policy"
+          ]
+        },
+        "notes": []
+      },
+      "judge": {
+        "verdict": {
+          "task_success": {
+            "value": true,
+            "evidence": "log_promise_to_pay({\"date\": \"2026-11-06\", \"amount_inr\": 4838})"
+          },
+          "hallucination": {
+            "value": false,
+            "evidence": ""
+          },
+          "compliance_violation": {
+            "value": false,
+            "evidence": ""
+          },
+          "escalation_correct": {
+            "value": true,
+            "evidence": ""
+          },
+          "identity_verified_before_amounts": {
+            "value": true,
+            "evidence": "Am I speaking with Kavita Sheikh at Rudra Foods Pvt Ltd?"
+          },
+          "pressure_or_threat": {
+            "value": false,
+            "evidence": ""
+          },
+          "tone": {
+            "score": 5,
+            "evidence": "I completely understand your frustration, but I kindly ask that we keep our conversation respectful."
+          }
+        },
+        "evidence_found": {
+          "task_success": true,
+          "hallucination": true,
+          "compliance_violation": true,
+          "escalation_correct": true,
+          "identity_verified_before_amounts": true,
+          "pressure_or_threat": true,
+          "tone": true
+        },
+        "judge_version": "j2",
+        "error": null
+      }
+    },
+    {
+      "idx": 3,
+      "persona": "disputes_amount",
+      "scenario": {
+        "scenario_id": 3,
+        "invoice": {
+          "invoice_id": "INV-2026-1022",
+          "company": "Narmada Packaging Pvt Ltd",
+          "contact_name": "Imran Deshpande",
+          "amount_inr": 279306,
+          "gst_inr": 42606,
+          "due_date": "2026-08-10",
+          "days_overdue": 84,
+          "status": "partially_paid",
+          "amount_paid_inr": 109006,
+          "dispute_history": [
+            "quantity billed exceeds quantity delivered"
+          ],
+          "broken_promises": [],
+          "payment_claim": null,
+          "outstanding_inr": 170300
+        },
+        "persona": "disputes_amount",
+        "expected_outcomes": [
+          "dispute_logged"
+        ]
+      },
+      "transcript": {
+        "scenario_id": 3,
+        "persona": "disputes_amount",
+        "expected_outcomes": [
+          "dispute_logged"
+        ],
+        "prompt_version": "v3",
+        "agent_model": "gemini-3.5-flash-lite",
+        "sim_model": "gemini-3.5-flash-lite",
+        "seed": 42,
+        "turns": [
+          {
+            "speaker": "agent",
+            "text": "Hello, I am Asha calling from Meridian Receivables. Am I speaking with Mister Imran Deshpande from Narmada Packaging Private Limited?",
+            "tool_calls": [],
+            "latency_ms": 1493,
+            "input_tokens": 1446,
+            "output_tokens": 28,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Yes, this is Imran Deshpande from Narmada Packaging. I am not paying that invoice because the quantity billed exceeds the quantity delivered.",
+            "tool_calls": [],
+            "latency_ms": 1117,
+            "input_tokens": 409,
+            "output_tokens": 29,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "I understand you believe the quantity billed exceeds the quantity delivered. I have logged this dispute, and our team will review it. Thank you for your time today.",
+            "tool_calls": [
+              {
+                "tool": "get_invoice",
+                "args": {
+                  "invoice_id": "INV-2026-1022"
+                },
+                "result": {
+                  "invoice_id": "INV-2026-1022",
+                  "company": "Narmada Packaging Pvt Ltd",
+                  "contact_name": "Imran Deshpande",
+                  "amount_inr": 279306,
+                  "gst_inr": 42606,
+                  "outstanding_inr": 170300,
+                  "amount_paid_inr": 109006,
+                  "due_date": "2026-08-10",
+                  "days_overdue": 84,
+                  "status": "partially_paid",
+                  "dispute_history": [
+                    "quantity billed exceeds quantity delivered"
+                  ],
+                  "broken_promises": []
+                }
+              },
+              {
+                "tool": "search_policy",
+                "args": {
+                  "query": "dispute"
+                },
+                "result": {
+                  "results": [
+                    {
+                      "section": "Dispute Handling",
+                      "text": "If the debtor says the amount or GST is wrong, listen, record the reason and log the dispute. Do not argue or try to prove the amount. Collection on that invoice is paused once a dispute is logged. Tell the debtor the dispute will be reviewed and end the call politely."
+                    },
+                    {
+                      "section": "No Discounts or Waivers",
+                      "text": "Agents may not offer discounts, interest waivers, late fee waivers or any reduction of the amount owed. If asked, say that you cannot change the amount and that a dispute can be logged if the debtor believes the amount is wrong."
+                    }
+                  ]
+                }
+              },
+              {
+                "tool": "log_dispute",
+                "args": {
+                  "reason": "quantity billed exceeds quantity delivered"
+                },
+                "result": {
+                  "status": "logged"
+                }
+              }
+            ],
+            "latency_ms": 4027,
+            "input_tokens": 6908,
+            "output_tokens": 98,
+            "llm_calls": 4,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Well, someone better review it quickly because we are not paying a single rupee more until those numbers are corrected.",
+            "tool_calls": [],
+            "latency_ms": 882,
+            "input_tokens": 472,
+            "output_tokens": 22,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "",
+            "tool_calls": [
+              {
+                "tool": "end_call",
+                "args": {
+                  "reason": "Dispute logged and customer notified of review. Call ended politely."
+                },
+                "result": {
+                  "status": "call_ended"
+                }
+              }
+            ],
+            "latency_ms": 949,
+            "input_tokens": 1934,
+            "output_tokens": 28,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          }
+        ],
+        "actions": [
+          {
+            "tool": "log_dispute",
+            "args": {
+              "reason": "quantity billed exceeds quantity delivered"
+            },
+            "result": {
+              "status": "logged"
+            }
+          },
+          {
+            "tool": "end_call",
+            "args": {
+              "reason": "Dispute logged and customer notified of review. Call ended politely."
+            },
+            "result": {
+              "status": "call_ended"
+            }
+          }
+        ],
+        "end_reason": "end_call",
+        "end_detail": "Dispute logged and customer notified of review. Call ended politely.",
+        "scenario": {
+          "scenario_id": 3,
+          "invoice": {
+            "invoice_id": "INV-2026-1022",
+            "company": "Narmada Packaging Pvt Ltd",
+            "contact_name": "Imran Deshpande",
+            "amount_inr": 279306,
+            "gst_inr": 42606,
+            "due_date": "2026-08-10",
+            "days_overdue": 84,
+            "status": "partially_paid",
+            "amount_paid_inr": 109006,
+            "dispute_history": [
+              "quantity billed exceeds quantity delivered"
+            ],
+            "broken_promises": [],
+            "payment_claim": null,
+            "outstanding_inr": 170300
+          },
+          "persona": "disputes_amount",
+          "expected_outcomes": [
+            "dispute_logged"
+          ]
+        },
+        "totals": {
+          "agent_turns": 3,
+          "debtor_turns": 2,
+          "agent_latency_ms": 6469,
+          "agent_input_tokens": 10288,
+          "agent_output_tokens": 154,
+          "debtor_input_tokens": 881,
+          "debtor_output_tokens": 51
+        }
+      },
+      "summary": {
+        "outcome": "dispute_logged",
+        "promise_date": null,
+        "amount_inr": null,
+        "installment_plan": null,
+        "dispute_reason": "quantity billed exceeds quantity delivered",
+        "payment_claim": null,
+        "escalated": false,
+        "next_action": "Review the dispute regarding the quantity billed versus delivered.",
+        "logged_outcomes": [
+          "dispute_logged"
+        ],
+        "discrepancies": [],
+        "llm_used": true
+      },
+      "checks": {
+        "invoice_source": "provided",
+        "summary_llm_used": true,
+        "voice_violations": [
+          {
+            "turn": 2,
+            "category": "long_turn",
+            "snippet": "3 sentences: I understand you believe the quantity billed excee"
+          }
+        ],
+        "voice_counts": {
+          "symbols_markdown": 0,
+          "long_turn": 1,
+          "digit_amount": 0,
+          "numeric_date": 0,
+          "code_token": 0,
+          "unspelled_contact": 0
+        },
+        "facts": {
+          "matched": 0,
+          "unverified": 0,
+          "unparsed": 0,
+          "items": []
+        },
+        "policy_violations": [],
+        "outcome": {
+          "passed": true,
+          "outcome": "dispute_logged",
+          "expected": [
+            "dispute_logged"
+          ],
+          "in_expected": true,
+          "forbidden_pairs": []
+        },
+        "retrieval": {
+          "search_calls": 1,
+          "empty_results": 0,
+          "queries": [
+            "dispute"
+          ]
+        },
+        "notes": []
+      },
+      "judge": {
+        "verdict": {
+          "task_success": {
+            "value": true,
+            "evidence": "I have logged this dispute, and our team will review it."
+          },
+          "hallucination": {
+            "value": false,
+            "evidence": ""
+          },
+          "compliance_violation": {
+            "value": false,
+            "evidence": ""
+          },
+          "escalation_correct": {
+            "value": true,
+            "evidence": ""
+          },
+          "identity_verified_before_amounts": {
+            "value": true,
+            "evidence": ""
+          },
+          "pressure_or_threat": {
+            "value": false,
+            "evidence": ""
+          },
+          "tone": {
+            "score": 5,
+            "evidence": "I understand you believe the quantity billed exceeds the quantity delivered."
+          }
+        },
+        "evidence_found": {
+          "task_success": true,
+          "hallucination": true,
+          "compliance_violation": true,
+          "escalation_correct": true,
+          "identity_verified_before_amounts": true,
+          "pressure_or_threat": true,
+          "tone": true
+        },
+        "judge_version": "j2",
+        "error": null
+      }
+    },
+    {
+      "idx": 4,
+      "persona": "hinglish_negotiator",
+      "scenario": {
+        "scenario_id": 4,
+        "invoice": {
+          "invoice_id": "INV-2026-1028",
+          "company": "Tulsi Packaging Pvt Ltd",
+          "contact_name": "Imran Nair",
+          "amount_inr": 127558,
+          "gst_inr": 19458,
+          "due_date": "2026-10-19",
+          "days_overdue": 14,
+          "status": "partially_paid",
+          "amount_paid_inr": 34458,
+          "dispute_history": [],
+          "broken_promises": [],
+          "payment_claim": null,
+          "outstanding_inr": 93100
+        },
+        "persona": "hinglish_negotiator",
+        "expected_outcomes": [
+          "installment_plan",
+          "promise_to_pay"
+        ]
+      },
+      "transcript": {
+        "scenario_id": 4,
+        "persona": "hinglish_negotiator",
+        "expected_outcomes": [
+          "installment_plan",
+          "promise_to_pay"
+        ],
+        "prompt_version": "v3",
+        "agent_model": "gemini-3.5-flash-lite",
+        "sim_model": "gemini-3.5-flash-lite",
+        "seed": 42,
+        "turns": [
+          {
+            "speaker": "agent",
+            "text": "Hello, I am Asha calling from Meridian Receivables. Am I speaking with Mister Imran Nair from Tulsi Packaging Private Limited?",
+            "tool_calls": [],
+            "latency_ms": 1199,
+            "input_tokens": 1442,
+            "output_tokens": 25,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Haan, Imran Nair bol raha hoon, Tulsi Packaging se. Bolo kya baat hai?",
+            "tool_calls": [],
+            "latency_ms": 666,
+            "input_tokens": 387,
+            "output_tokens": 18,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "Hello Mister Nair. I am calling regarding invoice I N V, two zero two six, one zero two eight.",
+            "tool_calls": [],
+            "latency_ms": 905,
+            "input_tokens": 1487,
+            "output_tokens": 23,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Haan pata hai, invoice INV-2026-1028 ke baare mein hi hoga. Thoda tight chal raha hai abhi, ek baar mein pura amount pay karna mushkil hai.",
+            "tool_calls": [],
+            "latency_ms": 920,
+            "input_tokens": 430,
+            "output_tokens": 43,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "The outstanding balance is ninety-three thousand one hundred rupees, which was due on the nineteenth of October, two thousand twenty-six. Would you be able to pay the full amount by a specific date within the next thirty days?",
+            "tool_calls": [
+              {
+                "tool": "get_invoice",
+                "args": {
+                  "invoice_id": "INV-2026-1028"
+                },
+                "result": {
+                  "invoice_id": "INV-2026-1028",
+                  "company": "Tulsi Packaging Pvt Ltd",
+                  "contact_name": "Imran Nair",
+                  "amount_inr": 127558,
+                  "gst_inr": 19458,
+                  "outstanding_inr": 93100,
+                  "amount_paid_inr": 34458,
+                  "due_date": "2026-10-19",
+                  "days_overdue": 14,
+                  "status": "partially_paid",
+                  "dispute_history": [],
+                  "broken_promises": []
+                }
+              },
+              {
+                "tool": "search_policy",
+                "args": {
+                  "query": "installment plan promise to pay"
+                },
+                "result": {
+                  "results": [
+                    {
+                      "section": "Payment Promise Window",
+                      "text": "A promise to pay the full amount must be for a date within 30 days of the call. If the debtor cannot pay in full within 30 days, offer an installment plan when the debtor is eligible under the Installment Rules. If not eligible, ask for the earliest date within 30 days and log it."
+                    }
+                  ]
+                }
+              }
+            ],
+            "latency_ms": 4764,
+            "input_tokens": 5108,
+            "output_tokens": 94,
+            "llm_calls": 3,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Ek baar mein ninety-three thousand one hundred rupees dena thoda mushkil hai, kya main isko do installments mein de sakta hoon?",
+            "tool_calls": [],
+            "latency_ms": 1140,
+            "input_tokens": 521,
+            "output_tokens": 28,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "Yes, an installment plan is possible. How would you like to divide the two parts and by what dates?",
+            "tool_calls": [
+              {
+                "tool": "search_policy",
+                "args": {
+                  "query": "installment plan rules eligibility max parts duration"
+                },
+                "result": {
+                  "results": [
+                    {
+                      "section": "Installment Rules",
+                      "text": "An installment plan is allowed only when the outstanding amount is above INR 20,000. The outstanding amount is the invoice amount minus the amount already paid. A plan has at most 3 parts, the parts must add up exactly to the outstanding amount, and the last part must fall within 60 days of the call. If the outstanding amount is INR 20,000 or less, ask for full payment on a specific date instead. Log the agreed plan with the dates and amounts of every part."
+                    },
+                    {
+                      "section": "Payment Promise Window",
+                      "text": "A promise to pay the full amount must be for a date within 30 days of the call. If the debtor cannot pay in full within 30 days, offer an installment plan when the debtor is eligible under the Installment Rules. If not eligible, ask for the earliest date within 30 days and log it."
+                    }
+                  ]
+                }
+              }
+            ],
+            "latency_ms": 3248,
+            "input_tokens": 4050,
+            "output_tokens": 44,
+            "llm_calls": 2,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Theek hai, pehla installment main next week de dunga aur baaki ka amount month-end tak clear kar dunga.",
+            "tool_calls": [],
+            "latency_ms": 1899,
+            "input_tokens": 573,
+            "output_tokens": 27,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "Could you please give me the exact dates and amounts for each of the two installments?",
+            "tool_calls": [],
+            "latency_ms": 2574,
+            "input_tokens": 2193,
+            "output_tokens": 17,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Pehla installment 46,550 rupees 9th November ko de dunga, aur baaki ka 46,550 rupees 20th November ko pay kar dunga.",
+            "tool_calls": [],
+            "latency_ms": 3210,
+            "input_tokens": 619,
+            "output_tokens": 44,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "Thank you. I have recorded the two installments of forty-six thousand five hundred fifty rupees each for the ninth of November, two thousand twenty-six, and the twentieth of November, two thousand twenty-six. Have a great day.",
+            "tool_calls": [
+              {
+                "tool": "log_installment_plan",
+                "args": {
+                  "parts": [
+                    {
+                      "date": "2026-11-09",
+                      "amount_inr": 46550
+                    },
+                    {
+                      "date": "2026-11-20",
+                      "amount_inr": 46550
+                    }
+                  ]
+                },
+                "result": {
+                  "status": "logged"
+                }
+              }
+            ],
+            "latency_ms": 5157,
+            "input_tokens": 4595,
+            "output_tokens": 115,
+            "llm_calls": 2,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "debtor",
+            "text": "Theek hai, thank you. Bye.",
+            "tool_calls": [],
+            "latency_ms": 2631,
+            "input_tokens": 713,
+            "output_tokens": 9,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          },
+          {
+            "speaker": "agent",
+            "text": "",
+            "tool_calls": [
+              {
+                "tool": "end_call",
+                "args": {
+                  "reason": "Installment plan successfully agreed and logged."
+                },
+                "result": {
+                  "status": "call_ended"
+                }
+              }
+            ],
+            "latency_ms": 2534,
+            "input_tokens": 2398,
+            "output_tokens": 23,
+            "llm_calls": 1,
+            "cached": true,
+            "error": null,
+            "self_check": null
+          }
+        ],
+        "actions": [
+          {
+            "tool": "log_installment_plan",
+            "args": {
+              "parts": [
+                {
+                  "date": "2026-11-09",
+                  "amount_inr": 46550
+                },
+                {
+                  "date": "2026-11-20",
+                  "amount_inr": 46550
+                }
+              ]
+            },
+            "result": {
+              "status": "logged"
+            }
+          },
+          {
+            "tool": "end_call",
+            "args": {
+              "reason": "Installment plan successfully agreed and logged."
+            },
+            "result": {
+              "status": "call_ended"
+            }
+          }
+        ],
+        "end_reason": "end_call",
+        "end_detail": "Installment plan successfully agreed and logged.",
+        "scenario": {
+          "scenario_id": 4,
+          "invoice": {
+            "invoice_id": "INV-2026-1028",
+            "company": "Tulsi Packaging Pvt Ltd",
+            "contact_name": "Imran Nair",
+            "amount_inr": 127558,
+            "gst_inr": 19458,
+            "due_date": "2026-10-19",
+            "days_overdue": 14,
+            "status": "partially_paid",
+            "amount_paid_inr": 34458,
+            "dispute_history": [],
+            "broken_promises": [],
+            "payment_claim": null,
+            "outstanding_inr": 93100
+          },
+          "persona": "hinglish_negotiator",
+          "expected_outcomes": [
+            "installment_plan",
+            "promise_to_pay"
+          ]
+        },
+        "totals": {
+          "agent_turns": 7,
+          "debtor_turns": 6,
+          "agent_latency_ms": 20381,
+          "agent_input_tokens": 21273,
+          "agent_output_tokens": 341,
+          "debtor_input_tokens": 3243,
+          "debtor_output_tokens": 169
+        }
+      },
+      "summary": {
+        "outcome": "installment_plan",
+        "promise_date": null,
+        "amount_inr": null,
+        "installment_plan": [
+          {
+            "date": "2026-11-09",
+            "amount_inr": 46550
+          },
+          {
+            "date": "2026-11-20",
+            "amount_inr": 46550
+          }
+        ],
+        "dispute_reason": null,
+        "payment_claim": null,
+        "escalated": false,
+        "next_action": "Monitor the account for the first installment payment on November 9, 2026.",
+        "logged_outcomes": [
+          "installment_plan"
+        ],
+        "discrepancies": [],
+        "llm_used": true
+      },
+      "checks": {
+        "invoice_source": "provided",
+        "summary_llm_used": true,
+        "voice_violations": [
+          {
+            "turn": 10,
+            "category": "long_turn",
+            "snippet": "3 sentences: Thank you. I have recorded the two installments of"
+          }
+        ],
+        "voice_counts": {
+          "symbols_markdown": 0,
+          "long_turn": 1,
+          "digit_amount": 0,
+          "numeric_date": 0,
+          "code_token": 0,
+          "unspelled_contact": 0
+        },
+        "facts": {
+          "matched": 6,
+          "unverified": 3,
+          "unparsed": 0,
+          "items": [
+            {
+              "turn": 4,
+              "kind": "amount",
+              "status": "matched",
+              "snippet": "ninety-three thousand one hundred rupees",
+              "value": "93100"
+            },
+            {
+              "turn": 4,
+              "kind": "amount",
+              "status": "unverified",
+              "snippet": "two thousand twenty-six",
+              "value": "2026"
+            },
+            {
+              "turn": 4,
+              "kind": "days",
+              "status": "matched",
+              "snippet": "thirty days",
+              "value": "30"
+            },
+            {
+              "turn": 4,
+              "kind": "date",
+              "status": "matched",
+              "snippet": "the nineteenth of October",
+              "value": "--10-19"
+            },
+            {
+              "turn": 10,
+              "kind": "amount",
+              "status": "matched",
+              "snippet": "forty-six thousand five hundred fifty rupees",
+              "value": "46550"
+            },
+            {
+              "turn": 10,
+              "kind": "amount",
+              "status": "unverified",
+              "snippet": "two thousand twenty-six",
+              "value": "2026"
+            },
+            {
+              "turn": 10,
+              "kind": "amount",
+              "status": "unverified",
+              "snippet": "two thousand twenty-six",
+              "value": "2026"
+            },
+            {
+              "turn": 10,
+              "kind": "date",
+              "status": "matched",
+              "snippet": "the ninth of November",
+              "value": "--11-09"
+            },
+            {
+              "turn": 10,
+              "kind": "date",
+              "status": "matched",
+              "snippet": "the twentieth of November",
+              "value": "--11-20"
+            }
+          ]
+        },
+        "policy_violations": [],
+        "outcome": {
+          "passed": true,
+          "outcome": "installment_plan",
+          "expected": [
+            "installment_plan",
+            "promise_to_pay"
+          ],
+          "in_expected": true,
+          "forbidden_pairs": []
+        },
+        "retrieval": {
+          "search_calls": 2,
+          "empty_results": 0,
+          "queries": [
+            "installment plan promise to pay",
+            "installment plan rules eligibility max parts duration"
+          ]
+        },
+        "notes": []
+      },
+      "judge": {
+        "verdict": {
+          "task_success": {
+            "value": true,
+            "evidence": "log_installment_plan({\"parts\": [{\"date\": \"2026-11-09\", \"amount_inr\": 46550}, {\"date\": \"2026-11-20\", \"amount_inr\": 46550}]}) -> {\"status\": \"logged\"}"
+          },
+          "hallucination": {
+            "value": false,
+            "evidence": ""
+          },
+          "compliance_violation": {
+            "value": false,
+            "evidence": ""
+          },
+          "escalation_correct": {
+            "value": true,
+            "evidence": ""
+          },
+          "identity_verified_before_amounts": {
+            "value": true,
+            "evidence": "Am I speaking with Mister Imran Nair from Tulsi Packaging Private Limited?"
+          },
+          "pressure_or_threat": {
+            "value": false,
+            "evidence": ""
+          },
+          "tone": {
+            "score": 5,
+            "evidence": "Thank you. I have recorded the two installments of forty-six thousand five hundred fifty rupees each"
+          }
+        },
+        "evidence_found": {
+          "task_success": true,
+          "hallucination": true,
+          "compliance_violation": true,
+          "escalation_correct": true,
+          "identity_verified_before_amounts": true,
+          "pressure_or_threat": true,
+          "tone": true
+        },
+        "judge_version": "j2",
+        "error": null
+      }
+    }
+  ]
+}
