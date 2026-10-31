@@ -33,7 +33,14 @@
 .transcript-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 12px;
   padding-bottom: 12px; border-bottom: 1px solid var(--border); }
 .legend { display: flex; gap: 8px; }
-.transcript-actions { margin-left: auto; min-height: 30px; } /* reserved for M12 Play */
+.transcript-actions { margin-left: auto; min-height: 30px; }
+.play-controls { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.play-row, .voice-picker { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.voice-picker { gap: 12px; }
+.speed, .voice-pick { display: inline-flex; align-items: center; gap: 4px; }
+.voice-pick select { max-width: 220px; }
+.turn-speaking .bubble { box-shadow: 0 0 0 2px var(--accent); animation: speak-pulse 1.6s ease-in-out infinite; }
+@keyframes speak-pulse { 50% { box-shadow: 0 0 0 4px var(--accent-wash); } }
 
 .turns { display: flex; flex-direction: column; gap: 12px; }
 .turn { display: flex; flex-direction: column; max-width: 78%; scroll-margin: 80px; }

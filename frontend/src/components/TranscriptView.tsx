@@ -32,14 +32,14 @@ function marksFor(i: number, text: string, checks: Checks | null, quote: QuoteLo
   return marks;
 }
 
-function TurnView({ i, turn, checks, quote, quoteLabel, activeTool }: {
+function TurnView({ i, turn, checks, quote, quoteLabel, activeTool, speaking }: {
   i: number; turn: Turn; checks: Checks | null; quote: QuoteLocation | null; quoteLabel: string;
-  activeTool: number | null;
+  activeTool: number | null; speaking: boolean;
 }) {
   const lint = (checks?.voice_violations ?? []).filter((v) => v.turn === i);
   const isAgent = turn.speaker === "agent";
   return (
-    <div className={`turn ${isAgent ? "turn-agent" : "turn-debtor"}`} id={`turn-${i}`}>
+    <div className={`turn ${isAgent ? "turn-agent" : "turn-debtor"}${speaking ? " turn-speaking" : ""}`} id={`turn-${i}`}>
       <div className="turn-meta">
         <span className="mono">#{i}</span> {isAgent ? "Agent" : "Debtor"}
         {isAgent && turn.latency_ms > 0 && <span> · {(turn.latency_ms / 1000).toFixed(1)}s</span>}
@@ -70,9 +70,9 @@ function TurnView({ i, turn, checks, quote, quoteLabel, activeTool }: {
   );
 }
 
-export default function TranscriptView({ turns, checks, quote, toolQuote, quoteLabel }: {
+export default function TranscriptView({ turns, checks, quote, toolQuote, quoteLabel, speaking }: {
   turns: Turn[]; checks: Checks | null; quote: QuoteLocation | null; toolQuote: ToolQuoteLocation | null;
-  quoteLabel: string;
+  quoteLabel: string; speaking: number | null;
 }) {
   // useRef holds a pointer to the real DOM element. Scrolling is a side effect on the page,
   // not something to render, so it runs in useEffect after React has drawn the highlight.
@@ -82,12 +82,15 @@ export default function TranscriptView({ turns, checks, quote, toolQuote, quoteL
     listRef.current?.querySelector("mark.m-quote, .tool-row.active")
       ?.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [quote, toolQuote]);
+  useEffect(() => {
+    if (speaking != null) scrollToTurn(speaking);
+  }, [speaking]);
 
   return (
     <div className="turns" ref={listRef}>
       {turns.map((t, i) => (
         <TurnView key={i} i={i} turn={t} checks={checks} quote={quote} quoteLabel={quoteLabel}
-          activeTool={toolQuote?.turn === i ? toolQuote.tool : null} />
+          activeTool={toolQuote?.turn === i ? toolQuote.tool : null} speaking={speaking === i} />
       ))}
     </div>
   );

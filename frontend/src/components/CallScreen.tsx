@@ -8,6 +8,7 @@ import { useApi } from "../useApi";
 import CallHeader from "./CallHeader";
 import ChecksPanel from "./ChecksPanel";
 import JudgePanel from "./JudgePanel";
+import PlayControls from "./PlayControls";
 import { ErrorPanel, Loading } from "./StatusView";
 import TranscriptView from "./TranscriptView";
 import "./Transcript.css";
@@ -24,6 +25,8 @@ interface Props {
 export default function CallScreen({ runId, idx, showAllJudges, onToggleAllJudges }: Props) {
   const call = useApi((signal) => getCall(runId, idx, signal), `call-${runId}-${idx}`);
   const [active, setActive] = useState<Criterion | null>(null);
+  // Lifted here so the Play controls (which set it) and the transcript (which highlights it) share it.
+  const [speaking, setSpeaking] = useState<number | null>(null);
   const c = call.data;
 
   // useMemo keeps the same location object between renders unless its inputs change, so the
@@ -61,12 +64,13 @@ export default function CallScreen({ runId, idx, showAllJudges, onToggleAllJudge
                   <mark className="m-fact">unverified fact</mark>
                   <mark className="m-quote">judge quote</mark>
                 </div>
-                {/* M12: the Play (text-to-speech) button goes in this slot. */}
-                <div className="transcript-actions" />
+                <div className="transcript-actions">
+                  {c.transcript && <PlayControls turns={c.transcript.turns} onSpeaking={setSpeaking} />}
+                </div>
               </div>
               {c.transcript ? (
                 <TranscriptView turns={c.transcript.turns} checks={c.checks} quote={quote} toolQuote={toolQuote}
-                  quoteLabel={active ? `Judge evidence: ${CRITERION_LABELS[active]}` : ""} />
+                  quoteLabel={active ? `Judge evidence: ${CRITERION_LABELS[active]}` : ""} speaking={speaking} />
               ) : (
                 <p className="muted">No transcript stored for this call.</p>
               )}
