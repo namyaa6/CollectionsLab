@@ -3,7 +3,9 @@ import CallScreen from "./components/CallScreen";
 import CallsScreen from "./components/CallsScreen";
 import CompareScreen from "./components/CompareScreen";
 import RunsScreen from "./components/RunsScreen";
+import StaticBanner from "./components/StaticBanner";
 import { href, navigate, useHashRoute } from "./route";
+import { IS_STATIC } from "./staticApi";
 
 export default function App() {
   // The URL hash says which screen is open; selection lives here, above every screen,
@@ -41,6 +43,7 @@ export default function App() {
           </nav>
         </div>
       </header>
+      {IS_STATIC && <StaticBanner />}
 
       <main className="page">
         {route.name === "runs" && (

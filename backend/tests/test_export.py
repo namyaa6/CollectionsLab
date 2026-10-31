@@ -22,6 +22,41 @@ def test_exports_latest_run_per_prompt_with_stored_metrics(tmp_path):
     assert data["metrics"] == {"overall": {"n_calls": 4, "n_failed": 0}}  # copied, not recomputed
     assert data["complete"] is True and data["n_calls_stored"] == 4
     assert data["run_key"] == VERSIONS["vTESTA"] and data["models"]["judge"] == "judge-m"
+    assert data["id"] == 1 and data["judge_prompt_hash"] == "jh" and data["created_at"]
+
+
+def test_calls_file_holds_every_stored_call_unchanged(tmp_path):
+    path, _ = build_db(tmp_path)
+    out_dir = tmp_path / "results"
+    _, text = run_export(path, out_dir)
+    entry = json.loads((out_dir / "index.json").read_text(encoding="utf-8"))[0]
+    calls = json.loads((out_dir / entry["calls_file"]).read_text(encoding="utf-8"))
+    conn = db.connect(path)
+    assert calls == db.get_calls(conn, 1)
+    conn.close()
+    assert entry["judge_version"] == "j1" and "MB to" in text
+
+
+def add_run(path, version, run_key, judge_version):
+    conn = db.connect(path)
+    run_id, _ = db.find_or_create_run(conn, dict(run_spec(version, run_key),
+                                                 judge_version=judge_version))
+    db.save_call(conn, run_id, 0, call_record(version, 0, "cooperative"))
+    db.update_run(conn, run_id, 1, {"overall": {"n_calls": 1, "n_failed": 0}})
+    conn.close()
+
+
+def test_default_keeps_only_newest_judge_and_all_judges_keeps_each(tmp_path):
+    path, _ = build_db(tmp_path)  # vTESTA and vTESTB, both judged by j1
+    add_run(path, "vTESTA", "runkeyA10AAAAA", "j10")
+    add_run(path, "vTESTA", "runkeyA9AAAAAA", "j9")  # numerically older than j10
+    run_export(path, tmp_path / "a")
+    index = json.loads((tmp_path / "a" / "index.json").read_text(encoding="utf-8"))
+    assert [(i["prompt_version"], i["judge_version"]) for i in index] == [("vTESTA", "j10")]
+    run_export(path, tmp_path / "b", "--all-judges")
+    index = json.loads((tmp_path / "b" / "index.json").read_text(encoding="utf-8"))
+    assert [(i["prompt_version"], i["judge_version"]) for i in index] == [
+        ("vTESTA", "j1"), ("vTESTA", "j9"), ("vTESTA", "j10"), ("vTESTB", "j1")]
 
 
 def test_examples_are_from_distinct_personas_and_seeded(tmp_path):
@@ -56,7 +91,9 @@ def test_run_key_prefix_selects_runs_and_empty_db_fails(tmp_path):
     path, _ = build_db(tmp_path)
     out_dir = tmp_path / "results"
     run_export(path, out_dir, "--run-key", "runkeyB")
-    assert [p.name for p in out_dir.iterdir() if p.name != "index.json"] == ["vTESTB_runkeyBB.json"]
+    assert sorted(p.name for p in out_dir.iterdir()) == ["calls", "index.json",
+                                                         "vTESTB_runkeyBB.json"]
+    assert [p.name for p in (out_dir / "calls").iterdir()] == ["vTESTB_runkeyBB.json"]
     empty = tmp_path / "empty.db"
     db.connect(empty).close()
     code, text = run_export(empty, tmp_path / "x")

@@ -47,3 +47,15 @@ What v1 got wrong (your “before” picture)
 - Plan: judge j2 (CALENDAR block with call date +30/+60, inclusive
   boundaries, transcript-only evidence), re-judge all versions, then
   hand-label against j2.
+
+  ## Judge j1 vs j2 on identical conversations (runs 1/4, 2/5)
+- 9 disagreements: j2 right on 6 (date limits via calendar, day-30
+  inclusive, caught the 69-day installment, no policy quotes), j1 right on 3.
+- New j2 error: escalation_correct=false with no evidence on calls where the
+  debtor firmly refuses to pay but no trigger exists (v2 idx 3, 9; v3 idx 7).
+  Hypothesis: j2 reads "not paying a single rupee" as a trigger.
+- Decision: freeze j2. Further judge edits would tune the judge on the test
+  calls. Report j2, disclose this error, and measure judge accuracy with
+  blind hand labels instead.
+- Note: "within 30 days includes day 30" is a policy reading chosen for j2.
+- Cached re-runs report no latency; use uncached runs for latency numbers.

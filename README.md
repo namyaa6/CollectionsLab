@@ -10,7 +10,7 @@ confidence intervals.
 ## Demo
 
 - **TODO:** 2-minute demo video: [link](TODO)
-- **TODO:** live dashboard (GitHub Pages): [link](TODO)
+- Live dashboard (static snapshot, GitHub Pages): https://namyaa6.github.io/CollectionsLab/ **TODO:** check it is live once the repo is public
 
 **TODO:** hero screenshot: `![Compare screen](docs/screenshots/hero.png)`
 
@@ -146,6 +146,7 @@ with a second model (stored separately, never as the main verdict).
 - **Summarizer cross-check:** logged tool actions vs an LLM's reading of the dialogue alone; disagreements are recorded, not hidden.
 - **Tests:** 455 backend (plus 7 strict xfails for known limits) and 46 frontend. **TODO:** refresh counts. Unit tests never call the real API.
 - **CI:** GitHub Actions runs pytest, vitest, typecheck and build on every push.
+- **Static dashboard:** a second workflow turns the committed `data/results/` export into JSON files shaped exactly like the API responses (a test checks they are equal) and deploys a read-only build to GitHub Pages.
 
 ## What I'd do next
 
@@ -195,5 +196,9 @@ npm run dev
 
 Judge validation: `python -m backend.eval.label`, `python -m backend.eval.agreement`,
 `python -m backend.eval.cross_judge --judge-model <model>`, `python -m backend.eval.export`.
+
+Refresh the static Pages snapshot: `python -m backend.eval.export` (newest judge version only;
+`--all-judges` keeps older ones), commit `data/results/`, push. To preview it locally:
+`python -m backend.static_api`, then in `frontend`: `npm run build:static` and `npm run preview`.
 
 All data is synthetic. No real people, companies, phone numbers or emails.

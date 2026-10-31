@@ -1,6 +1,7 @@
 // Typed client for the read-only M10 API (backend/main.py, shapes in backend/api_shapes.py).
 // Types mirror the JSON exactly; nothing here recomputes a metric.
 import type { CallDetail, CallRow } from "./callTypes";
+import { compareWarnings, IS_STATIC, staticUrl, type SnapshotMeta } from "./staticApi";
 
 /** One rate as stored by backend/eval/metrics.py rate(): Wilson 95% CI, null when n = 0. */
 export interface Rate {
@@ -92,7 +93,7 @@ export class ApiError extends Error {
 async function getJson<T>(path: string, signal?: AbortSignal): Promise<T> {
   let res: Response;
   try {
-    res = await fetch(path, { signal });
+    res = await fetch(IS_STATIC ? staticUrl(path) : path, { signal });
   } catch (e) {
     if ((e as Error).name === "AbortError") throw e;
     throw new ApiError("unreachable", "Could not connect to the API.");
@@ -129,6 +130,14 @@ export function getCall(runId: number, idx: number, signal?: AbortSignal): Promi
 
 export const MAX_COMPARE = 10; // same limit as backend/main.py
 
-export function getCompare(ids: number[], signal?: AbortSignal): Promise<CompareResponse> {
-  return getJson(`/api/compare?run_ids=${ids.join(",")}`, signal);
+export async function getCompare(ids: number[], signal?: AbortSignal): Promise<CompareResponse> {
+  if (!IS_STATIC) return getJson(`/api/compare?run_ids=${ids.join(",")}`, signal);
+  // No compare file in the snapshot: load each run and add the API's warnings here.
+  const runs = await Promise.all([...new Set(ids)].map((id) => getRun(id, signal)));
+  return { runs, warnings: compareWarnings(runs) };
+}
+
+/** Static mode only: when the snapshot was taken. */
+export function getMeta(signal?: AbortSignal): Promise<SnapshotMeta> {
+  return getJson("/api/meta", signal);
 }

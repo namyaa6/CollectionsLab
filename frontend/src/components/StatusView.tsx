@@ -1,4 +1,5 @@
 import { ApiError } from "../api";
+import { IS_STATIC } from "../staticApi";
 
 export function Loading({ label }: { label: string }) {
   return (
@@ -23,6 +24,16 @@ function Commands({ lines }: { lines: string[] }) {
 export function ErrorPanel({ error, onRetry }: { error: unknown; onRetry: () => void }) {
   const kind = error instanceof ApiError ? error.kind : "http";
   const message = error instanceof Error ? error.message : String(error);
+
+  if (IS_STATIC) {  // no API to start: a missing file means the run or call isn't in the snapshot
+    return (
+      <div className="panel error-panel" role="alert">
+        <h2>Not in this snapshot</h2>
+        <p>This static copy only has the final runs. {message}</p>
+        <button className="btn" onClick={onRetry}>Retry</button>
+      </div>
+    );
+  }
 
   return (
     <div className="panel error-panel" role="alert">

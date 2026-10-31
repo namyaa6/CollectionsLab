@@ -131,6 +131,10 @@ table.runs td.num[title] { cursor: help; }
 .warnings strong { color: #5c3c00; }
 .warnings ul { margin: 4px 0 0; padding-left: 18px; color: #5c3c00; }
 
+/* Static (GitHub Pages) snapshot banner, under the top bar */
+.static-banner { background: var(--accent-wash); color: var(--accent-ink); border-bottom: 1px solid var(--border);
+  text-align: center; font-size: 13px; padding: 8px 24px; }
+
 /* Compare: run cards */
 .run-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-bottom: 20px; }
 .run-card { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid;
