@@ -208,8 +208,9 @@ Mean diff is the judge minus me (or the second minus the main judge).
   better judge.
 - **Labelling process:** one annotator (me). I had seen some of these calls and their
   judge verdicts in the dashboard before labelling, so the labels aren't fully
-  independent. After clarifying one definition (pressure is about the agent, not the
-  debtor), I did one review pass and relabelled 7 calls.
+  independent. I did one review pass, before computing any agreement numbers: it
+  covered the pressure definition (pressure is about the agent, not the debtor) and
+  re-checking the installment calls against the policy rules. It relabelled 7 calls.
 
 ## Dashboard
 
@@ -259,7 +260,7 @@ judge's Hallucination verdict highlights its quote in the transcript. (Escalatio
 - **Text only:** no real audio, ASR, telephony or voice latency. TTS is the browser's Web Speech API.
 - **Keyword retrieval:** BM25 misses paraphrases; the fact checker can't do arithmetic or resolve relative dates.
 - **Judge with known errors:** j2 marks escalation wrong on firm refusals and still slips on some date rules; it was frozen, not fixed, so these errors are in the numbers above.
-- **Hand labels:** one annotator, 20 calls, not fully blind (I had seen some outputs and verdicts), one review pass after clarifying a definition. The second judge covers only 10 of the 20 calls so far.
+- **Hand labels:** one annotator, 20 calls, not fully blind (I had seen some outputs and verdicts), one review pass (pressure definition, installment rules) before any agreement numbers. The second judge covers only 10 of the 20 calls so far.
 - **Language matching not measured:** Hinglish debtors get English replies. The policy only says the agent *may* mirror Hinglish, so this isn't a violation, and no metric checks it.
 
 ## How to run
