@@ -4,6 +4,8 @@ Shows one transcript at a time, in a seeded shuffled order. You see what the jud
 (the agent-visible invoice and the transcript) and nothing else: no judge answers, no prompt
 version, run key or persona, no expected outcome, no check result, no payment claim.
 Labels are saved after every call, so you can quit with q and resume later.
+--relabel 12,13,20 shows those positions in the stored sample order again (same blind view)
+and overwrites only their labels.
 """
 import argparse
 import json
@@ -86,7 +88,40 @@ def parse_args(argv: Optional[list[str]]) -> argparse.Namespace:
     p.add_argument("--labels", type=Path, default=LABELS_PATH)
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--n", type=int, default=SAMPLE_SIZE)
+    p.add_argument("--relabel", type=positions, help="comma-separated positions (1-based, as in "
+                   "'Call 12 of 20') to label again, overwriting only those labels")
     return p.parse_args(argv)
+
+
+def positions(text: str) -> list[int]:
+    try:
+        return list(dict.fromkeys(int(p) for p in text.split(",") if p.strip()))
+    except ValueError:
+        raise argparse.ArgumentTypeError("use comma-separated numbers, e.g. 12,13,20")
+
+
+def relabel(conn, data: dict, path: Path, picks: list[int], input_fn: Callable[[str], str],
+            out: Callable[[str], None]) -> int:
+    total = len(data["sample"])
+    bad = [p for p in picks if not 1 <= p <= total]
+    if bad:
+        out(f"Positions must be between 1 and {total}: {bad}")
+        return 1
+    for pos in picks:
+        key = data["sample"][pos - 1]
+        call = fetch_call(conn, key)
+        if call is None:
+            out(f"Call {pos} is missing from the database; skipping.")
+            continue
+        show_call(call, pos, total, out)
+        answers = label_call(input_fn, out)
+        if answers is None:
+            out(f"Stopped. Call {pos} keeps its previous label.")
+            return 0
+        data["labels"][key] = answers
+        save_json(path, data)
+    out("Relabelled. Next: python -m backend.eval.agreement")
+    return 0
 
 
 def main(argv: Optional[list[str]] = None, input_fn: Callable[[str], str] = input,
@@ -94,6 +129,11 @@ def main(argv: Optional[list[str]] = None, input_fn: Callable[[str], str] = inpu
     args = parse_args(argv)
     conn = open_readonly(args.db)
     data = load_json(args.labels)
+    if args.relabel:
+        if data is None:
+            out(f"No labels file at {args.labels} to relabel.")
+            return 1
+        return relabel(conn, data, args.labels, args.relabel, input_fn, out)
     if data is None:  # first run: draw the sample once and keep it
         sample = sample_calls(load_ok_calls(conn), args.n, args.seed)
         if not sample:

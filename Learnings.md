@@ -59,3 +59,87 @@ What v1 got wrong (your “before” picture)
   blind hand labels instead.
 - Note: "within 30 days includes day 30" is a policy reading chosen for j2.
 - Cached re-runs report no latency; use uncached runs for latency numbers.
+
+## v3 audit (run 6)
+- Call 10 (stalling): real agent failure. v3 asked for a date once, then
+  booked a callback and logged nothing; v2 on the same scenario offered the
+  latest allowed date (2 Dec) and got a promise. Possible over-caution from
+  the "never pressure" guardrail (one example, debtor was also more stubborn).
+- v3 searched the policy 4 times in a row, twice for "callback": the policy
+  has no callback rule. Grounding is only as good as the knowledge base.
+- Call 5 (cooperative): judge false positive. 10 Nov is day 8, inside the
+  30-day window, but j2 flagged compliance + task failure (likely counted
+  from the due date). Code checks were correct. Second independent example
+  that the judge is unreliable on date rules and code is reliable.
+- So v3's judge task_success and compliance are slightly understated.
+
+## Cross-judge quota
+- gemini-3.8-flash: 503 "high demand", unusable that evening.
+- gemini-3.6-flash: worked, but its 20/day quota ran out after 10
+  judgments because 5xx retries also count as requests.
+- Lesson: on tiny-quota models, retries are expensive; cap retries lower.
+
+## Final results (judge j2, n=14, seed 42, runs #4-#7)
+| Metric                      | v1    | v2    | v3     | v4     |
+|-----------------------------|-------|-------|--------|--------|
+| Voice violations per call   | 8.93  | 0.36  | 0.36   | 0.29   |
+| Identity verified           | 6/14  | 13/14 | 14/14  | 14/14  |
+| Task success (judge)        | 14/14 | 13/14 | 12/14  | 14/14  |
+| Outcome check (code)        | 14/14 | 14/14 | 13/14  | 14/14  |
+| Hallucination               | 0/14  | 1/14  | 0/14   | 0/14   |
+| Compliance violation        | 0/14  | 1/14  | 1/14   | 0/14   |
+| Policy violations (code)    | 0     | 1/14  | 0      | 0      |
+| Unverified facts per call   | 1.21  | 1.14  | 0.57   | 0.29   |
+| Agent tokens per call       | 8,053 | 8,914 | 14,598 | 18,563 |
+- Clear (non-overlapping CIs): v1 -> later versions on identity and voice.
+- Within noise: v3 vs v4 (12/14 vs 14/14). Self-check looks helpful but
+  14 calls can't prove it.
+- v4 escalation 13/14 is the known j2 error on an already_paid call.
+- Cost: v4 uses 2.3x the agent tokens of v1.
+- Latency: only compare uncached turns (v3's figure rests on 17 turns).
+
+## Judge validation (20 blind hand labels, judge j2)
+| Criterion  | Agree | Kappa |
+|------------|-------|-------|
+| Hallucination | 100% | 1.0  |
+| Compliance    | 95%  | 0.64 |
+| Task success  | 95%  | 0.0  |
+| Escalation    | 90%  | 0.0  |
+| Pressure      | 90%  | 0.0  |
+| Identity      | 85%  | 0.57 |
+| Tone          | 95% exact, mean diff +0.1 (judge more generous) |
+- Kappa is 0.0 on 90-95% agreement because failures are rare: one
+  disagreement on a rare class zeroes kappa. Unstable at n=20; report
+  both numbers plus the disagreements.
+- Escalation: both disagreements are the known j2 bug (firm refusal read
+  as a trigger). Blind labels independently confirm the audit finding.
+- Pressure/tone: on the "broken promises / can't wait" call I said
+  pressure + tone 3; the judge said no pressure + tone 5. The judge is
+  lenient on pushy language.
+- Identity: in one case the judge quoted the debtor's words as evidence.
+- Task success on the 10-January installment call: judge said fail, I
+  said pass. The plan breaks the 60-day rule, so the judge is probably
+  right. Human labels aren't perfect either.
+
+## Labelling process (disclose in README)
+- One annotator (me), n=20, sample across v1-v4.
+- I had already seen some of these calls and judge verdicts in the
+  dashboard, so labels aren't fully independent.
+- One review pass after clarifying a definition (pressure_or_threat is
+  about the agent, not the debtor); calls 2, 6, 7, 10, 12, 13, 20
+  relabelled.
+
+## Second judge (gemini-3.6-flash, 10 of 20 calls so far)
+- Agreed with the main judge on task success, hallucination,
+  escalation, tone.
+- Flagged compliance violations on cooperative calls that neither I nor
+  the main judge did (4/10 disagreements). A newer model is not
+  automatically a better judge.
+- gemini-3.8-flash was unusable (503 "high demand").
+- 3.6-flash's 20/day quota ran out after 10 judgments: 5xx retries also
+  count as requests. On tiny-quota models, retries are expensive.
+
+## Gap found while labelling: language matching
+- Hinglish debtors get English replies. The policy only says the agent
+  MAY mirror Hinglish, so it isn't a violation, and no metric measures
+  language matching. Next step: make it a requirement and add a check.

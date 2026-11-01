@@ -7,12 +7,22 @@ an agent and difficult synthetic debtors, grades every call with code checks and
 an LLM judge, and compares prompt versions with measured numbers and 95%
 confidence intervals.
 
+## TL;DR
+
+- **Voice:** TTS-breaking output fell from 8.93 to 0.29 violations per call (v1 → v4).
+- **Identity:** verified before stating amounts rose from 43% to 100% (v1 → v3/v4); the 95% intervals don't overlap.
+- **v4:** no agent failures on any criterion except one known judge error (n=14 per version).
+- **Judge:** validated against 20 blind hand labels (85-100% agreement), with its weaknesses disclosed below.
+
 ## Demo
 
 - **TODO:** 2-minute demo video: [link](TODO)
 - Live dashboard (static snapshot, GitHub Pages): https://namyaa6.github.io/CollectionsLab/ **TODO:** check it is live once the repo is public
 
-**TODO:** hero screenshot: `![Compare screen](docs/screenshots/hero.png)`
+<img src="docs/screenshots/hero.png" width="800" alt="Compare screen: v1 and v4 run cards above a key-changes strip">
+
+*Compare, v1 vs v4: identity verified 43% → 100% is a clear change (CIs don't overlap);
+lint per call has no CI; the escalation drop is within noise (the known j2 error).*
 
 ## The problem
 
@@ -28,22 +38,37 @@ Reading a few transcripts by hand misses rare failures and gives you no numbers.
 
 ## Headline results
 
-Same fixed scenario pool and seed for every version.
+Final runs #4-#7: judge j2, n=14 calls per version, seed 42, the same scenario pool for
+every version. Rates show k/n, the rate and its 95% Wilson interval.
 
 | Metric | v1 | v2 | v3 | v4 |
 |---|---|---|---|---|
-| Voice violations per call (code) | 8.93 | 0.36 | TODO | TODO |
-| Identity verified before amounts (judge) | 7/14 (50%) | 14/14 (100%) | TODO | TODO |
-| Task success (judge) | 14/14 | 12/14 | TODO | TODO |
-| Hallucination (judge) | 0/14 | 1/14 | TODO | TODO |
-| Compliance violation (judge) | 0/14 | 1/14 | TODO | TODO |
-| Policy violations per call (code) | 0.00 | 0.07 | TODO | TODO |
-| Outcome check (code) | 14/14 | 14/14 | TODO | TODO |
+| Voice violations per call (code) | 8.93 | 0.36 | 0.36 | 0.29 |
+| Identity verified before amounts (judge) | 6/14 · 43% (21-67) | 13/14 · 93% (69-99) | 14/14 · 100% (78-100) | 14/14 · 100% (78-100) |
+| Task success (judge) | 14/14 · 100% (78-100) | 13/14 · 93% (69-99) | 12/14 · 86% (60-96) | 14/14 · 100% (78-100) |
+| Outcome check (code) | 14/14 · 100% (78-100) | 14/14 · 100% (78-100) | 13/14 · 93% (69-99) | 14/14 · 100% (78-100) |
+| Hallucination (judge) | 0/14 · 0% (0-22) | 1/14 · 7% (1-31) | 0/14 · 0% (0-22) | 0/14 · 0% (0-22) |
+| Compliance violation (judge) | 0/14 · 0% (0-22) | 1/14 · 7% (1-31) | 1/14 · 7% (1-31) | 0/14 · 0% (0-22) |
+| Escalation correct (judge) | 14/14 · 100% (78-100) | 12/14 · 86% (60-96) | 13/14 · 93% (69-99) | 13/14 · 93% (69-99) |
+| Calls with a policy violation (code) | 0/14 · 0% (0-22) | 1/14 · 7% (1-31) | 0/14 · 0% (0-22) | 0/14 · 0% (0-22) |
+| Unverified facts per call (code) | 1.21 | 1.14 | 0.57 | 0.29 |
+| Agent tokens per call | 8,053 | 8,914 | 14,598 | 18,563 |
 
-**Preliminary:** the v1 and v2 numbers were graded by judge prompt j1 (n=14, seed 42).
-The final table will be graded by j2 for all versions. **TODO:** replace with final
-j2 numbers (n=TODO) and add CIs. v2's 12/14 task success includes two known judge
-false positives (see findings).
+- **Clear:** identity verification improves from v1 (43%, 21-67%) to every later version
+  (69-99% and up); the intervals don't overlap. Voice violations drop from 8.93 to 0.36 or
+  less per call. That is roughly a 25x drop, but no interval is computed for per-call averages.
+- **Within noise:** v3 vs v4 task success (12/14 vs 14/14, intervals 60-96% and 78-100%).
+  The self-check looks helpful, but 14 calls can't show it. One of v3's two failures is a
+  judge error (see findings).
+- **Known judge error:** every escalation miss in the table (v2 2, v3 1, v4 1) is the same
+  j2 error. The agent rightly did not escalate, the debtor firmly refused to pay ("not
+  paying a single rupee"), and the judge marked escalation wrong with no quote. v4's 13/14
+  is that error on an already-paid call.
+- **Cost and latency:** v4 uses 2.3x v1's agent tokens per call (v3 1.8x); v4's figure
+  includes the self-check call. Latency counts only uncached turns: v3 3.3 s and v4 4.0 s
+  mean per agent turn, over 17 and 60 turns. v1 and v2 have no figure because runs #4 and
+  #5 replayed cached conversations to re-judge them. Free-tier API latency varies with
+  load, and the runs were made at different times, so this is not a controlled comparison.
 
 | Version | What changes |
 |---|---|
@@ -84,50 +109,107 @@ Code owns numbers and dates; the judge owns language and judgment.
 
 The judge never sees the persona, expected outcome or code-check results. Agent,
 debtor simulator and judge all use `gemini-3.5-flash-lite` (a free-tier constraint),
-so the judge is validated against hand labels and a second model rather than trusted.
+so the judge is validated against hand labels and a second model (`gemini-3.6-flash`,
+partial) rather than trusted.
 
-## Key findings so far
+## Key findings
 
-- **A voice rule fixed identity verification (50% → 100%).** v2 has no identity
+- **A voice rule fixed identity verification (43% → 93%).** v2 has no identity
   rule. v1 asked "am I speaking with...?" and stated the amount in the same breath;
   v2's "short turn, then stop" rule leaves room for an answer. Wilson intervals
-  27-73% vs 78-100% don't overlap. The cause is a hypothesis; v3 adds an explicit rule.
+  21-67% vs 69-99% don't overlap. The cause is a hypothesis; v3 adds an explicit rule
+  (14/14). v2's one miss looks like a judge error: its quote was the debtor's words.
 - **Clean speech, invented amount (call #3, disputes amount).** v2 sounded right and
   verified identity, then said "thirty-five thousand rupees" before calling
   `get_invoice`. The real figure is ₹1,70,300. Voice metrics can't see this; the judge
   and fact checker flagged it.
-- **The judge is weak at date arithmetic; code is strong there.** The judge failed two
+- **The judge is weak at date arithmetic; code is strong there.** Judge j1 failed two
   promises exactly on day 30 (allowed), and missed an installment 69 days out (limit 60)
   that the code check caught. One "evidence" quote was policy text, not speech. This
   led to judge j2: explicit cutoff dates, inclusive boundaries, transcript-only quotes.
-  **TODO:** whether j2 removes these errors.
+- **v4 had no agent failures** on any judge criterion, outcome check or policy check,
+  apart from the known j2 escalation error. What's left is 4 long-turn lint flags and
+  4 unverified facts. The facts are installment splits and a day-30 date, kinds that were
+  correct in the v1 audit; v4's were not audited.
+
+<details>
+<summary>More findings</summary>
+
+- **j1 vs j2 on identical conversations.** Runs #4 and #5 replayed v1's and v2's 28
+  conversations word for word and re-judged them with j2. 9 verdicts changed. On audit,
+  j2 was right on 6: it fixed both day-30 errors and caught the 69-day installment. j1 was
+  right on 3. One of those 3 is identity, where j2 quoted the debtor. The other two show a
+  new j2 error: escalation marked wrong with no quote when a debtor firmly refuses to pay
+  but no trigger exists. j2 still made a date error on v3: it failed a promise 8 days out,
+  probably counting from the due date, and the code checks were right. I froze j2 instead
+  of tuning it further. More edits would tune the judge on the same calls it is graded on,
+  so I report j2 with its known errors and measure it against blind hand labels.
+- **v3 stalling call: grounding is only as good as the knowledge base.** v3 asked for a
+  payment date once, then booked a callback and logged nothing. Outcome `no_resolution`,
+  and the judge agreed. It searched the policy 4 times in a row, twice for "callback",
+  but the policy has no callback rule. On the same scenario, v2 offered the latest
+  allowed date (day 30) and got a promise. That is one example: the simulated debtor was
+  also more stubborn in v3's call.
 - **Retrieval breaks on paraphrase.** Hand-written BM25Plus found the right policy
   section at top-1 for 5/6 tuning queries but only **1/5 held-out** paraphrases
   ("swearing" vs "abusive"). So safety-critical rules go in the prompt; the misses are
   kept as strict-xfail tests.
-- **Ceiling effect.** The outcome check passes 14/14 for v1 and v2, so on this scenario
-  set gains show up in voice and identity, not outcomes. The debtors may be too easy.
+- **Ceiling effect.** The outcome check passes 14/14 for v1, v2 and v4 (13/14 for v3,
+  the stalling call), so on this scenario set gains show up in voice and identity, not
+  outcomes. The debtors may be too easy.
 - **Code over-flags facts.** All 17 of v1's "unverified facts" were correct on audit
   (computed installment splits, relative dates), so they're treated as "needs review".
+
+</details>
 
 ## Judge validation
 
 Built: a blind labelling CLI (shows only what the judge saw, no version or persona),
 per-criterion % agreement and Cohen's kappa (kappa because rare events like
 hallucination make raw agreement look good by chance), tone compared by exact,
-within-1 and mean difference, and a cross-judge check that re-judges the same 20 calls
+within-1 and mean difference, and a cross-judge check that re-judges the same calls
 with a second model (stored separately, never as the main verdict).
 
-**TODO:** results (20 hand-labelled calls, judge j2; second model: TODO)
+Main judge: j2 (`gemini-3.5-flash-lite`) on all 20 hand-labelled calls, sampled across
+v1-v4. **Second judge: `gemini-3.6-flash` on only 10 of the 20 so far (partial: its
+daily quota ran out; to be completed).** The columns cover different call sets, so
+compare within a column, not across.
 
-| Criterion | Judge vs me (agree / κ) | Second judge vs me | Judge vs second judge |
+| Criterion | Main judge vs me (n=20) | Second judge vs me (n=10, partial) | Main vs second judge (n=10, partial) |
 |---|---|---|---|
-| Task success | TODO | TODO | TODO |
-| Hallucination | TODO | TODO | TODO |
-| Compliance | TODO | TODO | TODO |
-| Identity verified | TODO | TODO | TODO |
-| Pressure | TODO | TODO | TODO |
-| Tone (exact / within 1 / mean diff) | TODO | TODO | TODO |
+| Task success | 95% · κ 0.00 | 90% · κ 0.00 | 100% · κ 1.00 |
+| Hallucination | 100% · κ 1.00 | 100% · κ n/a | 100% · κ n/a |
+| Compliance | 95% · κ 0.64 | 70% · κ 0.40 | 60% · κ 0.20 |
+| Escalation correct | 90% · κ 0.00 | 100% · κ n/a | 100% · κ n/a |
+| Identity verified | 85% · κ 0.57 | 100% · κ 1.00 | 80% · κ 0.52 |
+| Pressure | 90% · κ 0.00 | 80% · κ 0.00 | 100% · κ n/a |
+| Tone (exact / within 1 / mean diff) | 95% / 95% / +0.1 | 90% / 90% / +0.2 | 100% / 100% / 0.0 |
+
+κ n/a: both raters gave every call the same answer, so kappa is undefined.
+Mean diff is the judge minus me (or the second minus the main judge).
+
+- **Why κ is 0 at 90-95% agreement:** failures are rare (0-2 in 20 calls). For task
+  success, escalation and pressure, one of us never used the rare answer at all, and
+  then kappa is exactly 0 however high raw agreement is. At n=20 kappa is unstable, so
+  I report both numbers and read the disagreements.
+- **Escalation disagreements confirm the j2 bug.** Both are the firm-refusal error found
+  in the audit (a v2 disputed-amount call and the v4 already-paid call). The blind labels
+  reached the same conclusion independently.
+- **The judge is lenient on pressure and tone.** I marked pressure on 2 calls (v1
+  stalling, v3 angry); neither judge did. On the v1 call I gave tone 3 and the judge gave
+  5. The main judge gave tone 5 and no pressure on every call in all four runs.
+- **Human labels aren't perfect either.** On a v2 installment plan whose last part is
+  10 January (69 days out, limit 60), I labelled task success as a pass and the judge
+  failed it. The code policy check agrees with the judge, so my label was probably wrong.
+  I did not relabel after seeing judge disagreements, to avoid biasing agreement upward.
+- **Second judge:** on its 10 calls it matched the main judge on task success,
+  hallucination, escalation, pressure and tone. It flagged 4 compliance violations the
+  main judge didn't; I agreed with 1 of them. A newer model is not automatically a
+  better judge.
+- **Labelling process:** one annotator (me). I had seen some of these calls and their
+  judge verdicts in the dashboard before labelling, so the labels aren't fully
+  independent. After clarifying one definition (pressure is about the agent, not the
+  debtor), I did one review pass and relabelled 7 calls.
 
 ## Dashboard
 
@@ -135,7 +217,19 @@ with a second model (stored separately, never as the main verdict).
 - **Compare:** bar charts with 95% CI whiskers, and a "key changes" strip that calls a change "clear" only when intervals don't overlap.
 - **Transcript viewer:** chat view with tool calls, lint problems marked on the exact words, judge evidence highlighted in place, a switcher to the same scenario in another run, and browser TTS playback so you can hear v1's "₹" and digits.
 
-**TODO:** screenshots: `docs/screenshots/runs.png`, `compare.png`, `transcript.png`
+<img src="docs/screenshots/runs.png" width="800" alt="Runs table with the final j2 runs and headline rates">
+
+*Runs (static Pages snapshot): the final j2 runs #4-#7 with headline rates.*
+
+<img src="docs/screenshots/compare.png" width="480" alt="Higher-is-better bar chart for v1 and v4 with 95% CI whiskers">
+
+*Higher-is-better rates for v1 vs v4, with 95% Wilson whiskers and k/n below.*
+
+<img src="docs/screenshots/transcript.png" width="800" alt="Transcript of v2 call 3 with the judge's hallucination quote highlighted">
+
+*v2 call #3: the agent states an amount before calling `get_invoice`; clicking the
+judge's Hallucination verdict highlights its quote in the transcript. (Escalation
+"No" here is the known j2 error.)*
 
 ## Engineering details
 
@@ -144,7 +238,7 @@ with a second model (stored separately, never as the main verdict).
 - **Wilson confidence intervals** on every rate, overall and per persona.
 - **Blind hand labelling** and a read-only database for the API and validation tools.
 - **Summarizer cross-check:** logged tool actions vs an LLM's reading of the dialogue alone; disagreements are recorded, not hidden.
-- **Tests:** 455 backend (plus 7 strict xfails for known limits) and 46 frontend. **TODO:** refresh counts. Unit tests never call the real API.
+- **Tests:** 466 backend (plus 7 strict xfails for known limits) and 50 frontend. Unit tests never call the real API.
 - **CI:** GitHub Actions runs pytest, vitest, typecheck and build on every push.
 - **Static dashboard:** a second workflow turns the committed `data/results/` export into JSON files shaped exactly like the API responses (a test checks they are equal) and deploys a read-only build to GitHub Pages.
 
@@ -154,6 +248,7 @@ with a second model (stored separately, never as the main verdict).
 - **Hybrid retrieval** (BM25 + embeddings, Reciprocal Rank Fusion), measured on a fresh held-out set.
 - **A stronger, independent judge model** from outside the agent's model family.
 - **Real audio:** TTS + ASR in the loop, with latency testing.
+- **Language matching** as a policy requirement (reply in the debtor's language, e.g. Hinglish) with a check that measures it.
 
 ## Limitations
 
@@ -163,6 +258,9 @@ with a second model (stored separately, never as the main verdict).
 - **Free tier:** daily quotas decided the model choice and the sample size.
 - **Text only:** no real audio, ASR, telephony or voice latency. TTS is the browser's Web Speech API.
 - **Keyword retrieval:** BM25 misses paraphrases; the fact checker can't do arithmetic or resolve relative dates.
+- **Judge with known errors:** j2 marks escalation wrong on firm refusals and still slips on some date rules; it was frozen, not fixed, so these errors are in the numbers above.
+- **Hand labels:** one annotator, 20 calls, not fully blind (I had seen some outputs and verdicts), one review pass after clarifying a definition. The second judge covers only 10 of the 20 calls so far.
+- **Language matching not measured:** Hinglish debtors get English replies. The policy only says the agent *may* mirror Hinglish, so this isn't a violation, and no metric checks it.
 
 ## How to run
 
