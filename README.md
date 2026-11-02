@@ -129,7 +129,11 @@ rather than trusted.
 - **v4 had no agent failures** on any judge criterion, outcome check or policy check,
   apart from the known j2 escalation error. What's left is 4 long-turn lint flags and
   4 unverified facts. The facts are installment splits and a day-30 date, kinds that were
-  correct in the v1 audit; v4's were not audited.
+  correct in the v1 audit; v4's were not audited. An audit of all 17 self-check
+  revisions found more than half (11 of 17) had muddled or wrong reasoning (several
+  misread the identity rule, two misread date limits); it often reaches a reasonable
+  rewrite for a shaky reason, likely because the checker is the same small model as
+  the agent.
 
 <details>
 <summary>More findings</summary>

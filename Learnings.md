@@ -180,6 +180,26 @@
   daily reset. Lesson: on tiny-quota models, retries are expensive; cap
   retries lower.
 
+## v4 self-check audit (17 revisions in run #7)
+- The check reviewed 49 of 63 agent turns and revised 17.
+- Clear, correct fixes: call 2 turn 6 ("within the next month" -> "within
+  the next thirty days", since next month can pass day 30); call 2 turn 2
+  and call 13 turn 2 (held back invoice details until get_invoice was
+  called).
+- More than half (11 of 17) had muddled or wrong reasons: several misread
+  the identity rule (flagged details right after the debtor confirmed),
+  two misread date limits (a 60-day installment plan, which is allowed;
+  "end of this month" read as next month), and five issue lists show the
+  model thinking aloud ("Wait, ..."). Often a reasonable rewrite for a
+  shaky reason.
+- It also approved a 3-sentence turn the linter flags (call 3, turn 2:
+  revised=false, no issues).
+- Likely cause: the checker is the same small model as the agent
+  (gemini-3.5-flash-lite).
+- So v4's gains (within noise anyway) can't be credited cleanly to
+  self-checking.
+- Next experiment: a stronger checker model.
+
 ## Gap found while labelling: language matching
 - Hinglish debtors get English replies. The policy only says the agent
   MAY mirror Hinglish, so it isn't a violation, and no metric measures
