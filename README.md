@@ -109,8 +109,8 @@ Code owns numbers and dates; the judge owns language and judgment.
 
 The judge never sees the persona, expected outcome or code-check results. Agent,
 debtor simulator and judge all use `gemini-3.5-flash-lite` (a free-tier constraint),
-so the judge is validated against hand labels and a second model (`gemini-3.6-flash`,
-partial) rather than trusted.
+so the judge is validated against hand labels and a second model (`gemini-3.6-flash`)
+rather than trusted.
 
 ## Key findings
 
@@ -170,20 +170,19 @@ hallucination make raw agreement look good by chance), tone compared by exact,
 within-1 and mean difference, and a cross-judge check that re-judges the same calls
 with a second model (stored separately, never as the main verdict).
 
-Main judge: j2 (`gemini-3.5-flash-lite`) on all 20 hand-labelled calls, sampled across
-v1-v4. **Second judge: `gemini-3.6-flash` on only 10 of the 20 so far (partial: its
-daily quota ran out; to be completed).** The columns cover different call sets, so
-compare within a column, not across.
+Main judge: j2 on `gemini-3.5-flash-lite`. Second judge: the same j2 rubric on
+`gemini-3.6-flash` (a Flash model, not Flash Lite). Both judged all 20 hand-labelled
+calls, sampled across v1-v4.
 
-| Criterion | Main judge vs me (n=20) | Second judge vs me (n=10, partial) | Main vs second judge (n=10, partial) |
+| Criterion | Main judge vs me | Second judge vs me | Main vs second judge |
 |---|---|---|---|
-| Task success | 95% · κ 0.00 | 90% · κ 0.00 | 100% · κ 1.00 |
-| Hallucination | 100% · κ 1.00 | 100% · κ n/a | 100% · κ n/a |
-| Compliance | 95% · κ 0.64 | 70% · κ 0.40 | 60% · κ 0.20 |
-| Escalation correct | 90% · κ 0.00 | 100% · κ n/a | 100% · κ n/a |
-| Identity verified | 85% · κ 0.57 | 100% · κ 1.00 | 80% · κ 0.52 |
-| Pressure | 90% · κ 0.00 | 80% · κ 0.00 | 100% · κ n/a |
-| Tone (exact / within 1 / mean diff) | 95% / 95% / +0.1 | 90% / 90% / +0.2 | 100% / 100% / 0.0 |
+| Task success | 95% · κ 0.00 | 95% · κ 0.00 | 100% · κ 1.00 |
+| Hallucination | 100% · κ 1.00 | 100% · κ 1.00 | 100% · κ 1.00 |
+| Compliance | 95% · κ 0.64 | 70% · κ 0.29 | 65% · κ 0.15 |
+| Escalation correct | 90% · κ 0.00 | 100% · κ n/a | 90% · κ 0.00 |
+| Identity verified | 85% · κ 0.57 | 95% · κ 0.86 | 90% · κ 0.73 |
+| Pressure | 90% · κ 0.00 | 90% · κ 0.00 | 100% · κ n/a |
+| Tone (exact / within 1 / mean diff) | 95% / 95% / +0.1 | 90% / 95% / +0.05 | 95% / 100% / −0.05 |
 
 κ n/a: both raters gave every call the same answer, so kappa is undefined.
 Mean diff is the judge minus me (or the second minus the main judge).
@@ -192,20 +191,34 @@ Mean diff is the judge minus me (or the second minus the main judge).
   success, escalation and pressure, one of us never used the rare answer at all, and
   then kappa is exactly 0 however high raw agreement is. At n=20 kappa is unstable, so
   I report both numbers and read the disagreements.
-- **Escalation disagreements confirm the j2 bug.** Both are the firm-refusal error found
-  in the audit (a v2 disputed-amount call and the v4 already-paid call). The blind labels
-  reached the same conclusion independently.
-- **The judge is lenient on pressure and tone.** I marked pressure on 2 calls (v1
-  stalling, v3 angry); neither judge did. On the v1 call I gave tone 3 and the judge gave
-  5. The main judge gave tone 5 and no pressure on every call in all four runs.
+- **Escalation disagreements confirm the j2 bug, and it is model-specific.** Both are
+  the firm-refusal error found in the audit (a v2 disputed-amount call and the v4
+  already-paid call). The blind labels reached the same conclusion independently. With
+  the same rubric, the second model marked escalation correct on all 20 calls,
+  including those two, so the error comes from the main judge's model, not the rubric.
+  Two calls is a small basis for that, but both point the same way.
+- **The second model is better on identity** (95% vs 85% agreement with me). Its one
+  disagreement is a v1 call that stated the amount in its first turn, which I labelled
+  as verified; the judges are probably right there.
+- **Compliance disagreements are mostly a rubric overlap.** The second judge flagged 7
+  compliance violations the main judge didn't; I agreed with 1. In 5 of the 7 (all v1),
+  its evidence quote is the agent stating an amount before the contact confirmed who
+  they were. The j2 rubric lists "discussed amounts with someone not confirmed as the
+  contact" under compliance as well as under identity. So the second judge counted the
+  same mistake under both criteria, while the main judge and I mostly counted it only
+  under identity. That is a fair literal reading of my rubric, and the rubric should
+  separate the two. In the other 2 (both v2), the quote is an opening line with no
+  amount ("…for Arjun Reddy. Am I speaking with the right person?"). The verdict gives
+  no reason. One possibility is that these openers don't name the debtor's company,
+  which the identity policy asks for; I haven't confirmed that.
+- **Both judges are lenient on pressure and tone.** I marked pressure on 2 calls (v1
+  stalling, v3 angry); neither judge did, and the second judge flagged no pressure on any
+  of the 20. On the v1 call I gave tone 3 and both judges gave 5. The main judge gave
+  tone 5 and no pressure on every call in all four runs.
 - **Human labels aren't perfect either.** On a v2 installment plan whose last part is
   10 January (69 days out, limit 60), I labelled task success as a pass and the judge
   failed it. The code policy check agrees with the judge, so my label was probably wrong.
   I did not relabel after seeing judge disagreements, to avoid biasing agreement upward.
-- **Second judge:** on its 10 calls it matched the main judge on task success,
-  hallucination, escalation, pressure and tone. It flagged 4 compliance violations the
-  main judge didn't; I agreed with 1 of them. A newer model is not automatically a
-  better judge.
 - **Labelling process:** one annotator (me). I had seen some of these calls and their
   judge verdicts in the dashboard before labelling, so the labels aren't fully
   independent. I did one review pass, before computing any agreement numbers: it
@@ -248,6 +261,7 @@ judge's Hallucination verdict highlights its quote in the transcript. (Escalatio
 - **Hard scenario set** to break the ceiling: discount demands, the wrong person answering, payment claims without a UTR.
 - **Hybrid retrieval** (BM25 + embeddings, Reciprocal Rank Fusion), measured on a fresh held-out set.
 - **A stronger, independent judge model** from outside the agent's model family.
+- **Separate judge criteria:** separate the compliance and identity criteria in the judge rubric (they currently overlap, so one mistake can be scored twice).
 - **Real audio:** TTS + ASR in the loop, with latency testing.
 - **Language matching** as a policy requirement (reply in the debtor's language, e.g. Hinglish) with a check that measures it.
 
@@ -260,7 +274,8 @@ judge's Hallucination verdict highlights its quote in the transcript. (Escalatio
 - **Text only:** no real audio, ASR, telephony or voice latency. TTS is the browser's Web Speech API.
 - **Keyword retrieval:** BM25 misses paraphrases; the fact checker can't do arithmetic or resolve relative dates.
 - **Judge with known errors:** j2 marks escalation wrong on firm refusals and still slips on some date rules; it was frozen, not fixed, so these errors are in the numbers above.
-- **Hand labels:** one annotator, 20 calls, not fully blind (I had seen some outputs and verdicts), one review pass (pressure definition, installment rules) before any agreement numbers. The second judge covers only 10 of the 20 calls so far.
+- **Hand labels:** one annotator, 20 calls, not fully blind (I had seen some outputs and verdicts), one review pass (pressure definition, installment rules) before any agreement numbers.
+- **Overlapping judge criteria:** the j2 rubric counts "discussed amounts before the contact was confirmed" under both compliance and identity, so one mistake can be scored twice, depending on the judge model.
 - **Language matching not measured:** Hinglish debtors get English replies. The policy only says the agent *may* mirror Hinglish, so this isn't a violation, and no metric checks it.
 
 ## How to run

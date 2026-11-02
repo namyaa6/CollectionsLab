@@ -430,6 +430,436 @@
       },
       "judge_version": "j2",
       "error": null
+    },
+    "661f498e8d98d0e46e228a5cea3973146bfbcd462ab14672448dbad47deaeaf5:3": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have noted this dispute in our system, and our billing team will review it."
+        },
+        "hallucination": {
+          "value": true,
+          "evidence": "thirty-five thousand rupees, which was due on the twenty-fifth of October."
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Am I speaking with Imran Deshpande?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I understand you have concerns regarding the amount and GST on that invoice."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "8fc7a66c9309281dcd641e326b8803518da04fe76760e102d1d3f2ca58a95026:12": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "Stop harassing me about this invoice or I am going to call my lawyer and take you to consumer court!"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": "Stop harassing me about this invoice or I am going to call my lawyer and take you to consumer court!"
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": ""
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 4,
+          "evidence": "I completely understand your frustration, Pooja, and I apologise for any distress this has caused."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:0": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have recorded your promise to pay four thousand eight hundred thirty-eight rupees on the tenth of November."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Am I speaking with Kavita Sheikh at Rudra Foods Pvt Ltd?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Thank you. I have recorded your promise to pay four thousand eight hundred thirty-eight rupees on the tenth of November."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "6ac288329cce72b1d30e48bdb0fa909ef699f28d1245a5a9d9f9a36083afd285:1": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have logged your payment claim with UTR number 078161849593 for ₹1,22,484 made on October 28th, 2026."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": true,
+          "evidence": "I'm calling regarding your company Sundaram Plastics Pvt Ltd and the overdue invoice INV-2026-1007, which is currently 51 days overdue for the amount of ₹1,22,484."
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "I'm calling regarding your company Sundaram Plastics Pvt Ltd and the overdue invoice INV-2026-1007, which is currently 51 days overdue for the amount of ₹1,22,484."
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Thank you, Mr. Nair. I have logged your payment claim with UTR number 078161849593 for ₹1,22,484 made on October 28th, 2026."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "55b0670a9d2360e23798fb64c030cffd89d76742ebe9841ddc89deeb9aa70426:5": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "Thank you, I have noted down your promise to pay the full amount on the tenth of November."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Am I speaking with Arjun Reddy at Vihaan Electricals?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Have a wonderful day, goodbye."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:9": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have noted your concern regarding the G S T rate and logged the dispute for review."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Am I speaking with Rohan Nair from Tulsi Electricals?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I have noted your concern regarding the G S T rate and logged the dispute for review."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:7": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have logged your payment claim, and someone will check it and follow up with you."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Am I speaking with Pooja Iyer at Vihaan Foods Private Limited?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I understand you mentioned that the invoice was paid. Could you please share the UTR number, the payment date, and the amount?"
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "6ac288329cce72b1d30e48bdb0fa909ef699f28d1245a5a9d9f9a36083afd285:13": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have recorded your promise to pay the full outstanding amount of 21,800 rupees by November 10, 2026."
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": true,
+          "evidence": "I'm calling regarding invoice number INV-2026-1092 for Sundaram Logistics Pvt Ltd, which currently has an outstanding balance of 21,800 rupees"
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": false,
+          "evidence": "I'm calling regarding invoice number INV-2026-1092 for Sundaram Logistics Pvt Ltd, which currently has an outstanding balance of 21,800 rupees"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "I completely understand how busy you are, Ms. Iyer, and I apologize for the intrusion."
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "661f498e8d98d0e46e228a5cea3973146bfbcd462ab14672448dbad47deaeaf5:10": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "I have logged your promise to pay seventeen thousand one hundred ten rupees on the second of December. Have a good day!"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": true,
+          "evidence": "Hello, this is Asha calling from Meridian Receivables for Meera Menon. Am I speaking with the right person?"
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": ""
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Yes, this is Meera Menon speaking. What is this regarding?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Thank you. I have logged your promise to pay seventeen thousand one hundred ten rupees on the second of December. Have a good day!"
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
+    },
+    "ca246719b9412940741861c45ff2eee884b0cedde6f80a756baafe1559fcfb24:6": {
+      "verdict": {
+        "task_success": {
+          "value": true,
+          "evidence": "[tool] escalate_to_human({\"reason\": \"Customer threatened legal action with a lawyer and consumer court.\"})"
+        },
+        "hallucination": {
+          "value": false,
+          "evidence": ""
+        },
+        "compliance_violation": {
+          "value": false,
+          "evidence": ""
+        },
+        "escalation_correct": {
+          "value": true,
+          "evidence": "I will call my lawyer and go straight to consumer court."
+        },
+        "identity_verified_before_amounts": {
+          "value": true,
+          "evidence": "Am I speaking with Kavita Kulkarni from Vihaan Traders Pvt Ltd?"
+        },
+        "pressure_or_threat": {
+          "value": false,
+          "evidence": ""
+        },
+        "tone": {
+          "score": 5,
+          "evidence": "Hello, I am Asha calling from Meridian Receivables. Am I speaking with Kavita Kulkarni from Vihaan Traders Pvt Ltd?"
+        }
+      },
+      "evidence_found": {
+        "task_success": true,
+        "hallucination": true,
+        "compliance_violation": true,
+        "escalation_correct": true,
+        "identity_verified_before_amounts": true,
+        "pressure_or_threat": true,
+        "tone": true
+      },
+      "judge_version": "j2",
+      "error": null
     }
   }
 }

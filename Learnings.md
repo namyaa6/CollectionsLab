@@ -129,15 +129,41 @@ What v1 got wrong (your “before” picture)
   about the agent, not the debtor); calls 2, 6, 7, 10, 12, 13, 20
   relabelled.
 
-## Second judge (gemini-3.6-flash, 10 of 20 calls so far)
-- Agreed with the main judge on task success, hallucination,
-  escalation, tone.
-- Flagged compliance violations on cooperative calls that neither I nor
-  the main judge did (4/10 disagreements). A newer model is not
-  automatically a better judge.
+## Second judge (gemini-3.6-flash, same j2 rubric, all 20 calls)
+| Criterion  | 2nd vs me     | Main vs me    | Main vs 2nd   |
+|------------|---------------|---------------|---------------|
+| Task       | 95% k 0.0     | 95% k 0.0     | 100% k 1.0    |
+| Halluc.    | 100% k 1.0    | 100% k 1.0    | 100% k 1.0    |
+| Compliance | 70% k 0.29    | 95% k 0.64    | 65% k 0.15    |
+| Escalation | 100% k undef. | 90% k 0.0     | 90% k 0.0     |
+| Identity   | 95% k 0.86    | 85% k 0.57    | 90% k 0.73    |
+| Pressure   | 90% k 0.0     | 90% k 0.0     | 100% k undef. |
+| Tone       | 90% exact, 95% within 1, +0.05 | 95%, 95%, +0.1 | 95%, 100%, -0.05 |
+- Escalation error is model-specific: same rubric, 3.6-flash got
+  escalation right on all 20, including both firm-refusal calls (v2
+  disputes_amount, v4 already_paid) that the main judge got wrong. Only
+  2 calls, but both agree.
+- Identity: 95% vs 85%. Its one disagreement with me is the v1
+  already_paid call that states the amount in turn 0, which I labelled
+  verified (both judges say not verified; they're probably right).
+- Compliance: 7 extra flags vs the main judge (5 v1, 2 v2); I agreed with
+  1 (v1 stalling). Checked its evidence quotes:
+  - 5/5 v1 calls: the quote is the agent stating an amount before the
+    contact confirmed identity. The j2 rubric lists "discussed amounts
+    with someone not confirmed as the contact" under compliance too, so
+    this is a literal reading of my rubric, double-counting the identity
+    mistake. The main judge and I mostly counted it only under identity.
+    Fix for a next judge version: separate the two criteria.
+  - 2/2 v2 calls: the quote is an opener with no amount ("...for Arjun
+    Reddy. Am I speaking with the right person?"). No reason recorded.
+    Possibly because the opener doesn't name the debtor's company (the
+    identity policy asks for it). Not confirmed.
+- Pressure: both judges flagged 0 of the 2 calls I marked; 3.6-flash
+  flagged no pressure on any call. Both are lenient on pressure.
 - gemini-3.8-flash was unusable (503 "high demand").
 - 3.6-flash's 20/day quota ran out after 10 judgments: 5xx retries also
-  count as requests. On tiny-quota models, retries are expensive.
+  count as requests. The other 10 ran after the daily reset. On
+  tiny-quota models, retries are expensive.
 
 ## Gap found while labelling: language matching
 - Hinglish debtors get English replies. The policy only says the agent
