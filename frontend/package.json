@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "build:static": "tsc --noEmit && vite build --mode static",
+    "build:static": "tsc --noEmit && vite build --mode static && node scripts/copy-og-image.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "preview": "vite preview"

@@ -5,7 +5,7 @@ import { GOOD_VALUE, num, personaLabel, promptDescription, words } from "../form
 import { href, navigate } from "../route";
 import { useApi } from "../useApi";
 import "./Calls.css";
-import { StatusPill } from "./RunsScreen";
+import { StatusPill } from "./RunsTable";
 import { ErrorPanel, Loading } from "./StatusView";
 
 const FLAG_CHIPS: { key: JudgeBool; label: string }[] = [

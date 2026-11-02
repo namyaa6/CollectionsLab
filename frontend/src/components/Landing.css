@@ -1,0 +1,88 @@
+/* Runs landing page: hero, stats, start-here cards, version strip, table extras, footer.
+   Loaded before styles.css, so overrides of shared classes use a more specific selector. */
+
+/* Hero */
+.hero { margin: -8px 0 12px; }
+.hero-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.hero-title { font-size: 26px; }
+.hero-sub { margin: 2px 0 0; font-size: 15px; color: var(--ink-2); }
+.hero-side { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.byline { margin: 0; font-size: 12px; color: var(--ink-3); }
+.hero-intro { margin: 8px 0 0; max-width: 900px; color: var(--ink-2); }
+
+/* Headline stats */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 14px; }
+.stat { height: 100%; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 8px 14px; }
+.stat-label { font-size: 12px; font-weight: 500; color: var(--ink-2); }
+.stat-value { font-size: 21px; font-weight: 650; letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums; margin: 2px 0; }
+.stat-value .arrow { color: var(--ink-3); font-weight: 400; }
+.stat-detail { font-size: 12px; color: var(--ink-3); line-height: 1.4; }
+
+/* Start here */
+.start-here { margin: 0 0 12px; }
+.section-label { font-size: 12px; font-weight: 600; color: var(--ink-3); text-transform: uppercase;
+  letter-spacing: 0.04em; margin-bottom: 4px; }
+.start-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.start-card { display: flex; flex-direction: column; gap: 2px; text-align: left; font: inherit;
+  color: var(--ink-1); text-decoration: none; cursor: pointer; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 7px 14px; transition: border-color 0.1s; }
+.start-card:hover { border-color: var(--accent); }
+.start-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.start-title { font-weight: 600; color: var(--accent-ink); }
+.start-desc { font-size: 13px; color: var(--ink-2); line-height: 1.4; }
+
+/* Version strip */
+.version-strip { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 10px; padding: 0;
+  margin: 0 0 14px; font-size: 13px; color: var(--ink-2); }
+.version-strip li + li::before { content: "→"; color: var(--ink-3); margin-right: 10px; }
+
+/* Table heading, compare hint */
+.page-head.runs-head { margin-bottom: 10px; }
+.runs-head .actions { align-items: flex-start; }
+.runs-head .subtitle { margin-top: 2px; }
+.compare-action { display: flex; flex-direction: column; align-items: flex-end; }
+.hint { font-size: 11px; color: var(--ink-3); margin-top: 3px; }
+
+/* Best / worst cells: tint plus an arrow, tooltip and screen-reader text */
+table.runs td.tint-best { background: rgba(10, 125, 10, 0.07); }
+table.runs td.tint-worst { background: rgba(180, 45, 45, 0.07); }
+.tint-mark { font-size: 10px; }
+.tint-best .tint-mark { color: var(--good); }
+.tint-worst .tint-mark { color: var(--bad); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* Keep absolutely positioned screen-reader text inside the scrolling table */
+.runs-panel .table-wrap { position: relative; }
+
+/* How to read */
+.how-to-read { border-top: 1px solid var(--border); font-size: 12px; color: var(--ink-2); }
+.how-to-read summary { cursor: pointer; padding: 9px 16px; color: var(--ink-3); }
+.how-to-read ul { margin: 0 16px 12px; padding-left: 18px; }
+.how-to-read li { margin-bottom: 4px; }
+.how-to-read p { margin: 0 16px 12px; }
+
+/* Footer */
+.footer { border-top: 1px solid var(--border); background: var(--surface); }
+.footer-inner { max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap;
+  justify-content: space-between; gap: 8px 24px; font-size: 12px; color: var(--ink-3); }
+.footer-inner nav { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.footer-inner p { margin: 0; }
+
+@media (max-width: 900px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .start-cards { grid-template-columns: 1fr; }
+  .compare-action { align-items: flex-start; }
+  .page-head.runs-head .actions { flex-wrap: wrap; }
+}
+
+@media (max-width: 560px) {
+  .app .page { padding: 20px 16px 48px; }
+  .app .topbar-inner { padding: 0 16px; gap: 16px; }
+  .hero-head, .hero-side { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .stat-value { font-size: 19px; }
+  .footer-inner { padding: 16px; }
+}

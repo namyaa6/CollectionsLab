@@ -2,6 +2,8 @@ import { useState } from "react";
 import CallScreen from "./components/CallScreen";
 import CallsScreen from "./components/CallsScreen";
 import CompareScreen from "./components/CompareScreen";
+import Footer from "./components/Footer";
+import "./components/Landing.css";
 import RunsScreen from "./components/RunsScreen";
 import StaticBanner from "./components/StaticBanner";
 import { href, navigate, useHashRoute } from "./route";
@@ -16,6 +18,11 @@ export default function App() {
 
   function toggle(id: number) {
     setSelected((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
+  }
+
+  function compareRuns(ids: number[]) {
+    setSelected(ids);
+    navigate(href.compare);
   }
 
   const runsTabActive = route.name !== "compare";
@@ -52,6 +59,7 @@ export default function App() {
             onToggle={toggle}
             onClear={() => setSelected([])}
             onCompare={() => navigate(href.compare)}
+            onCompareRuns={compareRuns}
           />
         )}
         {route.name === "compare" &&
@@ -73,6 +81,7 @@ export default function App() {
           />
         )}
       </main>
+      <Footer />
     </div>
   );
 }

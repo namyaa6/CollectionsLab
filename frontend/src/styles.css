@@ -108,7 +108,8 @@ tbody tr:last-child td { border-bottom: 0; }
 .check input { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
 table.runs tbody tr { cursor: pointer; transition: background 0.1s; }
 table.runs tbody tr:hover { background: var(--hover); }
-table.runs tbody tr.selected { background: var(--accent-wash); }
+/* Selection: checkbox plus a left accent bar, no row background, so cell tints stay pure */
+table.runs tbody tr.selected td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
 table.runs td.num[title] { cursor: help; }
 /* Runs table: tighter cells so it fits the 1240px page; long rate headers wrap */
 table.runs th, table.runs td { padding-left: 8px; padding-right: 8px; }
@@ -138,8 +139,8 @@ table.runs tbody tr { background: var(--surface); }
 .warnings ul { margin: 4px 0 0; padding-left: 18px; color: #5c3c00; }
 
 /* Static (GitHub Pages) snapshot banner, under the top bar */
-.static-banner { background: var(--accent-wash); color: var(--accent-ink); border-bottom: 1px solid var(--border);
-  text-align: center; font-size: 13px; padding: 8px 24px; }
+.static-banner { background: var(--surface); color: var(--ink-3); border-bottom: 1px solid var(--border);
+  text-align: center; font-size: 12px; padding: 6px 16px; }
 
 /* Compare: run cards */
 .run-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-bottom: 20px; }

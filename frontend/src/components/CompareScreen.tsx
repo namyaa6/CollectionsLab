@@ -8,7 +8,7 @@ import KeyChanges from "./KeyChanges";
 import LintChart from "./LintChart";
 import PersonaTable from "./PersonaTable";
 import RateChart from "./RateChart";
-import { StatusPill } from "./RunsScreen";
+import { StatusPill } from "./RunsTable";
 import type { Series } from "./series";
 import { ErrorPanel, Loading } from "./StatusView";
 import Warnings from "./Warnings";

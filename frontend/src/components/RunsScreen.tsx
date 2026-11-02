@@ -1,94 +1,57 @@
-import { getRuns, MAX_COMPARE, type RateName, type RunStatus, type RunSummary } from "../api";
-import { num, pct, promptDescription, rateDetail, RATE_LABELS } from "../format";
-import { href } from "../route";
+import { getRuns, MAX_COMPARE } from "../api";
+import { pickRun } from "../landing";
 import { useApi } from "../useApi";
+import Hero, { useIntroPreference } from "./Hero";
+import HowToRead from "./HowToRead";
+import RunsTable from "./RunsTable";
+import StartHere from "./StartHere";
+import StatsStrip from "./StatsStrip";
 import { ErrorPanel, Loading } from "./StatusView";
+import VersionStrip from "./VersionStrip";
 
 interface Props {
   selected: number[];
   onToggle: (id: number) => void;
   onClear: () => void;
   onCompare: () => void;
+  /** Select exactly these runs and open Compare. */
+  onCompareRuns: (ids: number[]) => void;
 }
 
-const COLUMNS: RateName[] = [
-  "identity_verified", "judge_task_success", "hallucination", "compliance_violation", "policy_violation",
-];
-
-const STATUS_TEXT: Record<RunStatus, string> = {
-  complete: "Complete", partial: "Partial", no_metrics: "No metrics",
-};
-
-export function StatusPill({ status }: { status: RunStatus }) {
-  return <span className={`pill pill-${status}`}>{STATUS_TEXT[status]}</span>;
-}
-
-function RunRow({ run, checked, disabled, onToggle }: {
-  run: RunSummary; checked: boolean; disabled: boolean; onToggle: () => void;
-}) {
-  const h = run.headline;
-  return (
-    <tr className={checked ? "selected" : undefined} onClick={disabled ? undefined : onToggle}>
-      <td className="check" onClick={(e) => e.stopPropagation()}>
-        <input
-          type="checkbox"
-          checked={checked}
-          disabled={disabled}
-          onChange={onToggle}
-          aria-label={`Select run ${run.id}`}
-        />
-      </td>
-      <td className="mono muted">#{run.id}</td>
-      <td>
-        <span className="version">{run.prompt_version}</span>
-        {promptDescription(run.prompt_version) && (
-          <div className="version-desc">{promptDescription(run.prompt_version)}</div>
-        )}
-      </td>
-      <td className="mono">{run.judge_version}</td>
-      <td><StatusPill status={run.status} /></td>
-      <td className="num">
-        {run.n_ok}
-        <span className="muted"> ok</span>
-        {run.n_failed > 0 && <span className="warn-text"> · {run.n_failed} failed</span>}
-        {run.n > 0 && <span className="muted"> / {run.n}</span>}
-      </td>
-      {h ? (
-        <>
-          {COLUMNS.map((name) => (
-            <td key={name} className="num" title={rateDetail(h[name])}>{pct(h[name]?.rate)}</td>
-          ))}
-          <td className="num">{num(h.lint_total_per_call)}</td>
-        </>
-      ) : (
-        <td colSpan={COLUMNS.length + 1} className="muted no-metrics">No metrics yet</td>
-      )}
-      <td className="row-action" onClick={(e) => e.stopPropagation()}>
-        {run.n_calls_stored > 0 && <a className="btn ghost sm" href={href.calls(run.id)}>Calls →</a>}
-      </td>
-    </tr>
-  );
-}
-
-export default function RunsScreen({ selected, onToggle, onClear, onCompare }: Props) {
+export default function RunsScreen({ selected, onToggle, onClear, onCompare, onCompareRuns }: Props) {
   const { data, loading, error, reload } = useApi(getRuns, "runs");
+  const [showIntro, toggleIntro] = useIntroPreference();
   const atLimit = selected.length >= MAX_COMPARE;
+  const v1 = data ? pickRun(data, "v1") : null;
+  const v4 = data ? pickRun(data, "v4") : null;
 
   return (
     <section>
-      <div className="page-head">
+      <Hero showIntro={showIntro} onToggle={toggleIntro} />
+      {showIntro && data && data.length > 0 && (
+        <>
+          <StatsStrip runs={data} />
+          <StartHere runs={data} onCompare={onCompareRuns} />
+          <VersionStrip />
+        </>
+      )}
+
+      <div className="page-head runs-head">
         <div>
-          <h1>Evaluation runs</h1>
-          <p className="subtitle">
-            Each run plays one prompt version against simulated debtors, then scores every call with
-            code checks and an LLM judge. Select runs to compare them.
-          </p>
+          <h2>Evaluation runs</h2>
+          <p className="subtitle">Each row is one prompt version, tested on the same 14 simulated calls.</p>
         </div>
         <div className="actions">
           {selected.length > 0 && <button className="btn ghost" onClick={onClear}>Clear</button>}
-          <button className="btn primary" disabled={selected.length === 0} onClick={onCompare}>
-            Compare {selected.length > 0 ? `${selected.length} run${selected.length > 1 ? "s" : ""}` : "runs"}
-          </button>
+          {v1 && v4 && (
+            <button className="btn" onClick={() => onCompareRuns([v1.id, v4.id])}>Compare v1 vs v4</button>
+          )}
+          <div className="compare-action">
+            <button className="btn primary" disabled={selected.length === 0} onClick={onCompare}>
+              Compare {selected.length > 0 ? `${selected.length} run${selected.length > 1 ? "s" : ""}` : "runs"}
+            </button>
+            {selected.length === 0 && <span className="hint">Tick two runs to compare</span>}
+          </div>
         </div>
       </div>
 
@@ -98,42 +61,11 @@ export default function RunsScreen({ selected, onToggle, onClear, onCompare }: P
         <div className="panel status">No runs in the database yet.</div>
       )}
       {data && !error && data.length > 0 && (
-        <div className="panel table-wrap">
-          <table className="runs">
-            <thead>
-              <tr>
-                <th className="check" />
-                <th>Run</th>
-                <th>Prompt</th>
-                <th>Judge</th>
-                <th>Status</th>
-                <th className="num">Calls</th>
-                {COLUMNS.map((name) => (
-                  <th key={name} className="num">{RATE_LABELS[name]}</th>
-                ))}
-                <th className="num">Lint / call</th>
-                <th className="row-action" />
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((run) => {
-                const checked = selected.includes(run.id);
-                return (
-                  <RunRow
-                    key={run.id}
-                    run={run}
-                    checked={checked}
-                    disabled={!checked && atLimit}
-                    onToggle={() => onToggle(run.id)}
-                  />
-                );
-              })}
-            </tbody>
-          </table>
-          <p className="table-note">
-            Rates are shares of calls; hover a rate for k/n and its 95% confidence interval.
-            {atLimit && ` At most ${MAX_COMPARE} runs can be compared at once.`}
-          </p>
+        <div className="panel runs-panel">
+          <div className="table-wrap">
+            <RunsTable runs={data} selected={selected} onToggle={onToggle} atLimit={atLimit} />
+          </div>
+          <HowToRead atLimit={atLimit} />
         </div>
       )}
     </section>
