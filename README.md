@@ -16,7 +16,6 @@ confidence intervals.
 
 ## Demo
 
-- **TODO:** 2-minute demo video: [link](TODO)
 - **Live dashboard** (static snapshot, GitHub Pages): [namyaa6.github.io/CollectionsLab](https://namyaa6.github.io/CollectionsLab/)
 
 <img src="docs/screenshots/hero.png" width="800" alt="Compare screen: v1 and v4 run cards above a key-changes strip">
