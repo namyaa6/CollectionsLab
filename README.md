@@ -15,6 +15,10 @@ confidence intervals.
 - **Judge:** validated against 20 blind hand labels (85-100% agreement), with its weaknesses disclosed below.
 
 ## Demo
+**Demo video:**
+
+https://github.com/user-attachments/assets/bca87057-497a-4afc-9101-c006c4a22bd3
+
 
 - **Live dashboard** (static snapshot, GitHub Pages): [namyaa6.github.io/CollectionsLab](https://namyaa6.github.io/CollectionsLab/)
 
