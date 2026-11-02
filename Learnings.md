@@ -1,14 +1,30 @@
-What v1 got wrong (your “before” picture)
-1. Identity check skipped. It asked “is this Mr. Arjun Chauhan?” and then, in the same breath, stated the amount before he confirmed. The policy requires confirming identity before discussing amounts. This is a classic v1 failure.
-2. Not phone-friendly. It said “65,200 rupees” with digits and a comma, read out “INV-2026-1004”, and used long multi-sentence turns with paragraph breaks. Through TTS, this would sound robotic. That’s what v2’s voice rules fix.
-3. Mild pressure: “Please ensure the payment is made... to keep your account in good standing” is borderline. The judge will decide.
-4. Identity skipped again. It asked “am I speaking with Mr. Arjun Chauhan?” then stated ₹65,200 before he answered. Two calls out of two, so this is a pattern, not a one-off.
-5. The ₹ symbol appeared. TTS might read it as “rupee sign” or skip it. This is exactly what your voice linter (M6) will flag.
-6. Possible pressure: “Given the previous broken promises... we really need to secure a firm, reliable date”. Using a debtor’s history to push them is something the judge should evaluate against your “never pressure” rule.
+## First live calls (v1, before measurement)
+1. Identity skipped: it asked "is this Mr. Arjun Chauhan?" and stated the
+   amount in the same breath, before he confirmed. The policy requires
+   confirming identity before discussing amounts.
+2. Not phone-friendly: "65,200 rupees" with digits and a comma, "INV-2026-1004"
+   read out as-is, and long multi-sentence turns with paragraph breaks. Through
+   TTS this would sound robotic.
+3. Mild pressure: "Please ensure the payment is made... to keep your account
+   in good standing" is borderline. Left for the judge.
+4. Identity skipped again: "am I speaking with Mr. Arjun Chauhan?", then
+   ₹65,200 before he answered. Two calls out of two: a pattern, not a one-off.
+5. The ₹ symbol appeared. TTS might read it as "rupee sign" or skip it. The
+   voice linter (M6) should flag this.
+6. Possible pressure: "Given the previous broken promises... we really need
+   to secure a firm, reliable date". Using a debtor's history to push them is
+   a question for the judge against the "never pressure" rule.
 7. Long, multi-paragraph turns again, including a speech-like goodbye.
-8. Facts: 6 matched, 0 unverified. v1 didn’t make up numbers on this call. Good to know: its problems are style and procedure, not accuracy, at least here. And “November 10th” was correctly matched to the debtor’s “tenth of this month”.
-9. Retrieval: 0 policy searches. v1 never consulted the policy at all. That’s a finding in itself: the agent was just improvising. v3 tells it to search, and then your retrieval-miss tracking becomes relevant.
-10. The identity-check failure doesn’t show up here, because no simple code rule can detect “asked but didn’t wait for an answer”. That’s the judge’s job in M7, which is why you have both layers.
+8. Facts: 6 matched, 0 unverified. v1 didn't make up numbers on this call; its
+   problems were style and procedure, not accuracy, at least here. "November
+   10th" was correctly matched to the debtor's "tenth of this month".
+9. Retrieval: 0 policy searches. v1 never consulted the policy; it was
+   improvising. v3 tells it to search, which is where retrieval-miss tracking
+   becomes relevant.
+10. The identity failure doesn't show up in code checks: no simple code rule
+    can detect "asked but didn't wait for an answer". That needs the judge
+    (M7), which is why there are two layers.
+
 ## v1 baseline (run #1, n=14, seed 42)
 - Outcome pass 14/14, judge task success 14/14, hallucination 0/14,
   compliance 0/14, pressure 0/14, tone 5/5.
@@ -44,11 +60,12 @@ What v1 got wrong (your “before” picture)
   reliable there. The judge did have today's date; the gaps were no
   explicit cutoff dates (call date +30 / +60) and no inclusive-boundary
   rule. Not yet confirmed that these caused the errors.
-- Plan: judge j2 (CALENDAR block with call date +30/+60, inclusive
+- Plan (done): judge j2 (CALENDAR block with call date +30/+60, inclusive
   boundaries, transcript-only evidence), re-judge all versions, then
-  hand-label against j2.
+  hand-label against j2. See "Judge j1 vs j2 on identical conversations"
+  below.
 
-  ## Judge j1 vs j2 on identical conversations (runs 1/4, 2/5)
+## Judge j1 vs j2 on identical conversations (runs 1/4, 2/5)
 - 9 disagreements: j2 right on 6 (date limits via calendar, day-30
   inclusive, caught the 69-day installment, no policy quotes), j1 right on 3.
 - New j2 error: escalation_correct=false with no evidence on calls where the
@@ -72,12 +89,6 @@ What v1 got wrong (your “before” picture)
   from the due date). Code checks were correct. Second independent example
   that the judge is unreliable on date rules and code is reliable.
 - So v3's judge task_success and compliance are slightly understated.
-
-## Cross-judge quota
-- gemini-3.8-flash: 503 "high demand", unusable that evening.
-- gemini-3.6-flash: worked, but its 20/day quota ran out after 10
-  judgments because 5xx retries also count as requests.
-- Lesson: on tiny-quota models, retries are expensive; cap retries lower.
 
 ## Final results (judge j2, n=14, seed 42, runs #4-#7)
 | Metric                      | v1    | v2    | v3     | v4     |
@@ -121,13 +132,16 @@ What v1 got wrong (your “before” picture)
   said pass. The plan breaks the 60-day rule, so the judge is probably
   right. Human labels aren't perfect either.
 
-## Labelling process (disclose in README)
+## Labelling process (disclosed in README)
 - One annotator (me), n=20, sample across v1-v4.
 - I had already seen some of these calls and judge verdicts in the
   dashboard, so labels aren't fully independent.
-- One review pass after clarifying a definition (pressure_or_threat is
-  about the agent, not the debtor); calls 2, 6, 7, 10, 12, 13, 20
-  relabelled.
+- One review pass, before any agreement numbers, covering the pressure
+  definition (pressure_or_threat is about the agent, not the debtor) and
+  re-checking installment calls against the policy rules; calls 2, 6, 7,
+  10, 12, 13, 20 relabelled.
+- No relabelling after seeing judge disagreements, to avoid biasing
+  agreement upward.
 
 ## Second judge (gemini-3.6-flash, same j2 rubric, all 20 calls)
 | Criterion  | 2nd vs me     | Main vs me    | Main vs 2nd   |
@@ -160,10 +174,11 @@ What v1 got wrong (your “before” picture)
     identity policy asks for it). Not confirmed.
 - Pressure: both judges flagged 0 of the 2 calls I marked; 3.6-flash
   flagged no pressure on any call. Both are lenient on pressure.
-- gemini-3.8-flash was unusable (503 "high demand").
-- 3.6-flash's 20/day quota ran out after 10 judgments: 5xx retries also
-  count as requests. The other 10 ran after the daily reset. On
-  tiny-quota models, retries are expensive.
+- Quota: gemini-3.8-flash was unusable that evening (503 "high demand").
+  3.6-flash worked, but its 20/day quota ran out after 10 judgments
+  because 5xx retries also count as requests. The other 10 ran after the
+  daily reset. Lesson: on tiny-quota models, retries are expensive; cap
+  retries lower.
 
 ## Gap found while labelling: language matching
 - Hinglish debtors get English replies. The policy only says the agent
